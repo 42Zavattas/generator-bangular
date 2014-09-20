@@ -1,5 +1,7 @@
 {
-  "name": "package",
-  "version": "0.0.0",
-  "dependencies": {}
+  "name": "<%= _.slugify(appname) %>",
+  "version": "0.1.0",
+  "dependencies": {
+    "lodash": "*"
+  }
 }
