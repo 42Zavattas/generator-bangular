@@ -1,15 +1,18 @@
 {
   "name": "generator-bangular",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Yeoman generator",
-  "license": "MIT",
+  "license": "BSD",
   "main": "app/index.js",
-  "repository": "meriadec/generator-bangular",
-  "author": {
+  "repository": "42Zavattas/generator-bangular",
+  "contributors": [{
     "name": "Meriadec Pillet",
-    "email": "",
     "url": "https://github.com/meriadec"
   },
+  {
+    "name": "Balthazar Gronon",
+    "url": "https://github.com/Apercu"
+  }],
   "engines": {
     "node": ">=0.10.0"
   },
@@ -20,7 +23,15 @@
     "app"
   ],
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator",
+    "generator",
+    "angular",
+    "lightweight",
+    "blazingfast",
+    "express",
+    "server",
+    "gulp",
+    "zavattas"
   ],
   "dependencies": {
     "yeoman-generator": "^0.17.0",
