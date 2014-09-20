@@ -1,1 +1,38 @@
-<html></html>
+<!DOCTYPE html>
+<html ng-app="<%= _.slugify(appname) %>">
+  <head>
+
+    <title><%= _.slugify(appname) %></title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <base href="/">
+
+    <!-- bower:css -->
+    <!-- endinject -->
+
+    <!-- inject:css -->
+    <link rel="stylesheet" href="styles/css/app.css">
+    <!-- endinject -->
+
+  </head>
+  <body>
+
+    <h1>Hello world !</h1>
+
+    <div ng-view></div>
+
+    <!-- bower:js -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <!-- endinject -->
+
+    <!-- inject:js -->
+    <script src="app.js"></script>
+    <script src="views/main/main.controller.js"></script>
+    <script src="views/main/main.js"></script>
+    <!-- endinject -->
+
+  </body>
+</html>
