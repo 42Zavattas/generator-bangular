@@ -23,7 +23,8 @@
   },
   "files": [
     "app",
-    "route"
+    "route",
+    "service"
   ],
   "keywords": [
     "yeoman-generator",
