@@ -23,7 +23,7 @@ var toInject = [
  * Compile sass
  */
 gulp.task('sass', function () {
-  gulp.src('client/styles/app.scss')
+  return gulp.src('client/styles/app.scss')
     .pipe($.plumber())
     .pipe($.sass())
     .pipe(gulp.dest('client/styles/css'));
@@ -61,7 +61,11 @@ gulp.task('watch', ['inject'], function () {
       .pipe($.livereload());
   });
 
-  $.watch(['client/index.html', 'client/views/**/*.html'])
+  $.watch([
+    'client/index.html',
+    'client/views/**/*.html',
+    'client/directives/**/*.html'
+  ])
     .pipe($.livereload());
 
   $.watch(toInject, function () {
@@ -123,7 +127,7 @@ gulp.task('test', ['test:server', 'test:client']);
 /**
  * Launch server
  */
-gulp.task('serve', ['inject', 'watch'], function () {
+gulp.task('serve', ['sass', 'inject', 'watch'], function () {
   var options = {
     url: 'http://localhost:' + config.port,
     app: 'chromium'
