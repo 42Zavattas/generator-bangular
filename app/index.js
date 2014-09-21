@@ -43,11 +43,11 @@ var BangularGenerator = yeoman.generators.Base.extend({
       choices: [{
         value: 'ngCookies',
         name: 'angular-cookies',
-        checked: true
+        checked: false
       }, {
         value: 'ngResource',
         name: 'angular-resource',
-        checked: true
+        checked: false
       }, {
         value: 'ngSanitize',
         name: 'angular-sanitize',
