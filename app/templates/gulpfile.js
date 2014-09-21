@@ -1,6 +1,7 @@
 'use strict';
 
 var gulp = require('gulp');
+var chalk = require('chalk');
 var bowerFiles = require('main-bower-files');
 var $ = require('gulp-load-plugins')();
 
@@ -18,6 +19,21 @@ var toInject = [
   'client/views/**/*.js', '!client/views/**/*.spec.js',
   'client/styles/css/app.css'
 ];
+
+/**
+ * Log. With options.
+ *
+ * @param {String} msg
+ * @param {Object} options
+ */
+function log (msg, options) {
+  options = options || {};
+  console.log(
+    (options.padding ? '\n' : '') +
+    chalk.yellow(' > ' + msg) +
+    (options.padding ? '\n' : '')
+  );
+}
 
 /**
  * Compile sass
@@ -102,18 +118,25 @@ gulp.task('watch', ['inject'], function () {
 /**
  * Tests
  */
-gulp.task('test:server', function () {
-  process.env.NODE_ENV = 'test';
-  return gulp.src('server/**/*.spec.js', { read: false })
+function testServer (done) {
+
+  log('Running server test...', { padding: true });
+
+  gulp.src('server/**/*.spec.js', { read: false })
     .pipe($.plumber())
     .pipe($.mocha({ reporter: 'spec' }))
     .once('end', function () {
-      process.exit();
+      done();
     });
-});
 
-gulp.task('test:client', function () {
-  return gulp.src([
+}
+
+
+function testClient (done) {
+
+  log('Running client test...', { padding: true });
+
+  gulp.src([
     'client/bower_components/angular/angular.js',
     'client/bower_components/angular-mocks/angular-mocks.js',
     'client/bower_components/angular-route/angular-route.js',
@@ -130,10 +153,30 @@ gulp.task('test:client', function () {
     .on('error', function (err) {
       console.log(err);
       this.emit('end');
+    })
+    .once('end', function () {
+      done();
     });
-});
 
-gulp.task('test', ['test:server', 'test:client']);
+}
+
+gulp.task('test', function (done) {
+  process.env.NODE_ENV = 'test';
+  var filter = process.argv[3] ? process.argv[3].substr(2) : false;
+  if (filter === 'client') {
+    return testClient(function () { done(); });
+  } else if (filter === 'server') {
+    return testServer(function () { done(); });
+  } else if (filter === false) {
+    return testClient(function () {
+      testServer(function () {
+        done();
+      });
+    });
+  } else {
+    console.log('Wrong parameter [%s], availables : --client, --server', filter);
+  }
+});
 
 /**
  * Launch server
