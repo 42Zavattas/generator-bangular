@@ -5,9 +5,7 @@ var config = require('./config/environment');
 module.exports = function (app) {
 
   // API
-<% if (filters.mongo) { %>
-  app.use('/api/things', require('./api/thing'));
-<% } %>
+
   app.route('/:url(api|app|bower_components|assets)/*')
     .get(function (req, res) {
       res.send(404);
