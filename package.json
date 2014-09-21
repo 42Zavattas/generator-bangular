@@ -5,14 +5,16 @@
   "license": "BSD",
   "main": "app/index.js",
   "repository": "42Zavattas/generator-bangular",
-  "contributors": [{
-    "name": "Meriadec Pillet",
-    "url": "https://github.com/meriadec"
-  },
-  {
-    "name": "Balthazar Gronon",
-    "url": "https://github.com/Apercu"
-  }],
+  "contributors": [
+    {
+      "name": "Meriadec Pillet",
+      "url": "https://github.com/meriadec"
+    },
+    {
+      "name": "Balthazar Gronon",
+      "url": "https://github.com/Apercu"
+    }
+  ],
   "engines": {
     "node": ">=0.10.0"
   },
@@ -20,7 +22,8 @@
     "test": "mocha"
   },
   "files": [
-    "app"
+    "app",
+    "controller"
   ],
   "keywords": [
     "yeoman-generator",
