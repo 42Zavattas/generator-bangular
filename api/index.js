@@ -2,6 +2,7 @@
 
 var chalk = require('chalk');
 var yeoman = require('yeoman-generator');
+var genUtils = require('../util');
 
 var BangularGenerator = yeoman.generators.NamedBase.extend({
 
@@ -30,6 +31,14 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
     ['controller.js', 'model.js', 'spec.js'].forEach(function (file) {
       this.template(file, 'server/api/' + this.name + '/' + this.name + '.' + file);
     }.bind(this));
+
+    genUtils.rewriteFile({
+      file: 'server/routes.js',
+      needle: '// API',
+      splicable: [
+        'app.use(\'' + this.url + '\', require(\'./api/' + this.name + '\'));'
+      ]
+    });
   }
 });
 
