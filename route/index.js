@@ -1,5 +1,5 @@
 'use strict';
-var util = require('util');
+
 var yeoman = require('yeoman-generator');
 
 var BangularGenerator = yeoman.generators.NamedBase.extend({

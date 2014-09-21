@@ -19,7 +19,6 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
       default: '/api/' + this.pluralName
     }], function (props) {
       this.url = props.url;
-
       done();
     }.bind(this));
   },

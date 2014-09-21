@@ -1,7 +1,7 @@
 {
-  "name": "generator-bangular",
+  "name": "Bangular Generator",
   "version": "0.1.0",
-  "description": "Yeoman generator",
+  "description": "Generate and serve your project in a blink of an eye",
   "license": "BSD",
   "main": "app/index.js",
   "repository": "42Zavattas/generator-bangular",
@@ -25,13 +25,16 @@
     "app",
     "api",
     "route",
+    "style",
     "service",
     "directive"
   ],
   "keywords": [
     "yeoman-generator",
+    "bangular-generator",
     "generator",
     "angular",
+    "bangular",
     "lightweight",
     "blazingfast",
     "express",
