@@ -1,11 +1,11 @@
 'use strict';
 
 var express = require('express');
-var config = require('./config/environment');
+var config = require('./config/environment');<% if (filters.mongo) { %>
 var mongoose = require('mongoose');
 
 // Connect to database
-mongoose.connect(config.mongo.uri, config.mongo.options);
+mongoose.connect(config.mongo.uri, config.mongo.options);<% } %>
 
 var app = express();
 var server = require('http').createServer(app);

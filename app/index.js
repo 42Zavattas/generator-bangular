@@ -58,7 +58,7 @@ var BangularGenerator = yeoman.generators.Base.extend({
       }]
     }], function (props) {
       self.appname = props.name;
-      self.mongo = props.mongo;
+      self.filters.mongo = props.mongo;
 
       if (props.modules.length) {
         props.modules.forEach(function (module) {
@@ -68,6 +68,10 @@ var BangularGenerator = yeoman.generators.Base.extend({
 
       done();
     });
+  },
+
+  saveSettings: function () {
+    this.config.set('filters', this.filters);
   },
 
   generate: function () {
