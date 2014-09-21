@@ -4,6 +4,7 @@ var genUtils = require('../util');
 var path = require('path');
 var yeoman = require('yeoman-generator');
 var yosay = require('yosay');
+var bangAscii = require('./ascii');
 var chalk = require('chalk');
 
 function bangLog (msg, color) {
@@ -22,7 +23,7 @@ var BangularGenerator = yeoman.generators.Base.extend({
   prompting: function () {
 
     var done = this.async();
-    this.log(yosay('Welcome to the ace Bangular generator!'));
+    this.log(bangAscii);
     var self = this;
 
     this.prompt([{
