@@ -6,6 +6,21 @@ function escapeRegExp (str) {
   return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
 }
 
+function fileExists (path) {
+  if (fs.existsSync(path)) {
+    return true;
+  }
+  return false;
+}
+
+function appendTo (yeoman, opts) {
+  var data = fs.readFileSync(opts.src).toString();
+
+  fs.appendFile(opts.dest, data, function () {
+    fs.unlinkSync(opts.src);
+  });
+}
+
 function rewrite (args) {
   // check if splicable is already in the body text
   var re = new RegExp(args.splicable.map(function (line) {
@@ -79,7 +94,6 @@ function filterFile (template) {
       template = template.replace(filter, '');
     });
   }
-
   return { name: template, filters: filters };
 }
 
@@ -137,6 +151,8 @@ function processDirectory (self, source, destination) {
 }
 
 module.exports = {
+  fileExists: fileExists,
+  appendTo: appendTo,
   rewrite: rewrite,
   rewriteFile: rewriteFile,
   appName: appName,

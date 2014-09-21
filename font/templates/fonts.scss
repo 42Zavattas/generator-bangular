@@ -1,0 +1,11 @@
+
+@font-face {
+  font-family: '<%= name %>';
+  font-weight: normal;
+  font-style: normal;
+  <% if (types.eot) { %>src: url('/assets/fonts/<%= name %>/<%= name %>.eot');
+  <% } %>src: <% if (types.eot) { %>url('/assets/fonts/<%= name %>/<%= name %>.eot#iefix') format('embedded-opentype')<% if (types.woff || types.ttf || types.svg) { %>,<% } else { %>;<% } %>
+       <% } %><% if (types.woff) { %>url('/assets/fonts/<%= name %>/<%= name %>.woff') format('woff')<% if ( types.ttf || types.svg) { %>,<% } else { %>;<% } %>
+       <% } %><% if (types.ttf) { %>url('/assets/fonts/<%= name %>/<%= name %>.ttf') format('truetype')<% if (types.svg) { %>,<% } else { %>;<% } %>
+       <% } %><% if (types.svg) { %>url('/assets/fonts/<%= name %>/<%= name %>.svg#<%= name %>') format('svg');<% } %>
+}

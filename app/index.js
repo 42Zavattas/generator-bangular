@@ -3,7 +3,6 @@
 var genUtils = require('../util');
 var path = require('path');
 var yeoman = require('yeoman-generator');
-var yosay = require('yosay');
 var bangAscii = require('./ascii');
 var chalk = require('chalk');
 
@@ -78,6 +77,9 @@ var BangularGenerator = yeoman.generators.Base.extend({
   generate: function () {
     this.sourceRoot(path.join(__dirname, './templates'));
     genUtils.processDirectory(this, '.', '.');
+    this.mkdir('client/assets');
+    this.mkdir('client/assets/fonts');
+    this.mkdir('client/assets/images');
   },
 
   end: function () {
