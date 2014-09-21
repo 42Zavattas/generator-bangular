@@ -3,7 +3,7 @@
 var config = require('./config/environment');
 
 module.exports = function (app) {
-  <% if (filters.mongo) { %>
+<% if (filters.mongo) { %>
   app.use('/api/things', require('./api/thing'));
   <% } %>
   app.route('/:url(api|app|bower_components|assets)/*')
