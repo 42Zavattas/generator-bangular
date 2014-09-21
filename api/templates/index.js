@@ -2,7 +2,7 @@
 
 var express = require('express');
 var router = express.Router();
-var controller = require('./thing.controller');
+var controller = require('./<%= _.camelize(name) %>.controller');
 
 router.get('/', controller.index);
 router.get('/:id', controller.show);

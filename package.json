@@ -23,7 +23,8 @@
   },
   "files": [
     "app",
-    "controller"
+    "controller",
+    "api"
   ],
   "keywords": [
     "yeoman-generator",
