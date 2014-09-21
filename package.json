@@ -25,7 +25,8 @@
     "app",
     "api",
     "route",
-    "service"
+    "service",
+    "directive"
   ],
   "keywords": [
     "yeoman-generator",
