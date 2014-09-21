@@ -1,7 +1,11 @@
 'use strict';
 
 angular.module('<%= _.slugify(appname) %>', [
-  'ngRoute'
+  'ngRoute'<% if (filters.ngCookies) { %>,
+  'ngCookies'<% } %><% if (filters.ngResource) { %>,
+  'ngResource'<% } %><% if (filters.ngSanitize) { %>,
+  'ngSanitize'<% } %><% if (filters.ngAnimate) { %>,
+  'ngAnimate'<% } %>
 ])
 
   .config(function ($routeProvider, $locationProvider) {

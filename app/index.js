@@ -4,12 +4,18 @@ var genUtils = require('../util');
 var path = require('path');
 var yeoman = require('yeoman-generator');
 var yosay = require('yosay');
+var chalk = require('chalk');
+
+function bangLog (msg, color) {
+  console.log('[' + chalk.blue('Bangular') + ']: ' + chalk[color](msg));
+}
 
 var BangularGenerator = yeoman.generators.Base.extend({
+
   initializing: function () {
     this.appname = this.appname || path.basename(process.cwd());
     this.appname = this._.camelize(this._.slugify(this._.humanize(this.appname)));
-
+    this.filters = {};
     this.pkg = require('../package.json');
   },
 
@@ -17,12 +23,13 @@ var BangularGenerator = yeoman.generators.Base.extend({
 
     var done = this.async();
     this.log(yosay('Welcome to the ace Bangular generator!'));
+    var self = this;
 
     this.prompt([{
       type: 'input',
       name: 'name',
       message: 'Your project name',
-      default: this.appname
+      default: self.appname
     }, {
       type: 'confirm',
       name: 'mongo',
@@ -33,10 +40,6 @@ var BangularGenerator = yeoman.generators.Base.extend({
       name: 'modules',
       message: 'Which module do you want to load ?',
       choices: [{
-        value: 'ngAnimate',
-        name: 'angular-animate',
-        checked: true
-      }, {
         value: 'ngCookies',
         name: 'angular-cookies',
         checked: true
@@ -48,14 +51,23 @@ var BangularGenerator = yeoman.generators.Base.extend({
         value: 'ngSanitize',
         name: 'angular-sanitize',
         checked: false
+      }, {
+        value: 'ngAnimate',
+        name: 'angular-animate',
+        checked: false
       }]
     }], function (props) {
-      //console.log(props);
-      this.appname = props.name;
-      this.mongo = props.mongo;
+      self.appname = props.name;
+      self.mongo = props.mongo;
+
+      if (props.modules.length) {
+        props.modules.forEach(function (module) {
+          self.filters[module] = true;
+        });
+      }
 
       done();
-    }.bind(this));
+    });
   },
 
   generate: function () {
@@ -64,11 +76,11 @@ var BangularGenerator = yeoman.generators.Base.extend({
   },
 
   end: function () {
-    console.info('\n[Bangular] Installing dependencies\n');
+    bangLog('Installing dependencies...', 'yellow');
     this.installDependencies({
       skipMessage: true,
       callback: function () {
-        console.info('\n[Bangular] Everything is ready !"');
+        bangLog('Everything is ready !', 'green');
       }
     });
   }
