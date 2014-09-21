@@ -7,7 +7,6 @@ angular.module('<%= _.slugify(appname) %>', [
   'ngSanitize'<% } %><% if (filters.ngAnimate) { %>,
   'ngAnimate'<% } %>
 ])
-
   .config(function ($routeProvider, $locationProvider) {
 
     $routeProvider
