@@ -125,7 +125,7 @@ gulp.task('test:client', function () {
   ])
     .pipe($.karma({
       action: 'run',
-      configFile: 'karma.conf.js'
+      configFile: 'client/karma.conf.js'
     }))
     .on('error', function (err) {
       console.log(err);
