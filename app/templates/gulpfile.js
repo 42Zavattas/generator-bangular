@@ -177,12 +177,13 @@ gulp.task('test', function (done) {
   process.env.NODE_ENV = 'test';
   var filter = process.argv[3] ? process.argv[3].substr(2) : false;
   if (filter === 'client') {
-    return testClient(function () { done(); });
+    return testClient(function () { process.exit(); done(); });
   } else if (filter === 'server') {
-    return testServer(function () { done(); });
+    return testServer(function () { process.exit(); done(); });
   } else if (filter === false) {
     return testClient(function () {
       testServer(function () {
+        process.exit();
         done();
       });
     });
