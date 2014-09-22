@@ -116,6 +116,19 @@ gulp.task('watch', ['inject'], function () {
 });
 
 /**
+ * Control things
+ */
+gulp.task('control', function () {
+  return gulp.src([
+    'client/**/**/*.js',
+    'server/**/**/*.js',
+    '!client/bower_components/**',
+  ])
+    .pipe($.jshint())
+    .pipe($.jshint.reporter('default'));
+});
+
+/**
  * Tests
  */
 function testServer (done) {
