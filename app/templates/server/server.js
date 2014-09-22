@@ -17,7 +17,11 @@ require('./routes')(app);
 server.listen(config.port, 'localhost', function () {
 
   console.log(
-    chalk.yellow('\nExpress server listening on port ') + chalk.cyan('%d') + chalk.yellow(', in ') + chalk.cyan('%s') + chalk.yellow(' mode.\n'),
+    chalk.yellow('\nExpress server listening on port ') +
+    chalk.cyan('%d') +
+    chalk.yellow(', in ') +
+    chalk.cyan('%s') +
+    chalk.yellow(' mode.\n'),
     config.port,
     app.get('env')
   );
