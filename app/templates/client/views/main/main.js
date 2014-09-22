@@ -6,6 +6,7 @@ angular.module('<%= _.slugify(appname) %>')
     $routeProvider
       .when('/main', {
         templateUrl: 'views/main/main.html',
-        controller: 'MainCtrl'
+        controller: 'MainCtrl',
+        controllerAs: 'main'
       });
   });

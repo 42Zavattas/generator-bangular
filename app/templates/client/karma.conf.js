@@ -3,7 +3,7 @@
 module.exports = function (config) {
   config.set({
 
-    basePath: 'client',
+    basePath: '',
 
     frameworks: ['jasmine'],
 

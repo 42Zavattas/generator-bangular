@@ -63,15 +63,29 @@ gulp.task('watch', ['inject'], function () {
 
   $.watch([
     'client/index.html',
-    'client/views/**/*.html',
-    'client/directives/**/*.html'
-  ])
-    .pipe($.livereload());
+    'client/app.js'
+  ]).pipe($.livereload());
 
-  $.watch(toInject, function () {
+  $.watch([
+    'client/views',
+    'client/views/**/*.html',
+    'client/views/**/*.js',
+    '!client/views/**/*.spec.js',
+    'client/directives',
+    'client/directives/**/*.html',
+    'client/directives/**/*.js',
+    '!client/directives/**/*.spec.js',
+    'client/services',
+    'client/services/**/*.js',
+    '!client/services/**/*.spec.js',
+    'client/filters',
+    'client/filters/**/*.js',
+    '!client/filters/**/*.spec.js'
+  ], function (ev, done) {
     gulp.src('client/index.html')
-      .pipe($.inject(gulp.src(toInject), { relative: true, name: 'app' }))
+      .pipe($.inject(gulp.src(toInject), { relative: true }))
       .pipe(gulp.dest('client'));
+    done();
   });
 
   $.watch('bower.json', function () {
@@ -82,9 +96,6 @@ gulp.task('watch', ['inject'], function () {
       }))
       .pipe(gulp.dest('client'));
   });
-
-  $.watch('client/app.js')
-    .pipe($.livereload());
 
 });
 
@@ -114,7 +125,7 @@ gulp.task('test:client', function () {
   ])
     .pipe($.karma({
       action: 'run',
-      configFile: 'karma.conf.js'
+      configFile: 'client/karma.conf.js'
     }))
     .on('error', function (err) {
       console.log(err);
