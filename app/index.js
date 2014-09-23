@@ -7,7 +7,7 @@ var bangAscii = require('./ascii');
 var chalk = require('chalk');
 
 function bangLog (msg, color) {
-  console.log('[' + chalk.blue('Bangular') + ']: ' + chalk[color](msg));
+  console.log('[' + chalk.blue('bangular') + ']: ' + chalk[color](msg));
 }
 
 var BangularGenerator = yeoman.generators.Base.extend({
