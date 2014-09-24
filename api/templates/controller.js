@@ -58,7 +58,7 @@ exports.update = function (req, res) {
   <%= _.capitalize(_.camelize(name)) %>.findById(req.params.id, function (err, <%= _.camelize(name) %>) {
     if (err) { return handleError(res, err); }
     if (!<%= _.camelize(name) %>) { return res.send(404); }
-    var updated = _.merge(thing, req.body);
+    var updated = _.merge(<%= _.camelize(name) %>, req.body);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
       return res.status(200).json(<%= _.camelize(name) %>);
