@@ -25,10 +25,17 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
 
   writing: function () {
 
+    var backendType = this.config.get('filters').backend;
+    var filesByBackendType = {
+      mongo: ['controller.js', 'model.js', 'spec.js'],
+      json: ['controller.js', 'data.json'],
+      restock: ['controller.js']
+    };
+
     this.template('index.js', 'server/api/' + this.name + '/index.js');
 
-    ['controller.js', 'model.js', 'spec.js'].forEach(function (file) {
-      this.template(file, 'server/api/' + this.name + '/' + this.name + '.' + file);
+    filesByBackendType[backendType].forEach(function (file) {
+      this.template(backendType + '/' + file, 'server/api/' + this.name + '/' + this.name + '.' + file);
     }.bind(this));
 
     genUtils.rewriteFile({
