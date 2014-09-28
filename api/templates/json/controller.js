@@ -56,5 +56,5 @@ exports.update = function (req, res) {
  * @param res
  */
 exports.destroy = function (req, res) {
-  return res.send(204);
+  return res.status(204);
 };
