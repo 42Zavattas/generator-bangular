@@ -21,6 +21,19 @@ function appendTo (yeoman, opts) {
   });
 }
 
+function appendOnTop (opts, cb) {
+  fs.readFile(opts.dest, function (err, data) {
+    if (err) { return cb(err, null); }
+    fs.writeFile(opts.dest, opts.append, function (err) {
+      if (err) { return cb(err, null); }
+      fs.appendFile(opts.dest, data, function (err) {
+        if (err) { return cb(err, null); }
+        cb(null, true);
+      });
+    });
+  });
+}
+
 function rewrite (args) {
   // check if splicable is already in the body text
   var re = new RegExp(args.splicable.map(function (line) {
@@ -153,6 +166,7 @@ function processDirectory (self, source, destination) {
 module.exports = {
   fileExists: fileExists,
   appendTo: appendTo,
+  appendOnTop: appendOnTop,
   rewrite: rewrite,
   rewriteFile: rewriteFile,
   appName: appName,

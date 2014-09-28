@@ -6,7 +6,7 @@ var yeoman = require('yeoman-generator');
 var genUtils = require('../util');
 
 function bangLog (msg, color) {
-  console.log('[' + chalk.blue('Bangular') + ']: ' + chalk[color](msg));
+  console.log('[' + chalk.blue('bangular') + ']: ' + chalk[color](msg));
 }
 
 var BangularGenerator = yeoman.generators.NamedBase.extend({
@@ -53,16 +53,19 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
     this.mkdir('client/assets/fonts/' + this.name);
 
     if (!genUtils.fileExists('client/styles/fonts.scss')) {
-
       this.template('fonts.scss', 'client/styles/fonts.scss');
 
-      genUtils.rewriteFile({
-        file: 'client/styles/app.scss',
-        needle: '// Imports',
-        splicable: [
-          '@import \'fonts\';'
-        ]
+      genUtils.appendOnTop({
+        dest: 'client/styles/app.scss',
+        append: '@import \'fonts\';\n'
+      }, function (err) {
+        if (err) {
+          bangLog('There was an error importing the font file.', 'red');
+        } else {
+          bangLog('Your font was successfully injected.', 'green');
+        }
       });
+
     } else {
       this.template('fonts.scss', '.tmp/fonts.scss');
 
