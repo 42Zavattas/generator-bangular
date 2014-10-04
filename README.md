@@ -24,7 +24,7 @@ Run the `gulp build` process and serve the `dist` directory.
     
 Launch client and server tests, using Karma and Mocha.
 
-    gulp test:client || gulp test:server
+    gulp test --client || gulp test --server
     
 Run specific tests.
 
