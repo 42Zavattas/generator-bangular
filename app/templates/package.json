@@ -1,0 +1,53 @@
+{
+  "name": "<%= _.slugify(appname) %>",
+  "version": "0.1.0",
+  "devDependencies": {
+
+    "connect-livereload": "^0.4.0",
+    "del": "^0.1.3",
+    "errorhandler": "^1.1.1",
+    "gulp": "^3.8.8",
+    "gulp-angular-templatecache": "^1.4.1",
+    "gulp-concat": "^2.4.1",
+    "gulp-imagemin": "^1.0.1",
+    "gulp-inject": "^1.0.1",
+    "gulp-jshint": "^1.8.4",
+    "gulp-karma": "0.0.4",
+    "gulp-livereload": "^2.1.1",
+    "gulp-load-plugins": "^0.7.0",
+    "gulp-minify-css": "^0.3.10",
+    "gulp-mocha": "^1.1.0",
+    "gulp-ng-annotate": "^0.3.3",
+    "gulp-open": "^0.3.0",
+    "gulp-plumber": "^0.6.5",
+    "gulp-rev-all": "^0.6.6",
+    "gulp-sass": "^1.0.0",
+    "gulp-uglify": "^1.0.1",
+    "gulp-usemin": "^0.3.8",
+    "gulp-util": "^3.0.1",
+    "gulp-watch": "^1.0.5",
+    "karma": "^0.12.23",
+    "karma-chrome-launcher": "^0.1.4",
+    "karma-jasmine": "^0.1.5",
+    "main-bower-files": "^2.0.0",
+    "run-sequence": "^1.0.1",
+    "streamqueue": "^0.1.1"
+  },
+  "dependencies": {
+    "body-parser": "^1.8.3",
+    "chalk": "^0.5.0",
+    "compression": "^1.0.11",
+    "cookie-parser": "^1.3.2",
+    "express": "^4.8.7",
+    "lodash": "^2.4.1",
+    "method-override": "^2.1.3",<% if (filters.backend === 'mongo') { %>
+    "mongoose": "^3.8.16",<% } %>
+    "morgan": "^1.3.1",<% if (filters.backend === 'restock') { %>
+    "request": "^2.44.0",<% } %>
+    "should": "^4.0.4",
+    "supertest": "^0.14.0"
+  },
+  "scripts": {
+    "start": "node server/server.js"
+  }
+}
