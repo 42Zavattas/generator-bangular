@@ -30,7 +30,7 @@
     "karma-chrome-launcher": "^0.1.4",
     "karma-jasmine": "^0.1.5",
     "main-bower-files": "^2.0.0",
-    "run-sequence": "^0.3.7",
+    "run-sequence": "^1.0.1",
     "streamqueue": "^0.1.1"
   },
   "dependencies": {
