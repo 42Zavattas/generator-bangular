@@ -24,7 +24,7 @@ Run the `gulp build` process and serve the `dist` directory.
     
 Launch client and server tests, using Karma and Mocha.
 
-    gulp test:client || gulp test:server
+    gulp test --client || gulp test --server
     
 Run specific tests.
 
@@ -38,6 +38,7 @@ Validate the app through JSHint.
   - [app](https://github.com/42Zavattas/generator-bangular#app)
  - Client
   - [directive](https://github.com/42Zavattas/generator-bangular#directive)
+  - [filter](https://github.com/42Zavattas/generator-bangular#filter)
   - [font](https://github.com/42Zavattas/generator-bangular#font)
   - [route](https://github.com/42Zavattas/generator-bangular#route)
   - [service](https://github.com/42Zavattas/generator-bangular#service)
@@ -60,6 +61,12 @@ This is the main generator of Bangular, that will scaffold entierely your projec
     yo bangular:directive <name>
     
 The **name** parameter is required. Directives will be generated at `client/directives/`. You can specify if your directive needs an html template or not.
+
+## Filter
+
+    yo bangular:filter <name>
+
+The **name** parameter is required. Filters will be generated at `client/filters/`.
 
 ## Font
 
@@ -112,11 +119,15 @@ The **name** parameter is required. A **name** folder will be created at `server
      │   └ fonts/
      ├ styles/
      ├ views/
+     ├ directives/
+     ├ filters/
+     ├ services/
      ├ bower_components/
      ├ index.html
      ├ app.js
      └ karma.conf.js
     server
+     ├ api/
      ├ config/
      ├ routes.js
      └ server.js

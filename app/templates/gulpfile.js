@@ -56,7 +56,7 @@ gulp.task('sass', function () {
 /**
  * Inject css/js files in index.html
  */
-gulp.task('inject', function () {
+gulp.task('inject', ['sass'], function () {
   var sources = gulp.src(toInject, { read: false });
 
   return gulp.src('client/index.html')
@@ -200,7 +200,7 @@ gulp.task('test', function (done) {
 /**
  * Launch server
  */
-gulp.task('serve', ['sass', 'inject', 'watch'], function () {
+gulp.task('serve', ['watch'], function () {
   require('./server/server');
   return gulp.src('client/index.html')
     .pipe($.open('', openOpts));
@@ -228,7 +228,6 @@ gulp.task('clean:finish', function (cb) {
 });
 
 gulp.task('copy:dist', function () {
-
   var main = gulp.src(['server/**/*', 'package.json'], { base: './' });
   var assets = gulp.src('client/assets/**/*', { base: './' });
 
