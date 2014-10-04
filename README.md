@@ -8,6 +8,29 @@
     
 # Launch
 
+    gulp || gulp serve
+
+Build `sass` files, inject all scripts and styles to the project, watch them and open your default browser.
+
+    gulp build
+    
+Wipe old generated `dist` directory while keeping the `.git` to preserve your remotes configuration. Concat all the scripts and vendors in one minified `.js` file, same thing for your styles. Minify all images in your assets. Rev all ressources for caching purposes; copy the server part.
+
+    gulp serve:dist
+    
+Run the `gulp build` process and serve the `dist` directory.
+
+    gulp test
+    
+Launch client and server tests, using Karma and Mocha.
+
+    gulp test:client || gulp test:server
+    
+Run specific tests.
+
+    gulp control
+    
+Validate the app through JSHint.
 
 # Generators
 
