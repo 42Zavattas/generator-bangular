@@ -12,7 +12,7 @@ describe('Directive: <%= camelName %>', function () {
   }));
 
   it('should ...', inject(function ($compile) {
-    element = angular.element('<flash></flash>');
+    element = angular.element('<<%= dashedName %>></<%= dashedName %>>');
     element = $compile(element)(scope);
     scope.$apply();
     expect(1).toBe(1);

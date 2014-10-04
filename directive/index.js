@@ -6,6 +6,7 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
   initializing: function () {
     this.camelName = this._.camelize(this.name);
     this.slugName = this._.slugify(this.name);
+    this.dashedName = this._.dasherize(this.name);
   },
 
   prompting: function () {
@@ -37,7 +38,7 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
     );
 
     this.template(
-      'directive.js',
+      'directive.spec.js',
       'client/directives/'
       + this.slugName
       + '/'

@@ -31,10 +31,19 @@ var BangularGenerator = yeoman.generators.Base.extend({
       message: 'Your project name',
       default: self.appname
     }, {
-      type: 'confirm',
-      name: 'mongo',
-      message: 'Would you like to include Mongo ?',
-      default: true
+      type: 'list',
+      name: 'backend',
+      message: 'Choose a backend type',
+      choices: [{
+        value: 'mongo',
+        name: 'MongoDb, with Mongoose as ODM'
+      }, {
+        value: 'restock',
+        name: 'Restock.io, for mocking purpose'
+      }, {
+        value: 'json',
+        name: 'Good old JSON'
+      }]
     }, {
       type: 'checkbox',
       name: 'modules',
@@ -58,7 +67,7 @@ var BangularGenerator = yeoman.generators.Base.extend({
       }]
     }], function (props) {
       self.appname = props.name;
-      self.filters.mongo = props.mongo;
+      self.filters.backend = props.backend;
 
       if (props.modules.length) {
         props.modules.forEach(function (module) {
