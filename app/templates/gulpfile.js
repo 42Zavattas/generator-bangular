@@ -220,7 +220,7 @@ gulp.task('serve:dist', ['build'], function () {
  * Build
  */
 gulp.task('clean:dist', function (cb) {
-  del(['dist/**', '!dist', '!dist/.git{,/**}' , '!dist/Procfile'], cb);
+  del(['dist/**', '!dist', '!dist/.git{,/**}'], cb);
 });
 
 gulp.task('clean:finish', function (cb) {
@@ -232,7 +232,7 @@ gulp.task('clean:finish', function (cb) {
 
 gulp.task('copy:dist', function () {
 
-  var main = gulp.src(['server/**/*', 'package.json', 'Procfile'], { base: './' });
+  var main = gulp.src(['server/**/*', 'package.json'], { base: './' });
   var assets = gulp.src('client/assets/**/*', { base: './' });
 
   return sq({ objectMode: true }, main, assets)
