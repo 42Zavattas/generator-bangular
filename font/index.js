@@ -22,16 +22,20 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
       name: 'types',
       message: 'What font file do you have ?',
       choices: [{
-        value: 'eot',
-        name: 'eot',
+        value: 'otf',
+        name: 'otf',
         checked: true
-      }, {
-        value: 'woff',
-        name: 'woff',
-        checked: false
       }, {
         value: 'ttf',
         name: 'ttf',
+        checked: false
+      }, {
+        value: 'eot',
+        name: 'eot',
+        checked: false
+      }, {
+        value: 'woff',
+        name: 'woff',
         checked: false
       }, {
         value: 'svg',
