@@ -149,9 +149,7 @@ function testServer (done) {
     .once('end', function () {
       done();
     });
-
 }
-
 
 function testClient (done) {
 
@@ -178,7 +176,6 @@ function testClient (done) {
     .once('end', function () {
       done();
     });
-
 }
 
 gulp.task('test', function (done) {
