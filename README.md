@@ -119,11 +119,15 @@ The **name** parameter is required. A **name** folder will be created at `server
      │   └ fonts/
      ├ styles/
      ├ views/
+     ├ directives/
+     ├ filters/
+     ├ services/
      ├ bower_components/
      ├ index.html
      ├ app.js
      └ karma.conf.js
     server
+     ├ api/
      ├ config/
      ├ routes.js
      └ server.js
