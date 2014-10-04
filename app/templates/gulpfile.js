@@ -158,7 +158,9 @@ function testClient (done) {
   gulp.src([
     'client/bower_components/angular/angular.js',
     'client/bower_components/angular-mocks/angular-mocks.js',
-    'client/bower_components/angular-route/angular-route.js',
+    'client/bower_components/angular-route/angular-route.js',<% if (filters.ngCookies) { %>
+    'client/bower_components/angular-cookies/angular-cookies.js',<% } %><% if (filters.ngResource) { %>
+    'client/bower_components/angular-resource/angular-resource.js',<% } %>
     'client/app.js',
     'client/views/**/*.js',
     'client/services/**/*.js',
