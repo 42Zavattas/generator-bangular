@@ -9,7 +9,6 @@
     "gulp": "^3.8.8",
     "gulp-angular-templatecache": "^1.4.1",
     "gulp-concat": "^2.4.1",
-    "gulp-imagemin": "^1.0.1",
     "gulp-inject": "^1.0.1",
     "gulp-jshint": "^1.8.4",
     "gulp-karma": "0.0.4",

@@ -243,12 +243,6 @@ gulp.task('usemin', ['inject'], function () {
     .pipe(gulp.dest('dist/client/'));
 });
 
-gulp.task('imagemin', function () {
-  return gulp.src('dist/client/assets/images/*.{png,gif,jpg,jpeg,svg}')
-    .pipe($.imagemin())
-    .pipe(gulp.dest('dist/client/assets/images/'));
-});
-
 gulp.task('cssmin', function () {
   return gulp.src('dist/client/app.css')
     .pipe($.minifyCss())
@@ -289,7 +283,7 @@ gulp.task('build', function (cb) {
   runSequence(
     ['clean:dist', 'sass'],
     ['usemin', 'copy:dist'],
-    ['scripts', 'imagemin', 'cssmin'],
+    ['scripts', 'cssmin'],
     'rev',
     'clean:finish',
     cb);
