@@ -1,15 +1,21 @@
 'use strict';
 
 var gulp = require('gulp');
+var del = require('del');
 var chalk = require('chalk');
 var bowerFiles = require('main-bower-files');
+var runSequence = require('run-sequence');
+var sq = require('streamqueue');
+var path = require('path');
 var $ = require('gulp-load-plugins')();
-
-//$.util.log = $.util.noop;
 
 process.env.NODE_ENV = $.util.env.env || 'development';
 
 var config = require('./server/config/environment');
+
+var openOpts = {
+  url: 'http://localhost:' + config.port
+};
 
 var toInject = [
   'client/app.js',
@@ -19,6 +25,8 @@ var toInject = [
   'client/views/**/*.js', '!client/views/**/*.spec.js',
   'client/styles/css/app.css'
 ];
+
+var toDelete = [];
 
 /**
  * Log. With options.
@@ -122,7 +130,7 @@ gulp.task('control', function () {
   return gulp.src([
     'client/**/**/*.js',
     'server/**/**/*.js',
-    '!client/bower_components/**',
+    '!client/bower_components/**'
   ])
     .pipe($.jshint())
     .pipe($.jshint.reporter('default'));
@@ -196,13 +204,97 @@ gulp.task('test', function (done) {
  * Launch server
  */
 gulp.task('serve', ['sass', 'inject', 'watch'], function () {
-  var options = {
-    url: 'http://localhost:' + config.port,
-    app: 'chromium'
-  };
-
   require('./server/server');
-  return gulp.src('client/index.html').pipe($.open('', options));
+  return gulp.src('client/index.html')
+    .pipe($.open('', openOpts));
+});
+
+gulp.task('serve:dist', ['build'], function () {
+  process.env.NODE_ENV = 'production';
+  require('./dist/server/server');
+  return gulp.src('client/index.html')
+    .pipe($.open('', openOpts));
+});
+
+/**
+ * Build
+ */
+gulp.task('clean:dist', function (cb) {
+  del(['dist/**', '!dist', '!dist/.git{,/**}' , '!dist/Procfile'], cb);
+});
+
+gulp.task('clean:finish', function (cb) {
+  del([
+    '.tmp/**',
+    'dist/client/app.{css,js}'
+  ].concat(toDelete), cb);
+});
+
+gulp.task('copy:dist', function () {
+
+  var main = gulp.src(['server/**/*', 'package.json', 'Procfile'], { base: './' });
+  var assets = gulp.src('client/assets/**/*', { base: './' });
+
+  return sq({ objectMode: true }, main, assets)
+    .pipe(gulp.dest('dist/'));
+});
+
+gulp.task('usemin', ['inject'], function () {
+  return gulp.src('client/index.html')
+    .pipe($.usemin())
+    .pipe(gulp.dest('dist/client/'));
+});
+
+gulp.task('imagemin', function () {
+  return gulp.src('dist/client/assets/images/*.{png,gif,jpg,jpeg,svg}')
+    .pipe($.imagemin())
+    .pipe(gulp.dest('dist/client/assets/images/'));
+});
+
+gulp.task('cssmin', function () {
+  return gulp.src('dist/client/app.css')
+    .pipe($.minifyCss())
+    .pipe(gulp.dest('dist/client/'));
+});
+
+gulp.task('scripts', function () {
+  var tpl = gulp.src('client/views/**/*.html')
+    .pipe($.angularTemplatecache({
+      root: 'views',
+      module: '<%= _.slugify(appname) %>'
+    }));
+
+  var app = gulp.src('dist/client/app.js');
+
+  return sq({ objectMode: true }, app, tpl)
+    .pipe($.concat('app.js'))
+    .pipe($.ngAnnotate())
+    .pipe($.uglify())
+    .pipe(gulp.dest('dist/client/'));
+});
+
+gulp.task('rev', function () {
+  return gulp.src('dist/client/**')
+    .pipe($.revAll({
+      ignore: ['favicon.ico', '.html'],
+      quiet: true,
+      transformFilename: function (file, hash) {
+        toDelete.push(path.resolve(file.path));
+        var ext = path.extname(file.path);
+        return path.basename(file.path, ext) + '.' + hash.substr(0, 8) + ext;
+      }
+    }))
+    .pipe(gulp.dest('dist/client/'))
+});
+
+gulp.task('build', function (cb) {
+  runSequence(
+    ['clean:dist', 'sass'],
+    ['usemin', 'copy:dist'],
+    ['scripts', 'imagemin', 'cssmin'],
+    'rev',
+    'clean:finish',
+    cb);
 });
 
 gulp.task('default', ['serve']);

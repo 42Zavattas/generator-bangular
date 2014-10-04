@@ -14,18 +14,18 @@ var server = require('http').createServer(app);
 require('./config/express')(app);
 require('./routes')(app);
 
-server.listen(config.port, 'localhost', function () {
+server.listen(config.port, config.ip, function () {
 
   console.log(
-    chalk.yellow('\nExpress server listening on port ') +
-    chalk.cyan('%d') +
-    chalk.yellow(', in ') +
-    chalk.cyan('%s') +
-    chalk.yellow(' mode.\n'),
+    chalk.red('\nExpress server listening on port ') +
+    chalk.yellow('%d') +
+    chalk.red(', in ') +
+    chalk.yellow('%s') +
+    chalk.red(' mode.\n'),
     config.port,
     app.get('env')
   );
 
 });
 
-exports = module.exports = server;
+module.exports = server;

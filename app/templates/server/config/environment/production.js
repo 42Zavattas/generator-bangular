@@ -1,7 +1,10 @@
 'use strict';
 
-module.exports = {<% if (filters.backend === 'mongo') { %>
+module.exports = {
+  ip : process.env.IP || undefined<% if (filters.backend === 'mongo') { %>,
   mongo: {
-    uri: 'mongodb://localhost/<%= _.slugify(appname) %>'
+    uri: process.env.MONGOLAB_URI ||
+         process.env.MONGOHQ_URL ||
+        'mongodb://localhost/<%= _.slugify(appname) %>'
   }<% } %>
 };

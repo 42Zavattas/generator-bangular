@@ -7,14 +7,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
 
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+
     <base href="/">
 
-    <!-- bower:css -->
-    <!-- endinject -->
+    <!-- build:css app.css -->
+      <!-- bower:css -->
+      <!-- endinject -->
 
-    <!-- inject:css -->
-    <link rel="stylesheet" href="styles/css/app.css">
-    <!-- endinject -->
+      <!-- inject:css -->
+      <!-- endinject -->
+    <!-- endbuild -->
 
   </head>
   <body>
@@ -23,16 +26,13 @@
 
     <div ng-view></div>
 
-    <!-- bower:js -->
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <!-- endinject -->
+    <!-- build:js app.js -->
+      <!-- bower:js -->
+      <!-- endinject -->
 
-    <!-- inject:js -->
-    <script src="app.js"></script>
-    <script src="views/main/main.controller.js"></script>
-    <script src="views/main/main.js"></script>
-    <!-- endinject -->
+      <!-- inject:js -->
+      <!-- endinject -->
+    <!-- endbuild -->
 
   </body>
 </html>
