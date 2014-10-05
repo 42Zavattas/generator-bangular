@@ -21,7 +21,6 @@ module.exports = function (app) {
   app.set('appPath', 'client');
 
   if ('development' === env || 'test' === env) {
-    app.use(require('connect-livereload')());
     app.use(require('errorhandler')());
   }
 
