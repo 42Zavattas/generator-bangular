@@ -77,6 +77,18 @@ gulp.task('watch', ['inject'], function () {
 
   $.livereload.listen();
 
+  gulp.watch('bower.json', function () {
+    gulp.src('client/index.html')
+      .pipe($.inject(gulp.src(bowerFiles(), { read: false }), {
+        name: 'bower',
+        relative: 'true'
+      }))
+      .pipe(gulp.dest('client'));
+  });
+
+  gulp.watch(['client/index.html', 'client/app.js'])
+    .on('change', $.livereload.changed);
+
   $.watch('client/styles/**/*.scss', function () {
     gulp.src('client/styles/app.scss')
       .pipe($.plumber())
@@ -84,11 +96,6 @@ gulp.task('watch', ['inject'], function () {
       .pipe(gulp.dest('client/styles/css'))
       .pipe($.livereload());
   });
-
-  $.watch([
-    'client/index.html',
-    'client/app.js'
-  ]).pipe($.livereload());
 
   $.watch([
     'client/views',
@@ -105,19 +112,9 @@ gulp.task('watch', ['inject'], function () {
     'client/filters',
     'client/filters/**/*.js',
     '!client/filters/**/*.spec.js'
-  ], function (ev, done) {
+  ], function () {
     gulp.src('client/index.html')
       .pipe($.inject(gulp.src(toInject), { relative: true }))
-      .pipe(gulp.dest('client'));
-    done();
-  });
-
-  $.watch('bower.json', function () {
-    gulp.src('client/index.html')
-      .pipe($.inject(gulp.src(bowerFiles(), { read: false }), {
-        name: 'bower',
-        relative: 'true'
-      }))
       .pipe(gulp.dest('client'));
   });
 
@@ -239,6 +236,7 @@ gulp.task('copy:dist', function () {
 
 gulp.task('usemin', ['inject'], function () {
   return gulp.src('client/index.html')
+    .pipe($.plumber())
     .pipe($.usemin())
     .pipe(gulp.dest('dist/client/'));
 });
@@ -265,6 +263,12 @@ gulp.task('scripts', function () {
     .pipe(gulp.dest('dist/client/'));
 });
 
+gulp.task('replace', function () {
+  return gulp.src('dist/client/index.html')
+    .pipe($.replace(/<script.*livereload.*><\/script>/, ''))
+    .pipe(gulp.dest('dist/client'));
+});
+
 gulp.task('rev', function () {
   return gulp.src('dist/client/**')
     .pipe($.revAll({
@@ -283,7 +287,7 @@ gulp.task('build', function (cb) {
   runSequence(
     ['clean:dist', 'sass'],
     ['usemin', 'copy:dist'],
-    ['scripts', 'cssmin'],
+    ['replace', 'scripts', 'cssmin'],
     'rev',
     'clean:finish',
     cb);
