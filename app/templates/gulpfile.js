@@ -56,7 +56,7 @@ gulp.task('sass', function () {
 /**
  * Inject css/js files in index.html
  */
-gulp.task('inject', function () {
+gulp.task('inject', ['sass'], function () {
   var sources = gulp.src(toInject, { read: false });
 
   return gulp.src('client/index.html')
@@ -158,7 +158,9 @@ function testClient (done) {
   gulp.src([
     'client/bower_components/angular/angular.js',
     'client/bower_components/angular-mocks/angular-mocks.js',
-    'client/bower_components/angular-route/angular-route.js',
+    'client/bower_components/angular-route/angular-route.js',<% if (filters.ngCookies) { %>
+    'client/bower_components/angular-cookies/angular-cookies.js',<% } %><% if (filters.ngResource) { %>
+    'client/bower_components/angular-resource/angular-resource.js',<% } %>
     'client/app.js',
     'client/views/**/*.js',
     'client/services/**/*.js',
@@ -200,7 +202,7 @@ gulp.task('test', function (done) {
 /**
  * Launch server
  */
-gulp.task('serve', ['sass', 'inject', 'watch'], function () {
+gulp.task('serve', ['watch'], function () {
   require('./server/server');
   return gulp.src('client/index.html')
     .pipe($.open('', openOpts));
@@ -228,7 +230,6 @@ gulp.task('clean:finish', function (cb) {
 });
 
 gulp.task('copy:dist', function () {
-
   var main = gulp.src(['server/**/*', 'package.json'], { base: './' });
   var assets = gulp.src('client/assets/**/*', { base: './' });
 
@@ -240,12 +241,6 @@ gulp.task('usemin', ['inject'], function () {
   return gulp.src('client/index.html')
     .pipe($.usemin())
     .pipe(gulp.dest('dist/client/'));
-});
-
-gulp.task('imagemin', function () {
-  return gulp.src('dist/client/assets/images/*.{png,gif,jpg,jpeg,svg}')
-    .pipe($.imagemin())
-    .pipe(gulp.dest('dist/client/assets/images/'));
 });
 
 gulp.task('cssmin', function () {
@@ -288,7 +283,7 @@ gulp.task('build', function (cb) {
   runSequence(
     ['clean:dist', 'sass'],
     ['usemin', 'copy:dist'],
-    ['scripts', 'imagemin', 'cssmin'],
+    ['scripts', 'cssmin'],
     'rev',
     'clean:finish',
     cb);
