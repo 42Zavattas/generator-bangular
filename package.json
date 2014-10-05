@@ -3,8 +3,12 @@
   "version": "0.2.3",
   "description": "Generate and serve your project in a blink of an eye",
   "license": "BSD",
-  "main": "app/index.js",
-  "repository": "42Zavattas/generator-bangular",
+  "homepage": "https://github.com/42Zavattas/generator-bangular",
+  "bugs": "https://github.com/42Zavattas/generator-bangular/issues",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/42Zavattas/generator-bangular.git"
+  },
   "contributors": [
     {
       "name": "Meriadec Pillet",
@@ -52,6 +56,6 @@
     "mocha": "*"
   },
   "peerDependencies": {
-    "yo": ">=1.0.0"
+    "yo": ">=1.2.0"
   }
 }
