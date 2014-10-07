@@ -1,6 +1,6 @@
 'use strict';
 
-var config = require('./config/environment');
+var config = require('./config/environment/index');
 
 module.exports = function (app) {
 

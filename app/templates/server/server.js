@@ -2,7 +2,7 @@
 
 var express = require('express');
 var chalk = require('chalk');
-var config = require('./config/environment');<% if (filters.backend === 'mongo') { %>
+var config = require('./config/environment/index');<% if (filters.backend === 'mongo') { %>
 var mongoose = require('mongoose');
 
 // Connect to database
