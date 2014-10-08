@@ -5,7 +5,7 @@
 
 ***Philosophy***
 
-*« Perfection is here not when there is nothing to add, but when there is nothing to remove. »* ***Antoine De Saint-Exupéry***
+*« Perfection is achieved not when there is nothing more to add, but when there is nothing left to take away. »* — ***Antoine De Saint-Exupéry***
 
 * **NO** support for outdated browsers — *Working for IE users? Too bad.*
 * **NO** pre-install for Google Analytics — *Wanna track people? Do it yourself.*
