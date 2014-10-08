@@ -6,7 +6,7 @@ var morgan = require('morgan');
 var path = require('path');
 var bodyParser = require('body-parser');
 
-var config = require('./environment');
+var config = require('./environment/index');
 
 module.exports = function (app) {
 
