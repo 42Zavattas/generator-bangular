@@ -4,9 +4,9 @@ angular.module('<%= _.slugify(appname) %>')
   .config(function ($routeProvider) {
 
     $routeProvider
-      .when('/main', {
-        templateUrl: 'views/main/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
+      .when('/home', {
+        templateUrl: 'views/home/home.html',
+        controller: 'HomeCtrl',
+        controllerAs: 'vm'
       });
   });

@@ -86,6 +86,7 @@ var BangularGenerator = yeoman.generators.Base.extend({
   generate: function () {
     this.sourceRoot(path.join(__dirname, './templates'));
     genUtils.processDirectory(this, '.', '.');
+
     this.mkdir('client/assets/fonts');
     this.mkdir('client/assets/images');
   },
