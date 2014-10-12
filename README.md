@@ -66,6 +66,7 @@ This is the main generator of Bangular, that will scaffold entierely your projec
     yo bangular || yo bangular <appName>
 
 **Backend type**: MongoDB / [Restock](https://github.com/42Zavattas/Restock.io) / Json
+
 **Modules**     :  angular-cookies || angular-resource || angular-sanitize || angular-animate
 
 
