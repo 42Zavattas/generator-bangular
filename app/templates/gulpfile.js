@@ -208,7 +208,7 @@ gulp.task('serve', ['watch'], function () {
     });
 });
 
-gulp.task('serve:dist', ['build'], function () {
+gulp.task('preview', ['build'], function () {
   process.env.NODE_ENV = 'production';
   require('./dist/server/server');
   return gulp.src('client/index.html')

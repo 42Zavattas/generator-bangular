@@ -29,7 +29,7 @@ Build `sass` files, inject all scripts and styles to the project, watch them and
 
 Wipe old generated `dist` directory while keeping the `.git` to preserve your remotes configuration. Concat all the scripts and vendors in one minified `.js` file, same thing for your styles. Rev all resources for caching purposes; copy the server part.
 
-    gulp serve:dist
+    gulp preview
 
 Run the `gulp build` process and serve the `dist` directory.
 
