@@ -200,9 +200,12 @@ gulp.task('test', function (done) {
  * Launch server
  */
 gulp.task('serve', ['watch'], function () {
-  require('./server/server');
-  return gulp.src('client/index.html')
-    .pipe($.open('', openOpts));
+  return $.nodemon({ script: 'server/server.js', ext: 'js', ignore: ['client', 'dist', 'node_modules'] })
+    .on('restart',  function () {
+      gulp.src('client/index.html')
+        .pipe($.wait(250))
+        .pipe($.livereload());
+    });
 });
 
 gulp.task('serve:dist', ['build'], function () {
@@ -293,4 +296,9 @@ gulp.task('build', function (cb) {
     cb);
 });
 
-gulp.task('default', ['serve']);
+gulp.task('open', ['serve'], function () {
+  gulp.src('client/index.html')
+    .pipe($.open('', openOpts));
+});
+
+gulp.task('default', ['open']);
