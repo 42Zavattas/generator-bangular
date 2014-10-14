@@ -18,12 +18,15 @@
 # Install
 
     npm install -g generator-bangular
+    yo bangular
 
-# Launch
+    // profit !
 
-    gulp || gulp serve
+# Manage generated project
 
-Build `sass` files, inject all scripts and styles to the project, watch them and open your default browser.
+    gulp
+
+**Default task, run the server.** Build `sass` files, inject all scripts and styles to the project, watch them and open your default browser.
 
     gulp build
 
