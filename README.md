@@ -18,18 +18,21 @@
 # Install
 
     npm install -g generator-bangular
+    yo bangular
 
-# Launch
+    // profit !
 
-    gulp || gulp serve
+# Manage generated project
 
-Build `sass` files, inject all scripts and styles to the project, watch them and open your default browser.
+    gulp
+
+**Default task, run the server.** Build `sass` files, inject all scripts and styles to the project, watch them and open your default browser.
 
     gulp build
 
 Wipe old generated `dist` directory while keeping the `.git` to preserve your remotes configuration. Concat all the scripts and vendors in one minified `.js` file, same thing for your styles. Rev all resources for caching purposes; copy the server part.
 
-    gulp serve:dist
+    gulp preview
 
 Run the `gulp build` process and serve the `dist` directory.
 
@@ -66,6 +69,7 @@ This is the main generator of Bangular, that will scaffold entierely your projec
     yo bangular || yo bangular <appName>
 
 **Backend type**: MongoDB / [Restock](https://github.com/42Zavattas/Restock.io) / Json
+
 **Modules**     :  angular-cookies || angular-resource || angular-sanitize || angular-animate
 
 
