@@ -155,8 +155,10 @@ function testClient (done) {
   gulp.src([
     'client/bower_components/angular/angular.js',
     'client/bower_components/angular-mocks/angular-mocks.js',
-    'client/bower_components/angular-route/angular-route.js',<% if (filters.ngCookies) { %>
-    'client/bower_components/angular-cookies/angular-cookies.js',<% } %><% if (filters.ngResource) { %>
+    'client/bower_components/angular-route/angular-route.js',<% if (filters.ngAnimate) { %>
+    'client/bower_components/angular-animate/angular-animate.js',<% } if (filters.ngSanitize) { %>
+    'client/bower_components/angular-sanitize/angular-sanitize.js',<% } if (filters.ngCookies) { %>
+    'client/bower_components/angular-cookies/angular-cookies.js',<% } if (filters.ngResource) { %>
     'client/bower_components/angular-resource/angular-resource.js',<% } %>
     'client/app.js',
     'client/views/**/*.js',
