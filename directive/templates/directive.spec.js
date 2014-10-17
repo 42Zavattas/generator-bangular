@@ -2,7 +2,7 @@
 
 describe('Directive: <%= camelName %>', function () {
 
-  beforeEach(module('oggApp'));
+  beforeEach(module('<%= _.camelize(appname) %>'));
   beforeEach(module('app/directives/<%= slugName %>/<%= slugName %>.html'));
 
   var element, scope;
