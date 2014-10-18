@@ -3,6 +3,6 @@
 angular.module('<%= _.slugify(appname) %>')
   .controller('HomeCtrl', function () {
 
-    // ready
+    this.name = 'Home';
 
   });

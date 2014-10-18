@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('<%= _.camelize(appname) %>')
-  .controller('<%= _.capitalize(_.camelize(name)) %>Ctrl', function () {
+angular.module('<%= appName %>')
+  .controller('<%= controllerName %>', function () {
 
-    this.name = '<%= _.camelize(name) %>';
+    this.name = '<%= controllerName %>';
 
   });
