@@ -15,7 +15,8 @@ process.env.NODE_ENV = $.util.env.env || 'development';
 var config = require('./server/config/environment');
 
 var openOpts = {
-  url: 'http://localhost:' + config.port
+  url    : 'http://localhost:' + config.port,
+  already: false
 };
 
 var toInject = [
@@ -211,6 +212,13 @@ gulp.task('test', function (done) {
  */
 gulp.task('serve', ['watch'], function () {
   return $.nodemon({ script: 'server/server.js', ext: 'js', ignore: ['client', 'dist', 'node_modules'] })
+    .on('start', function () {
+      if (!openOpts.already) {
+        openOpts.already = true;
+        gulp.src('client/index.html')
+          .pipe($.open('', openOpts));
+      }
+    })
     .on('restart', function () {
       gulp.src('client/index.html')
         .pipe($.wait(250))
@@ -325,9 +333,4 @@ gulp.task('bump', ['version'], function () {
   });
 });
 
-gulp.task('open', ['serve'], function () {
-  gulp.src('client/index.html')
-    .pipe($.open('', openOpts));
-});
-
-gulp.task('default', ['open']);
+gulp.task('default', ['serve']);
