@@ -36,17 +36,17 @@ Wipe old generated `dist` directory while keeping the `.git` to preserve your re
 
 Run the `gulp build` process and serve the `dist` directory.
 
-    gulp test
+    gulp test [--client || --server]
 
-Launch client and server tests, using Karma and Mocha.
-
-    gulp test --client || gulp test --server
-
-Run specific tests.
+Launch client and server tests, using Karma and Mocha, both by default.
 
     gulp control
 
 Validate the app through JSHint.
+
+    gulp bump [--major || --minor || --patch]
+    
+Bump versions of `package.json` and `bower.json` files using *Semantic Versioning* and commit them. Default to **patch**.
 
 # Generators
 

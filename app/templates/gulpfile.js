@@ -7,6 +7,7 @@ var bowerFiles = require('main-bower-files');
 var runSequence = require('run-sequence');
 var sq = require('streamqueue');
 var path = require('path');
+var fs = require('fs');
 var $ = require('gulp-load-plugins')();
 
 process.env.NODE_ENV = $.util.env.env || 'development';
@@ -184,9 +185,15 @@ gulp.task('test', function (done) {
   process.env.NODE_ENV = 'test';
   var filter = process.argv[3] ? process.argv[3].substr(2) : false;
   if (filter === 'client') {
-    return testClient(function () { process.exit(); done(); });
+    return testClient(function () {
+      process.exit();
+      done();
+    });
   } else if (filter === 'server') {
-    return testServer(function () { process.exit(); done(); });
+    return testServer(function () {
+      process.exit();
+      done();
+    });
   } else if (filter === false) {
     return testClient(function () {
       testServer(function () {
@@ -204,7 +211,7 @@ gulp.task('test', function (done) {
  */
 gulp.task('serve', ['watch'], function () {
   return $.nodemon({ script: 'server/server.js', ext: 'js', ignore: ['client', 'dist', 'node_modules'] })
-    .on('restart',  function () {
+    .on('restart', function () {
       gulp.src('client/index.html')
         .pipe($.wait(250))
         .pipe($.livereload());
@@ -297,6 +304,25 @@ gulp.task('build', function (cb) {
     'rev',
     'clean:finish',
     cb);
+});
+
+/**
+ * Git versioning and bump
+ */
+
+gulp.task('version', function () {
+  return gulp.src(['./package.json', './bower.json'])
+    .pipe($.bump({ type: process.argv[3] ? process.argv[3].substr(2) : 'patch' }))
+    .pipe(gulp.dest('./'));
+});
+
+gulp.task('bump', ['version'], function () {
+  fs.readFile('./package.json', function (err, data) {
+    if (err) { return; }
+    return gulp.src(['./package.json', './bower.json'])
+      .pipe($.git.add())
+      .pipe($.git.commit('chore(core): bump to ' + JSON.parse(data.toString()).version));
+  });
 });
 
 gulp.task('open', ['serve'], function () {
