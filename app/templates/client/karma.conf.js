@@ -7,7 +7,20 @@ module.exports = function (config) {
 
     frameworks: ['jasmine'],
 
-    preprocessors: {},
+    preprocessors: {
+      '**/*.html': ['ng-html2js']
+    },
+
+    ngHtml2JsPreprocessor: {
+      stripPrefix: 'client/',
+      moduleName: 'templates'
+    },
+
+    plugins : [
+        'karma-phantomjs-launcher',
+        'karma-jasmine',
+        'karma-ng-html2js-preprocessor'
+    ],
 
     reporters: ['progress'],
 
@@ -25,7 +38,7 @@ module.exports = function (config) {
 
     autoWatch: false,
 
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
 
     singleRun: false
   });

@@ -164,6 +164,7 @@ function testClient (done) {
     'client/views/**/*.js',
     'client/services/**/*.js',
     'client/directives/**/*.js',
+    'client/directives/**/*.html',
     'client/filters/**/*.js'
   ])
     .pipe($.karma({
