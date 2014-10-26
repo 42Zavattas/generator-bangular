@@ -80,6 +80,7 @@ var BangularGenerator = yeoman.generators.Base.extend({
   },
 
   saveSettings: function () {
+    this.config.set('version', this.pkg.version);
     this.config.set('filters', this.filters);
   },
 
