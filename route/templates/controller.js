@@ -3,6 +3,10 @@
 angular.module('<%= appName %>')
   .controller('<%= controllerName %>', function () {
 
-    this.name = '<%= controllerName %>';
+    var vm = this;
+
+    angular.extend(vm, {
+      name: '<%= controllerName %>'
+    });
 
   });
