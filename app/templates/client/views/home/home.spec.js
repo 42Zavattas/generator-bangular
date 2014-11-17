@@ -7,7 +7,6 @@ describe('Controller: HomeCtrl', function () {
   var HomeCtrl,
     scope;
 
-  // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
     HomeCtrl = $controller('HomeCtrl', {
