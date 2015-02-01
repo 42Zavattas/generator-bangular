@@ -29,7 +29,7 @@ exports.index = function (req, res) {
 exports.show = function (req, res) {
   <%= _.capitalize(_.camelize(name)) %>.findById(req.params.id, function (err, <%= _.camelize(name) %>) {
     if (err) { return handleError(res, err); }
-    if (!<%= _.camelize(name) %>) { return res.status(404); }
+    if (!<%= _.camelize(name) %>) { return res.status(404).end(); }
     return res.status(200).json(<%= _.camelize(name) %>);
   });
 };
@@ -57,7 +57,7 @@ exports.update = function (req, res) {
   if (req.body._id) { delete req.body._id; }
   <%= _.capitalize(_.camelize(name)) %>.findById(req.params.id, function (err, <%= _.camelize(name) %>) {
     if (err) { return handleError(res, err); }
-    if (!<%= _.camelize(name) %>) { return res.status(404); }
+    if (!<%= _.camelize(name) %>) { return res.status(404).end(); }
     var updated = _.merge(<%= _.camelize(name) %>, req.body);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
@@ -75,7 +75,7 @@ exports.update = function (req, res) {
 exports.destroy = function (req, res) {
   <%= _.capitalize(_.camelize(name)) %>.findById(req.params.id, function (err, <%= _.camelize(name) %>) {
     if (err) { return handleError(res, err); }
-    if (!<%= _.camelize(name) %>) { return res.status(404); }
+    if (!<%= _.camelize(name) %>) { return res.status(404).end(); }
     <%= _.camelize(name) %>.remove(function (err) {
       if (err) { return handleError(res, err); }
       return res.status(204);

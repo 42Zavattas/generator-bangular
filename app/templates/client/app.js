@@ -11,7 +11,7 @@ angular.module('<%= _.slugify(appname) %>', [
 
     $routeProvider
       .otherwise({
-        redirectTo: '/home'
+        redirectTo: '/'
       });
 
     $locationProvider.html5Mode(true);

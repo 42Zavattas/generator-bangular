@@ -7,6 +7,7 @@ var bowerFiles = require('main-bower-files');
 var runSequence = require('run-sequence');
 var sq = require('streamqueue');
 var path = require('path');
+var fs = require('fs');
 var $ = require('gulp-load-plugins')();
 
 process.env.NODE_ENV = $.util.env.env || 'development';
@@ -14,7 +15,8 @@ process.env.NODE_ENV = $.util.env.env || 'development';
 var config = require('./server/config/environment');
 
 var openOpts = {
-  url: 'http://localhost:' + config.port
+  url    : 'http://localhost:' + config.port,
+  already: false
 };
 
 var toInject = [
@@ -155,13 +157,16 @@ function testClient (done) {
   gulp.src([
     'client/bower_components/angular/angular.js',
     'client/bower_components/angular-mocks/angular-mocks.js',
-    'client/bower_components/angular-route/angular-route.js',<% if (filters.ngCookies) { %>
-    'client/bower_components/angular-cookies/angular-cookies.js',<% } %><% if (filters.ngResource) { %>
+    'client/bower_components/angular-route/angular-route.js',<% if (filters.ngAnimate) { %>
+    'client/bower_components/angular-animate/angular-animate.js',<% } if (filters.ngSanitize) { %>
+    'client/bower_components/angular-sanitize/angular-sanitize.js',<% } if (filters.ngCookies) { %>
+    'client/bower_components/angular-cookies/angular-cookies.js',<% } if (filters.ngResource) { %>
     'client/bower_components/angular-resource/angular-resource.js',<% } %>
     'client/app.js',
     'client/views/**/*.js',
     'client/services/**/*.js',
     'client/directives/**/*.js',
+    'client/directives/**/*.html',
     'client/filters/**/*.js'
   ])
     .pipe($.karma({
@@ -181,9 +186,15 @@ gulp.task('test', function (done) {
   process.env.NODE_ENV = 'test';
   var filter = process.argv[3] ? process.argv[3].substr(2) : false;
   if (filter === 'client') {
-    return testClient(function () { process.exit(); done(); });
+    return testClient(function () {
+      process.exit();
+      done();
+    });
   } else if (filter === 'server') {
-    return testServer(function () { process.exit(); done(); });
+    return testServer(function () {
+      process.exit();
+      done();
+    });
   } else if (filter === false) {
     return testClient(function () {
       testServer(function () {
@@ -201,7 +212,14 @@ gulp.task('test', function (done) {
  */
 gulp.task('serve', ['watch'], function () {
   return $.nodemon({ script: 'server/server.js', ext: 'js', ignore: ['client', 'dist', 'node_modules'] })
-    .on('restart',  function () {
+    .on('start', function () {
+      if (!openOpts.already) {
+        openOpts.already = true;
+        gulp.src('client/index.html')
+          .pipe($.open('', openOpts));
+      }
+    })
+    .on('restart', function () {
       gulp.src('client/index.html')
         .pipe($.wait(250))
         .pipe($.livereload());
@@ -296,9 +314,23 @@ gulp.task('build', function (cb) {
     cb);
 });
 
-gulp.task('open', ['serve'], function () {
-  gulp.src('client/index.html')
-    .pipe($.open('', openOpts));
+/**
+ * Git versioning and bump
+ */
+
+gulp.task('version', function () {
+  return gulp.src(['./package.json', './bower.json'])
+    .pipe($.bump({ type: process.argv[3] ? process.argv[3].substr(2) : 'patch' }))
+    .pipe(gulp.dest('./'));
 });
 
-gulp.task('default', ['open']);
+gulp.task('bump', ['version'], function () {
+  fs.readFile('./package.json', function (err, data) {
+    if (err) { return; }
+    return gulp.src(['./package.json', './bower.json'])
+      .pipe($.git.add())
+      .pipe($.git.commit('chore(core): bump to ' + JSON.parse(data.toString()).version));
+  });
+});
+
+gulp.task('default', ['serve']);

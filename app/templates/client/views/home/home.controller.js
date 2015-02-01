@@ -3,6 +3,10 @@
 angular.module('<%= _.slugify(appname) %>')
   .controller('HomeCtrl', function () {
 
-    // ready
+    var vm = this;
+
+    angular.extend(vm, {
+      name: 'HomeCtrl'
+    });
 
   });

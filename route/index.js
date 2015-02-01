@@ -4,6 +4,8 @@ var yeoman = require('yeoman-generator');
 
 var BangularGenerator = yeoman.generators.NamedBase.extend({
   initializing: function () {
+    this.appName = this._.camelize(this.appname);
+    this.controllerName = this._.capitalize(this._.camelize(this.name)) + 'Ctrl';
   },
 
   prompting: function () {
