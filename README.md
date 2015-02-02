@@ -13,7 +13,7 @@
 * **JSHint** integration — *Write clean code, for purpose.*
 * **Fast build** — *You do faster? Let's see that.*
 
-[Demo of generated project](http://bangular.forpurpose.io/)
+[Demo of generated project](https://github.com/42Zavattas/bangular-demo)
 
 # Install
 
