@@ -8,6 +8,14 @@ function bangLog (msg, color) {
   console.log('[' + chalk.blue('bangular') + ']: ' + chalk[color](msg));
 }
 
+function importCallback (err) {
+  if (err) {
+    bangLog('There was an error importing the style.', 'red');
+  } else {
+    bangLog('Your style was successfully injected.', 'green');
+  }
+}
+
 var BangularGenerator = yeoman.generators.NamedBase.extend({
 
   prompting: function () {
@@ -16,7 +24,7 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
     this.prompt([{
       type: 'confirm',
       name: 'import',
-      message: 'Do you want to import the ' + chalk.red(this.name) + ' style in your app ?',
+      message: 'Do you want to import the ' + chalk.red(this.name) + ' style in your app.scss ?',
       default: true
     }], function (props) {
       this.import = props.import;
@@ -30,16 +38,11 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
 
     if (this.import) {
 
-      genUtils.appendOnTop({
-        dest: 'client/styles/app.scss',
-        append: '@import \'' + this.name + '\';\n'
-      }, function (err) {
-        if (err) {
-          bangLog('There was an error importing the style.', 'red');
-        } else {
-          bangLog('Your style was successfully injected.', 'green');
-        }
-      });
+      genUtils.appendNeedleOrOnTop({
+        needle: '// imports',
+        file: 'client/styles/app.scss',
+        append: '@import "' + this.name + '";'
+      }, importCallback);
 
     }
   }
