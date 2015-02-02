@@ -3,3 +3,4 @@ client/bower_components/
 client/styles/css
 .idea/
 dist/
+.sass-cache/
