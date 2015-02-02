@@ -5,6 +5,7 @@ describe('Service: <%= camelName %>', function () {
   beforeEach(module('<%= _.camelize(appname) %>'));
 
   var <%= camelName %>;
+
   beforeEach(inject(function (_<%= camelName %>_) {
     <%= camelName %> = _<%= camelName %>_;
   }));

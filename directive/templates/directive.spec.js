@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Directive: <%= camelName %>', function () {
+describe('Directive: <%= dashName %>', function () {
 
   beforeEach(module('<%= _.camelize(appname) %>', 'templates'));
 
@@ -8,12 +8,12 @@ describe('Directive: <%= camelName %>', function () {
 
   beforeEach(inject(function($compile, $rootScope){
     scope = $rootScope.$new();
-    element = angular.element('<<%= dashedName %>></<%= dashedName %>>');
+    element = angular.element('<<%= dashName %>></<%= dashName %>>');
     element = $compile(element)(scope);
     scope.$apply();
   }));
 
-  it('should ...', inject(function ($compile) {
+  it('should ...', function () {
     expect(1).toBe(1);
-  }));
+  });
 });

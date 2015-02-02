@@ -14,8 +14,8 @@ describe('Controller: HomeCtrl', function () {
     });
   }));
 
-  it('should be obvious', function () {
-    expect(4).toBe(4);
+  it('should ...', function () {
+    expect(1).toBe(1);
   });
 
 });

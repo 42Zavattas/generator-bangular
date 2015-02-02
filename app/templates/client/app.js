@@ -15,4 +15,5 @@ angular.module('<%= _.slugify(appname) %>', [
       });
 
     $locationProvider.html5Mode(true);
+
   });

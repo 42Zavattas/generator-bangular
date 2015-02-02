@@ -12,6 +12,7 @@ function bangLog (msg, color) {
 var BangularGenerator = yeoman.generators.NamedBase.extend({
 
   prompting: function () {
+
     var done = this.async();
 
     this.name = this._.slugify(this.name);
@@ -71,6 +72,7 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
       });
 
     } else {
+
       this.template('fonts.scss', '.tmp/fonts.scss');
 
       // For now we will use this since the template is created asynchronously and there is no callback.
@@ -94,6 +96,7 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
     }
 
   }
+
 });
 
 module.exports = BangularGenerator;

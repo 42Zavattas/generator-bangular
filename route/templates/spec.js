@@ -9,7 +9,7 @@ describe('Controller: <%= _.capitalize(_.camelize(name)) %>Ctrl', function () {
 
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    MainCtrl = $controller('<%= _.capitalize(_.camelize(name)) %>Ctrl', {
+    MainCtrl = $controller('<%= controllerName %>', {
       $scope: scope
     });
   }));

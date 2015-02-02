@@ -38,11 +38,11 @@ var BangularGenerator = yeoman.generators.Base.extend({
         value: 'mongo',
         name: 'MongoDb, with Mongoose as ODM'
       }, {
-        value: 'restock',
-        name: 'Restock.io, for mocking purpose'
-      }, {
         value: 'json',
         name: 'Good old JSON'
+      }, {
+        value: 'restock',
+        name: 'Restock.io, for mocking purpose'
       }]
     }, {
       type: 'checkbox',
