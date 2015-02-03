@@ -20,6 +20,7 @@ var BangularGenerator = yeoman.generators.Base.extend({
       this.pkg = require('../package.json');
     },
     info: function () {
+      if (this.options.skipLog) { return ; }
       this.log(bangAscii);
     },
     checkConfig: function () {
@@ -118,12 +119,14 @@ var BangularGenerator = yeoman.generators.Base.extend({
   },
 
   end: function () {
-    bangLog('Installing dependencies...', 'yellow');
+    if (!this.options.skipInstall) {
+      bangLog('Installing dependencies...', 'yellow');
+    }
     this.installDependencies({
-      skipInstall: this.options['skip-install'],
+      skipInstall: this.options.skipInstall,
       skipMessage: true,
       callback: function () {
-        bangLog('Everything is ready !', 'green');
+        bangLog('Everything is ready !\n', 'green');
       }
     });
   }
