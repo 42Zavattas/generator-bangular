@@ -1,4 +1,4 @@
-# generator-bangular [![Dependency Status](https://david-dm.org/42Zavattas/generator-bangular.svg?style=flat-square)](https://david-dm.org/42Zavattas/generator-bangular)
+# generator-bangular [![Build Status](https://travis-ci.org/42Zavattas/generator-bangular.svg?branch=develop)](https://travis-ci.org/42Zavattas/generator-bangular) [![Dependency Status](https://david-dm.org/42Zavattas/generator-bangular.svg?style=flat-square)](https://david-dm.org/42Zavattas/generator-bangular)
 
 *Want a clean, fast and more purposed way to scaffold your project while keep at hand some build tools?*
 *Don't obstruct your code with slow things. Future is here.*
