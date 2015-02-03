@@ -5,11 +5,10 @@ var os = require('os');
 var helpers = require('yeoman-generator').test;
 var assert = require('yeoman-generator').assert;
 
-describe('Launching api test', function () {
+describe('Launching api tests', function () {
 
-  var bangular, bangApi, mockOptions;
+  var bangular, bangApi, tmpDir;
   var bangDir = process.cwd();
-  var tmpDir;
 
   describe('', function () {
 
@@ -24,8 +23,7 @@ describe('Launching api test', function () {
             [path.join(bangDir, '/app'),
           ], false, { 'skipInstall': true, 'skipLog': true });
 
-        mockOptions = { name: 'Test', backend: 'mongo', modules: [] };
-        helpers.mockPrompt(bangular, mockOptions);
+        helpers.mockPrompt(bangular, { name: 'Test', backend: 'mongo', modules: [] });
 
         bangular.run(done);
       });
@@ -89,8 +87,7 @@ describe('Launching api test', function () {
             [path.join(bangDir, '/app'),
           ], false, { 'skipInstall': true, 'skipLog': true });
 
-        mockOptions = { name: 'Test', backend: 'json', modules: [] };
-        helpers.mockPrompt(bangular, mockOptions);
+        helpers.mockPrompt(bangular, { name: 'Test', backend: 'json', modules: [] });
 
         bangular.run(done);
       });
@@ -132,8 +129,7 @@ describe('Launching api test', function () {
             [path.join(bangDir, '/app'),
           ], false, { 'skipInstall': true, 'skipLog': true });
 
-        mockOptions = { name: 'Test', backend: 'restock', modules: [] };
-        helpers.mockPrompt(bangular, mockOptions);
+        helpers.mockPrompt(bangular, { name: 'Test', backend: 'restock', modules: [] });
 
         bangular.run(done);
       });
