@@ -1,5 +1,7 @@
 # generator-bangular [![Build Status](https://travis-ci.org/42Zavattas/generator-bangular.svg?branch=develop)](https://travis-ci.org/42Zavattas/generator-bangular) [![Code Climate](https://codeclimate.com/github/42Zavattas/generator-bangular/badges/gpa.svg)](https://codeclimate.com/github/42Zavattas/generator-bangular) [![Dependency Status](https://david-dm.org/42Zavattas/generator-bangular.svg)](https://david-dm.org/42Zavattas/generator-bangular)
 
+![logos](logos/logos-sprite.png "logos")
+
 *Want a clean, fast and more purposed way to scaffold your project while keep at hand some build tools?*
 *Don't obstruct your code with slow things. Future is here.*
 
