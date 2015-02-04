@@ -76,7 +76,7 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
       this.template('fonts.scss', '.tmp/fonts.scss');
 
       // For now we will use this since the template is created asynchronously and there is no callback.
-      async.retry(4, function (cb) {
+      async.retry(10, function (cb) {
         setTimeout(function () {
           try {
             genUtils.appendTo(this, { src: '.tmp/fonts.scss', dest: 'client/styles/fonts.scss' });
@@ -84,7 +84,7 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
           } catch (e) {
             cb(e, null);
           }
-        }, 1);
+        }, 2);
       }, function (err) {
         if (err) {
           bangLog('There was an error copying the template to your font file.', 'red');
