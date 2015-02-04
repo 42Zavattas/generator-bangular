@@ -2,9 +2,6 @@
 
 ![logos](logos/logos-sprite.png "logos")
 
-*Want a clean, fast and more purposed way to scaffold your project while keep at hand some build tools?*
-*Don't obstruct your code with slow things. Future is here.*
-
 ***Philosophy***
 
 > *« Perfection is achieved not when there is nothing more to add, but when there is nothing left to take away. »* — ***Antoine De Saint-Exupéry***
