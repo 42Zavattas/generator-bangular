@@ -151,8 +151,8 @@ describe('Launching api tests', function () {
         assert.fileContent('server/api/user/index.js', 'var controller = require(\'./user.controller\');');
 
         assert.fileContent('server/api/user/user.controller.js', 'var request = require(\'request\');');
-        assert.fileContent('server/api/user/user.controller.js', 'request(\'http://www.restock.io/api/10{name:s}\', function (err, response, body) {');
-        assert.fileContent('server/api/user/user.controller.js', 'request(\'http://www.restock.io/api/{name:s}\', function (err, response, body) {');
+        assert.fileContent('server/api/user/user.controller.js', 'request(apiUrl + \'10{name:s}\', function (err, resp, body) {');
+        assert.fileContent('server/api/user/user.controller.js', 'request(apiUrl + \'{name:s}\', function (err, resp, body) {');
 
         done();
       });

@@ -50,9 +50,12 @@ describe('Launching fonts tests', function () {
         assert.file('client/assets/fonts/fugitive');
         assert.file('client/styles/fonts.scss');
 
-        assert.fileContent('client/styles/fonts.scss', 'url(\'/assets/fonts/fugitive/fugitive.eot\')');
-        assert.fileContent('client/styles/fonts.scss', 'url(\'/assets/fonts/fugitive/fugitive.ttf\') format(\'truetype\');');
-        done();
+        setTimeout(function () {
+          assert.fileContent('client/styles/fonts.scss', 'url(\'/assets/fonts/fugitive/fugitive.ttf\') format(\'truetype\')');
+          assert.fileContent('client/styles/fonts.scss', 'url(\'/assets/fonts/fugitive/fugitive.eot\')');
+          done();
+        }, 50);
+
       });
     });
 
@@ -63,12 +66,15 @@ describe('Launching fonts tests', function () {
         assert.file('client/assets/fonts/sushi');
         assert.file('client/styles/fonts.scss');
 
-        assert.fileContent('client/styles/fonts.scss', 'url(\'/assets/fonts/sushi/sushi.eot\')');
-        assert.fileContent('client/styles/fonts.scss', 'url(\'/assets/fonts/sushi/sushi.woff\') format(\'woff\')');
-        assert.fileContent('client/styles/fonts.scss', 'url(\'/assets/fonts/sushi/sushi.otf\') format(\'opentype\')');
-        assert.fileContent('client/styles/fonts.scss', 'url(\'/assets/fonts/sushi/sushi.ttf\') format(\'truetype\')');
-        assert.fileContent('client/styles/fonts.scss', 'url(\'/assets/fonts/sushi/sushi.svg#sushi\') format(\'svg\')');
-        done();
+        setTimeout(function () {
+          assert.fileContent('client/styles/fonts.scss', 'url(\'/assets/fonts/sushi/sushi.eot\')');
+          assert.fileContent('client/styles/fonts.scss', 'url(\'/assets/fonts/sushi/sushi.woff\') format(\'woff\')');
+          assert.fileContent('client/styles/fonts.scss', 'url(\'/assets/fonts/sushi/sushi.otf\') format(\'opentype\')');
+          assert.fileContent('client/styles/fonts.scss', 'url(\'/assets/fonts/sushi/sushi.ttf\') format(\'truetype\')');
+          assert.fileContent('client/styles/fonts.scss', 'url(\'/assets/fonts/sushi/sushi.svg#sushi\') format(\'svg\')');
+          done();
+        }, 50);
+
       });
     });
 

@@ -15,9 +15,9 @@ var apiUrl = 'http://www.restock.io/api/';
  * @param res
  */
 exports.index = function (req, res) {
-  request(apiUrl + '10{name:s}', function (err, response, body) {
+  request(apiUrl + '10{name:s}', function (err, resp, body) {
     if (err) { return handleError(res, err); }
-    res.status(response.statusCode).send(body);
+    res.status(resp.statusCode).send(body);
   });
 };
 
@@ -28,9 +28,9 @@ exports.index = function (req, res) {
  * @param res
  */
 exports.show = function (req, res) {
-  request(apiUrl + '{name:s}', function (err, response, body) {
+  request(apiUrl + '{name:s}', function (err, resp, body) {
     if (err) { return handleError(res, err); }
-    res.status(response.statusCode).send(body);
+    res.status(resp.statusCode).send(body);
   });
 };
 

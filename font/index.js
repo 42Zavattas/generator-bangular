@@ -73,13 +73,14 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
 
     } else {
 
+      var self = this;
       this.template('fonts.scss', '.tmp/fonts.scss');
 
       // For now we will use this since the template is created asynchronously and there is no callback.
-      async.retry(10, function (cb) {
+      async.retry(20, function (cb) {
         setTimeout(function () {
           try {
-            genUtils.appendTo(this, { src: '.tmp/fonts.scss', dest: 'client/styles/fonts.scss' });
+            genUtils.appendTo(self, { src: '.tmp/fonts.scss', dest: 'client/styles/fonts.scss' });
             cb(null, true);
           } catch (e) {
             cb(e, null);
