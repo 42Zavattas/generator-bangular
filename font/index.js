@@ -64,6 +64,7 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
         dest: 'client/styles/app.scss',
         append: '@import \'fonts\';\n'
       }, function (err) {
+        /* istanbul ignore if */
         if (err) {
           bangLog('There was an error importing the font file.', 'red');
         } else {
@@ -82,11 +83,12 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
           try {
             genUtils.appendTo(self, { src: '.tmp/fonts.scss', dest: 'client/styles/fonts.scss' });
             cb(null, true);
-          } catch (e) {
+          } /* istanbul ignore next */ catch (e) {
             cb(e, null);
           }
         }, 5);
       }, function (err) {
+        /* istanbul ignore if */
         if (err) {
           bangLog('There was an error copying the template to your font file.', 'red');
         } else {

@@ -29,6 +29,7 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
   writing: function () {
 
     function importCallback (err) {
+      /* istanbul ignore if */
       if (err) {
         bangLog('There was an error importing the style.', 'red');
       } else {

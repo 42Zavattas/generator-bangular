@@ -119,6 +119,7 @@ var BangularGenerator = yeoman.generators.Base.extend({
   },
 
   end: function () {
+    /* istanbul ignore if */
     if (!this.options.skipInstall) {
       bangLog('Installing dependencies...', 'yellow');
     }
