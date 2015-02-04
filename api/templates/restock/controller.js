@@ -6,6 +6,8 @@ function handleError(res, err) {
   return res.status(500).send(err);
 }
 
+var apiUrl = 'http://www.restock.io/api/';
+
 /**
  * Get list of <%= _.camelize(name) %>s
  *
@@ -13,7 +15,7 @@ function handleError(res, err) {
  * @param res
  */
 exports.index = function (req, res) {
-  request('http://www.restock.io/api/10{name:s}', function (err, response, body) {
+  request(apiUrl + '10{name:s}', function (err, response, body) {
     if (err) { return handleError(res, err); }
     res.status(response.statusCode).send(body);
   });
@@ -26,7 +28,7 @@ exports.index = function (req, res) {
  * @param res
  */
 exports.show = function (req, res) {
-  request('http://www.restock.io/api/{name:s}', function (err, response, body) {
+  request(apiUrl + '{name:s}', function (err, response, body) {
     if (err) { return handleError(res, err); }
     res.status(response.statusCode).send(body);
   });

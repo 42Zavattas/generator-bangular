@@ -84,7 +84,7 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
           } catch (e) {
             cb(e, null);
           }
-        }, 2);
+        }, 5);
       }, function (err) {
         if (err) {
           bangLog('There was an error copying the template to your font file.', 'red');
