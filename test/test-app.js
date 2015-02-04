@@ -1,10 +1,9 @@
-/*global describe, before, it*/
 'use strict';
 
 var path = require('path');
+var os = require('os');
 var assert = require('yeoman-generator').assert;
 var helpers = require('yeoman-generator').test;
-var os = require('os');
 
 function basicFileCheck () {
   assert.file([
@@ -104,8 +103,8 @@ describe('Launching app generator tests', function () {
 
     it('should have loaded client dependencies', function () {
       assert.file('bower.json');
-      assert.fileContent('bower.json', '"angular-cookies": "~1.3.0"');
-      assert.fileContent('bower.json', '"angular-sanitize": "~1.3.0"');
+      assert.fileContent('bower.json', '"angular-cookies":');
+      assert.fileContent('bower.json', '"angular-sanitize":');
     });
 
   });
@@ -142,9 +141,42 @@ describe('Launching app generator tests', function () {
 
     it('should have loaded client dependencies', function () {
       assert.file('bower.json');
-      assert.fileContent('bower.json', '"angular-resource": "~1.3.0"');
-      assert.fileContent('bower.json', '"angular-animate": "~1.3.0"');
+      assert.fileContent('bower.json', '"angular-resource":');
+      assert.fileContent('bower.json', '"angular-animate":');
     });
+  });
+
+  describe('', function () {
+
+    var bangular, tmpDir, tmpBang;
+    var bangDir = process.cwd();
+
+    before(function (done) {
+      tmpDir = path.join(os.tmpdir(), '/tmp');
+
+      helpers.testDirectory(tmpDir, function (err) {
+        if (err) { done(err); }
+        bangular = helpers.createGenerator('bangular:app',
+          [bangDir + '/app'],
+        false, { 'skipInstall': true, 'skipConfig': true });
+
+        helpers.mockPrompt(bangular, { name: 'Test', backend:'json', modules: [] });
+        bangular.run(done);
+      });
+    });
+
+    it('should test a generation in an already generated directory', function (done) {
+      tmpBang = helpers.createGenerator('bangular:app',
+        [bangDir + '/app'],
+      false, { 'skipInstall': true });
+
+      helpers.mockPrompt(tmpBang, { skipConfig: true });
+      tmpBang.conflicter.force = true;
+      tmpBang.run(function () {
+        done();
+      });
+    });
+
   });
 
 });
