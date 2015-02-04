@@ -83,7 +83,8 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
           try {
             genUtils.appendTo(self, { src: '.tmp/fonts.scss', dest: 'client/styles/fonts.scss' });
             cb(null, true);
-          } /* istanbul ignore next */ catch (e) {
+          } catch (e) {
+            /* istanbul ignore next */
             cb(e, null);
           }
         }, 5);
