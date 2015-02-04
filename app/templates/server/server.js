@@ -5,7 +5,6 @@ var chalk = require('chalk');
 var config = require('./config/environment');<% if (filters.backend === 'mongo') { %>
 var mongoose = require('mongoose');
 
-// Connect to database
 mongoose.connect(config.mongo.uri, config.mongo.options);<% } %>
 
 var app = express();

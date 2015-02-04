@@ -1,7 +1,6 @@
-# generator-bangular
+# generator-bangular <br> [![Build Status](https://travis-ci.org/42Zavattas/generator-bangular.svg?branch=develop)](https://travis-ci.org/42Zavattas/generator-bangular) [![Coverage Status](https://coveralls.io/repos/42Zavattas/generator-bangular/badge.svg?branch=develop)](https://coveralls.io/r/42Zavattas/generator-bangular?branch=develop) [![Code Climate](https://codeclimate.com/github/42Zavattas/generator-bangular/badges/gpa.svg)](https://codeclimate.com/github/42Zavattas/generator-bangular) [![Dependency Status](https://david-dm.org/42Zavattas/generator-bangular.svg)](https://david-dm.org/42Zavattas/generator-bangular)
 
-*Want a clean, fast and more purposed way to scaffold your project while keep at hand some build tools?*
-*Don't obstruct your code with slow things. Future is here.*
+![logos](logos/logos-sprite.png "logos")
 
 ***Philosophy***
 
@@ -13,7 +12,7 @@
 * **JSHint** integration — *Write clean code, for purpose.*
 * **Fast build** — *You do faster? Let's see that.*
 
-[Demo of generated project](http://bangular.forpurpose.io/)
+[Demo of generated project](https://github.com/42Zavattas/bangular-demo)
 
 # Install
 
@@ -45,7 +44,7 @@ Launch client and server tests, using Karma and Mocha, both by default.
 Validate the app through JSHint.
 
     gulp bump [--major || --minor || --patch]
-    
+
 Bump versions of `package.json` and `bower.json` files using *Semantic Versioning* and commit them. Default to **patch**.
 
 # Generators
@@ -116,6 +115,7 @@ The **name** parameter is required. The service and its spec file will be genera
     yo bangular:style <name>
 
 **Inject**: If true, an `@import` will be added to the main *app.scss* file to add the style to your app.
+In case you have a weird workflow, you can specify the location of your new imports by adding a `// imports` in the file.
 
 The **name** parameter is required. This will create a new `.scss` file in he `client/styles/` folder.
 

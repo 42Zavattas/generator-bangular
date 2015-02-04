@@ -12,17 +12,41 @@ function bangLog (msg, color) {
 
 var BangularGenerator = yeoman.generators.Base.extend({
 
-  initializing: function () {
-    this.appname = this.appname || path.basename(process.cwd());
-    this.appname = this._.camelize(this._.slugify(this._.humanize(this.appname)));
-    this.filters = {};
-    this.pkg = require('../package.json');
+  initializing: {
+    getVars: function () {
+      this.appname = this.appname || path.basename(process.cwd());
+      this.appname = this._.camelize(this._.slugify(this._.humanize(this.appname)));
+      this.filters = {};
+      this.pkg = require('../package.json');
+    },
+    info: function () {
+      if (this.options.skipLog) { return ; }
+      this.log(bangAscii);
+    },
+    checkConfig: function () {
+      if (this.config.get('filters')) {
+
+        var done = this.async();
+        var self = this;
+
+        this.prompt([{
+          type: 'confirm',
+          name: 'skipConfig',
+          message: 'You have a .yo-rc file in this directory, do you want to skip install steps?',
+          default: true
+        }], function (props) {
+          self.skipConfig = props.skipConfig;
+          done();
+        });
+      }
+    }
   },
 
   prompting: function () {
 
+    if (this.skipConfig) { return ; }
+
     var done = this.async();
-    this.log(bangAscii);
     var self = this;
 
     this.prompt([{
@@ -38,11 +62,11 @@ var BangularGenerator = yeoman.generators.Base.extend({
         value: 'mongo',
         name: 'MongoDb, with Mongoose as ODM'
       }, {
-        value: 'restock',
-        name: 'Restock.io, for mocking purpose'
-      }, {
         value: 'json',
         name: 'Good old JSON'
+      }, {
+        value: 'restock',
+        name: 'Restock.io, for mocking purpose'
       }]
     }, {
       type: 'checkbox',
@@ -80,6 +104,8 @@ var BangularGenerator = yeoman.generators.Base.extend({
   },
 
   saveSettings: function () {
+    if (this.skipConfig) { return ; }
+
     this.config.set('version', this.pkg.version);
     this.config.set('filters', this.filters);
   },
@@ -93,11 +119,15 @@ var BangularGenerator = yeoman.generators.Base.extend({
   },
 
   end: function () {
-    bangLog('Installing dependencies...', 'yellow');
+    /* istanbul ignore if */
+    if (!this.options.skipInstall) {
+      bangLog('Installing dependencies...', 'yellow');
+    }
     this.installDependencies({
+      skipInstall: this.options.skipInstall,
       skipMessage: true,
       callback: function () {
-        bangLog('Everything is ready !', 'green');
+        bangLog('Everything is ready !\n', 'green');
       }
     });
   }

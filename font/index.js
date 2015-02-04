@@ -12,6 +12,7 @@ function bangLog (msg, color) {
 var BangularGenerator = yeoman.generators.NamedBase.extend({
 
   prompting: function () {
+
     var done = this.async();
 
     this.name = this._.slugify(this.name);
@@ -63,6 +64,7 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
         dest: 'client/styles/app.scss',
         append: '@import \'fonts\';\n'
       }, function (err) {
+        /* istanbul ignore if */
         if (err) {
           bangLog('There was an error importing the font file.', 'red');
         } else {
@@ -71,19 +73,23 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
       });
 
     } else {
+
+      var self = this;
       this.template('fonts.scss', '.tmp/fonts.scss');
 
       // For now we will use this since the template is created asynchronously and there is no callback.
-      async.retry(4, function (cb) {
+      async.retry(20, function (cb) {
         setTimeout(function () {
           try {
-            genUtils.appendTo(this, { src: '.tmp/fonts.scss', dest: 'client/styles/fonts.scss' });
+            genUtils.appendTo(self, { src: '.tmp/fonts.scss', dest: 'client/styles/fonts.scss' });
             cb(null, true);
           } catch (e) {
+            /* istanbul ignore next */
             cb(e, null);
           }
-        }, 1);
+        }, 5);
       }, function (err) {
+        /* istanbul ignore if */
         if (err) {
           bangLog('There was an error copying the template to your font file.', 'red');
         } else {
@@ -94,6 +100,7 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
     }
 
   }
+
 });
 
 module.exports = BangularGenerator;
