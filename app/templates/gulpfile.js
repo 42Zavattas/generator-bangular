@@ -10,7 +10,7 @@ var path = require('path');
 var fs = require('fs');
 var $ = require('gulp-load-plugins')();
 
-process.env.NODE_ENV = $.util.env.env || 'development';
+process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 
 var config = require('./server/config/environment');
 
