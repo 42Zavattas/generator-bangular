@@ -127,19 +127,6 @@ var out = {
       if (cb) { cb(err); }
     });
   },
-  appName: function (self) {
-    var counter = 0, suffix = self.options['app-suffix'];
-    // Have to check this because of generator bug #386
-    process.argv.forEach(function (val) {
-      if (val.indexOf('--app-suffix') > -1) {
-        counter++;
-      }
-    });
-    if (counter === 0 || (typeof suffix === 'boolean' && suffix)) {
-      suffix = 'App';
-    }
-    return suffix ? self._.classify(suffix) : '';
-  },
   processDirectory: function (self, source, destination) {
     var root = self.isPathAbsolute(source) ? source : path.join(self.sourceRoot(), source);
     var files = self.expandFiles('**', { dot: true, cwd: root });
@@ -147,9 +134,6 @@ var out = {
 
     files.forEach(function (f) {
       var filteredFile = filterFile(f);
-      if (self.name) {
-        filteredFile.name = filteredFile.name.replace('name', self.name);
-      }
       var name = filteredFile.name;
       var copy = false, stripped;
 
@@ -161,8 +145,8 @@ var out = {
         dest = path.join(path.dirname(dest), stripped);
       }
 
-      if (path.basename(dest).indexOf('!') === 0) {
-        stripped = path.basename(dest).replace(/^!/, '');
+      if (path.basename(dest).indexOf('#') === 0) {
+        stripped = path.basename(dest).replace(/^#/, '');
         dest = path.join(path.dirname(dest), stripped);
         copy = true;
       }

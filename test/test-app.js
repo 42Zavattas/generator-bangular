@@ -82,7 +82,7 @@ describe('Launching app generator tests', function () {
         .withPrompt({
           name: 'Test',
           backend: 'restock',
-          modules: []
+          modules: ['ngCookies', 'ngSanitize']
         })
         .on('end', done);
 
@@ -102,6 +102,12 @@ describe('Launching app generator tests', function () {
       assert.noFileContent('server/server.js', 'mongoose.connect(config.mongo.uri, config.mongo.options);');
     });
 
+    it('should have loaded client dependencies', function () {
+      assert.file('bower.json');
+      assert.fileContent('bower.json', '"angular-cookies": "~1.3.0"');
+      assert.fileContent('bower.json', '"angular-sanitize": "~1.3.0"');
+    });
+
   });
 
   describe('', function () {
@@ -114,7 +120,7 @@ describe('Launching app generator tests', function () {
         .withPrompt({
           name: 'Test',
           backend: 'json',
-          modules: []
+          modules: ['ngResource', 'ngAnimate']
         })
         .on('end', done);
 
@@ -132,6 +138,12 @@ describe('Launching app generator tests', function () {
 
     it('should not have mongo connect', function () {
       assert.noFileContent('server/server.js', 'mongoose.connect(config.mongo.uri, config.mongo.options);');
+    });
+
+    it('should have loaded client dependencies', function () {
+      assert.file('bower.json');
+      assert.fileContent('bower.json', '"angular-resource": "~1.3.0"');
+      assert.fileContent('bower.json', '"angular-animate": "~1.3.0"');
     });
   });
 
