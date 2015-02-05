@@ -17,6 +17,7 @@ gulp.task('logos', function (done) {
    'logos/node.png',
    'logos/socket.png',
    'logos/express.png',
+   'logos/passport.png',
    'logos/mongo.png',
    'logos/sass.png',
    'logos/bower.png'
