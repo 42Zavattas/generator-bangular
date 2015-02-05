@@ -17,7 +17,7 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
     self.prompt([{
       type: 'confirm',
       name: 'template',
-      message: 'Do this directive needs an html template ?',
+      message: 'Do this directive needs an html template?',
       default: true
     }], function (props) {
       self.needTemplate = props.template;

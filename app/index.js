@@ -71,7 +71,7 @@ var BangularGenerator = yeoman.generators.Base.extend({
     }, {
       type: 'checkbox',
       name: 'modules',
-      message: 'Which module do you want to load ?',
+      message: 'Which module do you want to load?',
       choices: [{
         value: 'ngCookies',
         name: 'angular-cookies',

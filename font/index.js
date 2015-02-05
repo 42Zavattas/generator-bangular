@@ -21,7 +21,7 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
     this.prompt([{
       type: 'checkbox',
       name: 'types',
-      message: 'What font file do you have ?',
+      message: 'What font file do you have?',
       choices: [{
         value: 'otf',
         name: 'otf',

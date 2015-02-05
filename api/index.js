@@ -15,7 +15,7 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
     this.prompt([{
       type: 'input',
       name: 'url',
-      message: 'On which url do you want to attach the ' + chalk.red(this.name) + ' endpoint ? ',
+      message: 'On which url do you want to attach the ' + chalk.red(this.name) + ' endpoint? ',
       default: '/api/' + this.pluralName
     }], function (props) {
       this.url = props.url;
