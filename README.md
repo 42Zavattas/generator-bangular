@@ -133,7 +133,7 @@ The **name** parameter is required. This will create a new `.scss` file in he `c
 
     yo bangular:api <name>
 
-**Url**: Route that will be exposed on your server to access this ressource.
+**Url**: Route that will be exposed on your server to access this ressource.<br>
 **Socket**: If you want to emit socket event on model changes.
 
 The **name** parameter is required. A **name** folder will be created at `server/api/`.
