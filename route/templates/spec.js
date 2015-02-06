@@ -1,15 +1,15 @@
 'use strict';
 
-describe('Controller: <%= _.capitalize(_.camelize(name)) %>Ctrl', function () {
+describe('Controller: <%= controllerName %>', function () {
 
   beforeEach(module('<%= _.camelize(appname) %>'));
 
-  var MainCtrl,
+  var <%= controllerName %>,
     scope;
 
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    MainCtrl = $controller('<%= controllerName %>', {
+    <%= controllerName %> = $controller('<%= controllerName %>', {
       $scope: scope
     });
   }));
