@@ -66,10 +66,10 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
     });
 
     if (this.sockets) {
-      this.template('mongo/socket.js', 'server/api/' + this.fileName + '/' + this.fileName + 'socket.js');
+      this.template('mongo/socket.js', 'server/api/' + this.fileName + '/' + this.fileName + '.socket.js');
 
       genUtils.rewriteFile({
-        file: 'server/config/socket.js',
+        file: 'server/config/sockets.js',
         needle: '// sockets insert',
         splicable: [
           'require(\'../api/' + this.fileName + '/' + this.fileName + '.socket.js\')'

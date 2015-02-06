@@ -26,7 +26,8 @@
 
     <div ng-view></div>
 
-    <!-- build:js app.js -->
+    <!-- build:js app.js --><% if (filters.sockets) { %>
+    <script src="socket.io/socket.io.js"></script><% } %>
       <!-- bower:js -->
       <!-- endinject -->
 

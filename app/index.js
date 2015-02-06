@@ -98,7 +98,20 @@ var BangularGenerator = yeoman.generators.Base.extend({
         });
       }
 
-      done();
+      if (props.backend === 'mongo') {
+        self.prompt({
+          type: 'confirm',
+          name: 'sockets',
+          message: 'Do you want to add socket support?',
+          default: false
+        }, function (props) {
+          self.filters.sockets = props.sockets;
+          done();
+        });
+      } else {
+        done();
+      }
+
     });
   },
 
