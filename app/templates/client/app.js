@@ -5,7 +5,8 @@ angular.module('<%= appname %>', [
   'ngCookies'<% } %><% if (filters.ngResource) { %>,
   'ngResource'<% } %><% if (filters.ngSanitize) { %>,
   'ngSanitize'<% } %><% if (filters.ngAnimate) { %>,
-  'ngAnimate'<% } %>
+  'ngAnimate'<% } %><% if (filters.sockets) { %>,
+  'btford.socket-io'<% } %>
 ])
   .config(function ($routeProvider, $locationProvider) {
 

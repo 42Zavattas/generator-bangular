@@ -132,6 +132,7 @@ describe('Launching app generator tests', function () {
       assert.fileContent('package.json', '"socket.io":');
       assert.fileContent('bower.json', '"angular-socket-io":');
       assert.fileContent('client/index.html', 'socket.io/socket.io.js');
+      assert.fileContent('client/app.js', 'btford.socket-io');
       assert.file('server/config/sockets.js');
       assert.fileContent('server/server.js', 'var socket = require(\'socket.io\')');
       assert.fileContent('server/server.js', 'require(\'./config/sockets.js\')(socket);');
