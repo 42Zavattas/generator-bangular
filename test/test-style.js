@@ -32,9 +32,11 @@ describe('Launching style tests', function () {
       bangStyle = helpers.createGenerator('bangular:style', [bangDir + '/style'], 'bootstrap');
       helpers.mockPrompt(bangStyle, { 'import': false });
       bangStyle.run(function () {
-        assert.file('client/styles/bootstrap.scss');
-        assert.noFileContent('client/styles/app.scss', 'bootstrap');
-        done();
+        setTimeout(function () {
+          assert.file('client/styles/bootstrap.scss');
+          assert.noFileContent('client/styles/app.scss', 'bootstrap');
+          done();
+        }, 50);
       });
 
     });
