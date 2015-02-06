@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('<%= appname %>')
-  .controller('HomeCtrl', function (<% if (filters.sockets) { %>Socket<% } %>) {
+  .controller('HomeCtrl', function () {
 
     var vm = this;
 
