@@ -78,7 +78,7 @@ exports.destroy = function (req, res) {
     if (!<%= _.camelize(name) %>) { return res.status(404).end(); }
     <%= _.camelize(name) %>.remove(function (err) {
       if (err) { return handleError(res, err); }
-      return res.status(204);
+      return res.status(204).end();
     });
   });
 };
