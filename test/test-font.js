@@ -54,7 +54,7 @@ describe('Launching fonts tests', function () {
           assert.fileContent('client/styles/fonts.scss', 'url(\'/assets/fonts/fugitive/fugitive.ttf\') format(\'truetype\')');
           assert.fileContent('client/styles/fonts.scss', 'url(\'/assets/fonts/fugitive/fugitive.eot\')');
           done();
-        }, 50);
+        }, 30);
 
       });
     });
@@ -73,7 +73,7 @@ describe('Launching fonts tests', function () {
           assert.fileContent('client/styles/fonts.scss', 'url(\'/assets/fonts/sushi/sushi.ttf\') format(\'truetype\')');
           assert.fileContent('client/styles/fonts.scss', 'url(\'/assets/fonts/sushi/sushi.svg#sushi\') format(\'svg\')');
           done();
-        }, 50);
+        }, 30);
 
       });
 
