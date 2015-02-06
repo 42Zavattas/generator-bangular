@@ -76,6 +76,7 @@ describe('Launching fonts tests', function () {
         }, 50);
 
       });
+
     });
 
   });

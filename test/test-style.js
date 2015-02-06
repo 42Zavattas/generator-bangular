@@ -69,8 +69,43 @@ describe('Launching style tests', function () {
           done();
         }, 50);
       });
+
     });
 
+  });
+
+  describe('', function () {
+
+    before(function (done) {
+
+      tmpDir = path.join(os.tmpdir(), '/tmp');
+
+      helpers.testDirectory(tmpDir, function (err) {
+        bangular = helpers.createGenerator('bangular:app',
+          [path.join(bangDir, '/app')],
+        false, { 'skipInstall': true, 'skipLog': true });
+
+        helpers.mockPrompt(bangular, { name: 'Test', backend: 'json', modules: [] });
+        bangular.run(done);
+      });
+
+    });
+
+    it('should not add another import if it already exists', function (done) {
+
+      bangStyle = helpers.createGenerator('bangular:style', [bangDir + '/style'], 'comic');
+      helpers.mockPrompt(bangStyle, { 'import': true });
+      fs.appendFileSync('client/styles/app.scss', '// imports\n@import "comic";');
+      bangStyle.run(function () {
+        setTimeout(function () {
+          assert.file('client/styles/comic.scss');
+          assert.fileContent('client/styles/app.scss', '// imports\n@import "comic";');
+          assert.noFileContent('client/styles/app.scss', '// imports\n@import "comic";\n@import "comic";');
+          done();
+        }, 30);
+      });
+
+    });
 
   });
 
