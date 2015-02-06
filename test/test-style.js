@@ -2,6 +2,7 @@
 
 var path = require('path');
 var os = require('os');
+var fs = require('fs');
 var helpers = require('yeoman-generator').test;
 var assert = require('yeoman-generator').assert;
 
@@ -54,6 +55,22 @@ describe('Launching style tests', function () {
       });
 
     });
+
+
+    it('should insert the import on needle', function (done) {
+
+      bangStyle = helpers.createGenerator('bangular:style', [bangDir + '/style'], 'gold');
+      helpers.mockPrompt(bangStyle, { 'import': true });
+      fs.appendFileSync('client/styles/app.scss', '// imports');
+      bangStyle.run(function () {
+        setTimeout(function () {
+          assert.file('client/styles/gold.scss');
+          assert.fileContent('client/styles/app.scss', '// imports\n@import "gold";');
+          done();
+        }, 50);
+      });
+    });
+
 
   });
 
