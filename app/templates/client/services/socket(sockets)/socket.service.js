@@ -4,7 +4,7 @@ angular.module('<%= appname %>')
   .factory('Socket', function (socketFactory) {
 
     var socketConnect = io('', {
-      path: 'socket.io'
+      path: '/socket.io'
     });
 
     var socket = socketFactory({ socketConnect: socketConnect });
