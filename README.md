@@ -98,6 +98,7 @@ The **name** parameter is required. Filters will be generated at `client/filters
     yo bangular:font <name>
 
 The **name** parameter is required. Fonts will generate a new folder in `client/assets/fonts/` and a `.scss` file importing all of these fonts in your app.
+It will be imported in your `app.scss` file either on top of the file or after the `// imports` mark if specified.
 
 ## Route
 
@@ -124,7 +125,7 @@ The **name** parameter is required. The service and its spec file will be genera
     yo bangular:style <name>
 
 **Inject**: If true, an `@import` will be added to the main *app.scss* file to add the style to your app.
-In case you have a weird workflow, you can specify the location of your new imports by adding a `// imports` in the file.
+You can specify the location of your new imports by adding a `// imports` in the file.
 
 The **name** parameter is required. This will create a new `.scss` file in he `client/styles/` folder.
 
