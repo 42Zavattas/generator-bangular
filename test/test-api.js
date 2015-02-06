@@ -173,7 +173,7 @@ describe('Launching api tests', function () {
       assert.fileContent('package.json', 'request');
     });
 
-    it('should run the api gen and check the new files', function (done) {
+    it('should run the api gen and check the new files and inject', function (done) {
       bangApi = helpers.createGenerator('bangular:api', [bangDir + '/api'], 'user');
       helpers.mockPrompt(bangApi, { url: '/api/users' });
       bangApi.run(function () {
@@ -186,12 +186,10 @@ describe('Launching api tests', function () {
         assert.fileContent('server/api/user/user.controller.js', 'request(apiUrl + \'10{name:s}\', function (err, resp, body) {');
         assert.fileContent('server/api/user/user.controller.js', 'request(apiUrl + \'{name:s}\', function (err, resp, body) {');
 
+        assert.fileContent('server/routes.js', 'app.use(\'/api/users\', require(\'./api/user\'));');
+
         done();
       });
-    });
-
-    it('should check injection in the route config', function () {
-      assert.fileContent('server/routes.js', 'app.use(\'/api/users\', require(\'./api/user\'));');
     });
 
   });
