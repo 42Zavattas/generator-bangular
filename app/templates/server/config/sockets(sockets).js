@@ -12,7 +12,7 @@ module.exports = function (io) {
     // sockets inserts
 
     socket.on('disconnect', function () {
-      console.log('[%s] %s disconnected.', new Date().toUTCString(, socket.ip);
+      console.log('[%s] %s disconnected.', new Date().toUTCString(), socket.ip);
     });
 
     console.log('[%s] %s connected.', socket.connectDate.toUTCString(), socket.ip);
