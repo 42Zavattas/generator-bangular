@@ -1,15 +1,15 @@
 'use strict';
 
-var <%= capitalized %> = require('./<%= name %>.model');
+var <%= objectName %> = require('./<%= fileName %>.model');
 
 exports.register = function (socket) {
 
-  <%= capitalized %>.schema.post('save', function (doc) {
-    socket.emit('<%= name %>:save', doc);
+  <%= objectName %>.schema.post('save', function (doc) {
+    socket.emit('<%= objectName %>:save', doc);
   });
 
-  <%= capitalized %>.schema.post('remove', function (doc) {
-    socket.emit('<%= name %>:remove', doc);
+  <%= objectName %>.schema.post('remove', function (doc) {
+    socket.emit('<%= objectName %>:remove', doc);
   });
 
 }

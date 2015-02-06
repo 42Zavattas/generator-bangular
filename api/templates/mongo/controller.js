@@ -1,82 +1,82 @@
 'use strict';
 
 var _ = require('lodash');
-var <%= _.capitalize(_.camelize(name)) %> = require('./<%= _.camelize(name) %>.model');
+var <%= objectName %> = require('./<%= fileName %>.model');
 
 function handleError(res, err) {
   return res.status(500).send(err);
 }
 
 /**
- * Get list of <%= _.camelize(name) %>s
+ * Get list of <%= instancesName %>s
  *
  * @param req
  * @param res
  */
 exports.index = function (req, res) {
-  <%= _.capitalize(_.camelize(name)) %>.find(function (err, <%= _.camelize(pluralName) %>) {
+  <%= _.capitalize(objectName) %>.find(function (err, <%= instancesName %>) {
     if (err) { return handleError(res, err); }
-    return res.status(200).json(<%= _.camelize(pluralName) %>);
+    return res.status(200).json(<%= instancesName %>);
   });
 };
 
 /**
- * Get a single <%= _.camelize(name) %>
+ * Get a single <%= objectName %>
  *
  * @param req
  * @param res
  */
 exports.show = function (req, res) {
-  <%= _.capitalize(_.camelize(name)) %>.findById(req.params.id, function (err, <%= _.camelize(name) %>) {
+  <%= _.capitalize(objectName) %>.findById(req.params.id, function (err, <%= instanceName %>) {
     if (err) { return handleError(res, err); }
-    if (!<%= _.camelize(name) %>) { return res.status(404).end(); }
-    return res.status(200).json(<%= _.camelize(name) %>);
+    if (!<%= instanceName %>) { return res.status(404).end(); }
+    return res.status(200).json(<%= instanceName %>);
   });
 };
 
 /**
- * Creates a new <%= _.camelize(name) %> in the DB.
+ * Creates a new <%= objectName %> in the DB.
  *
  * @param req
  * @param res
  */
 exports.create = function (req, res) {
-  <%= _.capitalize(_.camelize(name)) %>.create(req.body, function (err, <%= _.camelize(name) %>) {
+  <%= _.capitalize(objectName) %>.create(req.body, function (err, <%= instanceName %>) {
     if (err) { return handleError(res, err); }
-    return res.status(201).json(<%= _.camelize(name) %>);
+    return res.status(201).json(<%= instanceName %>);
   });
 };
 
 /**
- * Updates an existing <%= _.camelize(name) %> in the DB.
+ * Updates an existing <%= objectName %> in the DB.
  *
  * @param req
  * @param res
  */
 exports.update = function (req, res) {
   if (req.body._id) { delete req.body._id; }
-  <%= _.capitalize(_.camelize(name)) %>.findById(req.params.id, function (err, <%= _.camelize(name) %>) {
+  <%= _.capitalize(objectName) %>.findById(req.params.id, function (err, <%= instanceName %>) {
     if (err) { return handleError(res, err); }
-    if (!<%= _.camelize(name) %>) { return res.status(404).end(); }
-    var updated = _.merge(<%= _.camelize(name) %>, req.body);
+    if (!<%= instanceName %>) { return res.status(404).end(); }
+    var updated = _.merge(<%= instanceName %>, req.body);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
-      return res.status(200).json(<%= _.camelize(name) %>);
+      return res.status(200).json(<%= instanceName %>);
     });
   });
 };
 
 /**
- * Deletes a <%= _.camelize(name) %> from the DB.
+ * Deletes a <%= objectName %> from the DB.
  *
  * @param req
  * @param res
  */
 exports.destroy = function (req, res) {
-  <%= _.capitalize(_.camelize(name)) %>.findById(req.params.id, function (err, <%= _.camelize(name) %>) {
+  <%= _.capitalize(objectName) %>.findById(req.params.id, function (err, <%= instanceName %>) {
     if (err) { return handleError(res, err); }
-    if (!<%= _.camelize(name) %>) { return res.status(404).end(); }
-    <%= _.camelize(name) %>.remove(function (err) {
+    if (!<%= instanceName %>) { return res.status(404).end(); }
+    <%= instanceName %>.remove(function (err) {
       if (err) { return handleError(res, err); }
       return res.status(204);
     });
