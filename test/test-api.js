@@ -55,7 +55,7 @@ describe('Launching api tests', function () {
       });
     });
 
-    it('should run another new route', function (done) {
+    it('should run another new route and check injects', function (done) {
       bangApi = helpers.createGenerator('bangular:api', [bangDir + '/api'], 'restock');
       helpers.mockPrompt(bangApi, { url: '/api/restocks' });
       bangApi.run(function () {
@@ -63,13 +63,11 @@ describe('Launching api tests', function () {
         assert.file('server/api/restock/restock.controller.js');
         assert.file('server/api/restock/restock.spec.js');
         assert.file('server/api/restock/restock.model.js');
+
+        assert.fileContent('server/routes.js', 'app.use(\'/api/restocks\', require(\'./api/restock\'));');
+        assert.fileContent('server/routes.js', 'app.use(\'/api/users\', require(\'./api/user\'));');
         done();
       });
-    });
-
-    it('should check injection in the route config', function () {
-      assert.fileContent('server/routes.js', 'app.use(\'/api/restocks\', require(\'./api/restock\'));');
-      assert.fileContent('server/routes.js', 'app.use(\'/api/users\', require(\'./api/user\'));');
     });
 
   });
