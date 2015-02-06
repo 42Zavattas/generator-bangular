@@ -60,8 +60,9 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
     if (!genUtils.fileExists('client/styles/fonts.scss')) {
       this.template('fonts.scss', 'client/styles/fonts.scss');
 
-      genUtils.appendOnTop({
-        dest: 'client/styles/app.scss',
+      genUtils.appendNeedleOrOnTop({
+        needle: '// imports',
+        file: 'client/styles/app.scss',
         append: '@import \'fonts\';\n'
       }, function (err) {
         /* istanbul ignore if */
