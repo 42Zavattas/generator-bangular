@@ -3,11 +3,13 @@
 angular.module('<%= appname %>')
   .factory('Socket', function (socketFactory) {
 
-    var socketConnect = io('', {
+    var ioSocket = io('', {
       path: '/socket.io'
+      //, query: 'token=toto'
+      // TODO implement with passport and socket jwt
     });
 
-    var socket = socketFactory({ socketConnect: socketConnect });
+    var socket = socketFactory({ ioSocket: ioSocket });
 
     function idMap (items) {
       return items.map(function (e) { return e._id; });
