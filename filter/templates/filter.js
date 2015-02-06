@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('<%= _.camelize(appname) %>')
+angular.module('<%= appname %>')
   .filter('<%= camelName %>', function () {
     return function (input) {
       return input;

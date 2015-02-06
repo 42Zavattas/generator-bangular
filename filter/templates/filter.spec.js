@@ -2,7 +2,7 @@
 
 describe('<%= camelName %> filter', function () {
 
-  beforeEach(module('<%= _.camelize(appname) %>'));
+  beforeEach(module('<%= appname %>'));
 
   var <%= camelName %>;
 

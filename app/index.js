@@ -15,7 +15,6 @@ var BangularGenerator = yeoman.generators.Base.extend({
   initializing: {
     getVars: function () {
       this.appname = this.appname || path.basename(process.cwd());
-      this.appname = this._.camelize(this._.slugify(this._.humanize(this.appname)));
       this.filters = {};
       this.pkg = require('../package.json');
     },
@@ -90,7 +89,7 @@ var BangularGenerator = yeoman.generators.Base.extend({
         checked: false
       }]
     }], function (props) {
-      self.appname = props.name;
+      self.appname = self._.camelize(self._.slugify(self._.humanize(props.name)));
       self.filters.backend = props.backend;
 
       if (props.modules.length) {

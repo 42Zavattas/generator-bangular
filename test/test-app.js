@@ -54,8 +54,9 @@ describe('Launching app generator tests', function () {
     it('should creates all the files', basicFileCheck);
 
     it('should check name in some files', function () {
-      assert.fileContent('client/index.html', 'ng-app="test"');
       assert.fileContent('README.md', '# test');
+      assert.fileContent('client/index.html', 'ng-app="test"');
+      assert.fileContent('client/app.js', 'angular.module(\'test\'');
     });
 
     it('should have mongo dependency', function () {

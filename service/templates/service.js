@@ -1,5 +1,5 @@
 'use strict';
 
-angular.module('<%= _.camelize(appname) %>')
+angular.module('<%= appname %>')
   .service('<%= camelName %>', function () {
   });

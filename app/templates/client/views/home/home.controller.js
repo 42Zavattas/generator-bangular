@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('<%= _.slugify(appname) %>')
+angular.module('<%= appname %>')
   .controller('HomeCtrl', function () {
 
     var vm = this;

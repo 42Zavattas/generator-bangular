@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('<%= _.slugify(appname) %>', [
+angular.module('<%= appname %>', [
   'ngRoute'<% if (filters.ngCookies) { %>,
   'ngCookies'<% } %><% if (filters.ngResource) { %>,
   'ngResource'<% } %><% if (filters.ngSanitize) { %>,

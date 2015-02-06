@@ -2,7 +2,7 @@
 
 describe('Controller: <%= _.capitalize(_.camelize(name)) %>Ctrl', function () {
 
-  beforeEach(module('<%= _.camelize(appname) %>'));
+  beforeEach(module('<%= appname %>'));
 
   var MainCtrl,
     scope;
