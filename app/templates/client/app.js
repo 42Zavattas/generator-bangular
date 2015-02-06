@@ -1,11 +1,12 @@
 'use strict';
 
-angular.module('<%= _.slugify(appname) %>', [
+angular.module('<%= appname %>', [
   'ngRoute'<% if (filters.ngCookies) { %>,
   'ngCookies'<% } %><% if (filters.ngResource) { %>,
   'ngResource'<% } %><% if (filters.ngSanitize) { %>,
   'ngSanitize'<% } %><% if (filters.ngAnimate) { %>,
-  'ngAnimate'<% } %>
+  'ngAnimate'<% } %><% if (filters.sockets) { %>,
+  'btford.socket-io'<% } %>
 ])
   .config(function ($routeProvider, $locationProvider) {
 

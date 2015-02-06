@@ -2,7 +2,7 @@
 
 describe('Controller: <%= controllerName %>', function () {
 
-  beforeEach(module('<%= _.camelize(appname) %>'));
+  beforeEach(module('<%= appname %>'));
 
   var <%= controllerName %>,
     scope;

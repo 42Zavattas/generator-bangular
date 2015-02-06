@@ -1,9 +1,8 @@
-/*global describe, beforeEach, it, inject, expect*/
 'use strict';
 
 describe('HomeCtrl', function () {
 
-  beforeEach(module('<%= _.slugify(appname) %>'));
+  beforeEach(module('<%= appname %>'));
 
   var HomeCtrl,
     scope;

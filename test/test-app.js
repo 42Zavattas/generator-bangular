@@ -45,7 +45,8 @@ describe('Launching app generator tests', function () {
         .withPrompt({
           name: 'Test',
           backend: 'mongo',
-          modules: []
+          modules: [],
+          sockets: false
         })
         .on('end', done);
 
@@ -54,8 +55,9 @@ describe('Launching app generator tests', function () {
     it('should creates all the files', basicFileCheck);
 
     it('should check name in some files', function () {
-      assert.fileContent('client/index.html', 'ng-app="test"');
       assert.fileContent('README.md', '# test');
+      assert.fileContent('client/index.html', 'ng-app="test"');
+      assert.fileContent('client/app.js', 'angular.module(\'test\'');
     });
 
     it('should have mongo dependency', function () {
@@ -105,6 +107,35 @@ describe('Launching app generator tests', function () {
       assert.file('bower.json');
       assert.fileContent('bower.json', '"angular-cookies":');
       assert.fileContent('bower.json', '"angular-sanitize":');
+    });
+
+  });
+
+  describe('', function () {
+
+    before(function (done) {
+
+      helpers.run(path.join(__dirname, '../app'))
+        .inDir(path.join(os.tmpdir(), './tmp'))
+        .withOptions({ 'skipInstall': true })
+        .withPrompt({
+          name: 'Test',
+          backend: 'mongo',
+          modules: [],
+          sockets: true
+        })
+        .on('end', done);
+
+    });
+
+    it('should have socket dependency, config and requires', function () {
+      assert.fileContent('package.json', '"socket.io":');
+      assert.fileContent('bower.json', '"angular-socket-io":');
+      assert.fileContent('client/index.html', 'socket.io/socket.io.js');
+      assert.fileContent('client/app.js', 'btford.socket-io');
+      assert.file('server/config/sockets.js');
+      assert.fileContent('server/server.js', 'var socket = require(\'socket.io\')');
+      assert.fileContent('server/server.js', 'require(\'./config/sockets.js\')(socket);');
     });
 
   });

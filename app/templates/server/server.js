@@ -8,7 +8,9 @@ var mongoose = require('mongoose');
 mongoose.connect(config.mongo.uri, config.mongo.options);<% } %>
 
 var app = express();
-var server = require('http').createServer(app);
+var server = require('http').createServer(app);<% if (filters.sockets) { %>
+var socket = require('socket.io')(server, { serveClient: true });
+require('./config/sockets.js')(socket);<% } %>
 
 require('./config/express')(app);
 require('./routes')(app);

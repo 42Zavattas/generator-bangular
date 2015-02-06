@@ -129,8 +129,40 @@ describe('Launching api tests', function () {
             [path.join(bangDir, '/app'),
           ], false, { 'skipInstall': true, 'skipLog': true });
 
-        helpers.mockPrompt(bangular, { name: 'Test', backend: 'restock', modules: [] });
+        helpers.mockPrompt(bangular, { name: 'Test', backend: 'mongo', modules: [], sockets: true });
+        bangular.run(done);
+      });
 
+    });
+
+    it('should test api with sockets', function (done) {
+
+      bangApi = helpers.createGenerator('bangular:api', [bangDir + '/api'], 'user');
+      helpers.mockPrompt(bangApi, { url: '/api/users', sockets: true });
+      bangApi.run(function () {
+        assert.file('server/api/user/index.js');
+        assert.file('server/api/user/user.socket.js');
+        assert.fileContent('server/config/sockets.js', 'require(\'../api/user/user.socket.js\').register(socket);');
+        done();
+      });
+    });
+
+  });
+
+  describe('', function () {
+
+    before(function (done) {
+
+      tmpDir = path.join(os.tmpdir(), '/tmp');
+
+      helpers.testDirectory(tmpDir, function (err) {
+        if (err) { done(err); }
+
+        bangular = helpers.createGenerator('bangular:app',
+            [path.join(bangDir, '/app'),
+          ], false, { 'skipInstall': true, 'skipLog': true });
+
+        helpers.mockPrompt(bangular, { name: 'Test', backend: 'restock', modules: [] });
         bangular.run(done);
       });
 
@@ -141,7 +173,7 @@ describe('Launching api tests', function () {
       assert.fileContent('package.json', 'request');
     });
 
-    it('should run the api gen and check the new files', function (done) {
+    it('should run the api gen and check the new files and inject', function (done) {
       bangApi = helpers.createGenerator('bangular:api', [bangDir + '/api'], 'user');
       helpers.mockPrompt(bangApi, { url: '/api/users' });
       bangApi.run(function () {
@@ -154,12 +186,10 @@ describe('Launching api tests', function () {
         assert.fileContent('server/api/user/user.controller.js', 'request(apiUrl + \'10{name:s}\', function (err, resp, body) {');
         assert.fileContent('server/api/user/user.controller.js', 'request(apiUrl + \'{name:s}\', function (err, resp, body) {');
 
+        assert.fileContent('server/routes.js', 'app.use(\'/api/users\', require(\'./api/user\'));');
+
         done();
       });
-    });
-
-    it('should check injection in the route config', function () {
-      assert.fileContent('server/routes.js', 'app.use(\'/api/users\', require(\'./api/user\'));');
     });
 
   });

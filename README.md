@@ -16,12 +16,21 @@
 
 # Install
 
-    npm install -g generator-bangular
+    npm install -g yo generator-bangular
     yo bangular
 
-    // profit !
+### Sockets
 
-# Manage generated project
+To use the sockets, you have to confirm the option on project generation.
+Yet, it's only when you've selected the mongo backend that you can be prompted by this config.
+
+This will initialize all the server part and create a `Socket` factory in the client.
+On each new `api` you create, you can choose to load the sockets for this model.
+It will then emit socket events on update and remove of documents of this model.
+
+The sockets can be quickly usable in your controllers, [here is an example](https://gist.github.com/Apercu/9cd8b4b332948dc833f0) with a simple user.
+
+# Manage project
 
     gulp
 

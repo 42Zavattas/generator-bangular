@@ -2,7 +2,7 @@
 
 describe('Directive: <%= dashName %>', function () {
 
-  beforeEach(module('<%= _.camelize(appname) %>', 'templates'));
+  beforeEach(module('<%= appname %>', 'templates'));
 
   var element, scope;
 
