@@ -96,9 +96,13 @@ var out = {
         otherwiseLineIndex = i;
       }
     });
+
+    /* istanbul ignore if */
     if (otherwiseLineIndex === -1) {
       return lines.join('\n');
     }
+    // Since we're not using the rewrite function directly but passing with the
+    // appendNeedleOrOnTop function, this will never (h)append... Normally...
 
     var spaces = 0;
     while (lines[otherwiseLineIndex].charAt(spaces) === ' ') {
