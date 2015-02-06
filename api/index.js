@@ -72,7 +72,7 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
         file: 'server/config/sockets.js',
         needle: '// sockets insert',
         splicable: [
-          'require(\'../api/' + this.fileName + '/' + this.fileName + '.socket.js\')'
+          'require(\'../api/' + this.fileName + '/' + this.fileName + '.socket.js\').register(socket);'
         ]
       });
     }
