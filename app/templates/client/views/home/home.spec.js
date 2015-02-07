@@ -1,6 +1,6 @@
 'use strict';
 
-describe('HomeCtrl', function () {
+describe('Controller: HomeCtrl', function () {
 
   beforeEach(module('<%= appname %>'));
 
