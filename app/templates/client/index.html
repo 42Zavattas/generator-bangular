@@ -43,10 +43,11 @@
 
     <pre>logged in: {{ Auth.isLogged() }}</pre><% } %>
 
-    <div ng-view></div>
+    <div ng-view></div><% if (filters.sockets) { %>
 
-    <!-- build:js app.js --><% if (filters.sockets) { %>
     <script src="socket.io/socket.io.js"></script><% } %>
+
+    <!-- build:js app.js -->
       <!-- bower:js -->
       <!-- endinject -->
 
