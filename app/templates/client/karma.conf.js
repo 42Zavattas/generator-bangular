@@ -37,7 +37,11 @@ module.exports = function (config) {
       'directives/**/*.js',
       'directives/**/*.html',
       'filters/**/*.js'
-    ],
+    ],<% if (filters.sockets) { %>
+
+    exclude: [
+      'services/socket/socket.service.js',
+    ],<% } %>
 
     reporters: ['progress'],
 
