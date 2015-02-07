@@ -99,13 +99,22 @@ var BangularGenerator = yeoman.generators.Base.extend({
       }
 
       if (props.backend === 'mongo') {
-        self.prompt({
+        self.prompt([{
           type: 'confirm',
           name: 'sockets',
           message: 'Do you want to add socket support?',
           default: false
-        }, function (props) {
+        }, {
+          type: 'confirm',
+          name: 'auth',
+          message: 'Do you want to scaffold a passport authentication process?',
+          default: false
+        }], function (props) {
           self.filters.sockets = props.sockets;
+          self.filters.auth = props.auth;
+          if (props.auth) {
+            self.filters['ngCookies'] = true;
+          }
           done();
         });
       } else {

@@ -1,0 +1,17 @@
+<div>
+  {{ vm.name }}
+</div>
+
+<form ng-submit="vm.signup()">
+	<input type="email"
+				 ng-model="vm.user.email"
+				 placeholder="email">
+	<input type="password"
+				 ng-model="vm.user.password"
+				 placeholder="password">
+	<button type="submit">
+		signup
+	</button>
+</form>
+
+<pre ng-if="vm.error">{{ vm.error | json }}</pre>
