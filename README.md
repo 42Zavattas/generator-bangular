@@ -65,7 +65,7 @@ Bump versions of `package.json` and `bower.json` files using *Semantic Versionin
   - [filter](https://github.com/42Zavattas/generator-bangular#filter)
   - [font](https://github.com/42Zavattas/generator-bangular#font)
   - [route](https://github.com/42Zavattas/generator-bangular#route)
-  - [service](https://github.com/42Zavattas/generator-bangular#service)
+  - [service / factory](https://github.com/42Zavattas/generator-bangular#service)
   - [style](https://github.com/42Zavattas/generator-bangular#style)
  - Server
   - [api](https://github.com/42Zavattas/generator-bangular#api)
@@ -117,8 +117,9 @@ The **name** parameter is required. This will create in `client/views/`:
 ## Service
 
     yo bangular:service <name>
+    yo bangular:factory <name>
 
-The **name** parameter is required. The service and its spec file will be generated at `client/services/`.
+The **name** parameter is required. The service / factory and its spec file will be generated at `client/services/`.
 
 ## Style
 
