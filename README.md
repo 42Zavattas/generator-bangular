@@ -18,6 +18,13 @@
 
     npm install -g yo generator-bangular
     yo bangular
+    
+### Table of contents
+
+- [Manage project](https://github.com/42Zavattas/generator-bangular#manage-project)
+- [Generators](https://github.com/42Zavattas/generator-bangular#generators)
+- [Features](https://github.com/42Zavattas/generator-bangular#features)
+- [Architecture](https://github.com/42Zavattas/generator-bangular#architecutre)
 
 # Manage project
 
