@@ -9,7 +9,6 @@ var all = {
   root: path.normalize(__dirname + '/../../..'),
   port: process.env.PORT || 9000,<% if (filters.backend === 'mongo') { %>
 
-  // MongoDB connection options
   mongo: {
     options: {
       db: {
