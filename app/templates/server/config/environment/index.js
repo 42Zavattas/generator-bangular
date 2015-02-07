@@ -15,6 +15,10 @@ var all = {
         safe: true
       }
     }
+  }<% } %><% if (filters.auth) { %>,
+
+  secrets: {
+    session: 'zavatta' || process.env.SESSION_SECRET
   }<% } %>
 };
 
