@@ -154,7 +154,7 @@ This will initialize all the server part and create a `Socket` factory in the cl
 On each new `api` you create, you can choose to load the sockets for this model.
 It will then emit socket events on update and remove of documents of this model.
 
-The sockets can be quickly usable in your controllers, [here is an example](https://gist.github.com/Apercu/9cd8b4b332948dc833f0) with a simple user.
+The sockets can be quickly usable in your controllers, [here is an example](https://gist.github.com/Apercu/9cd8b4b332948dc833f0) with a simple item.
 
 ### Passport
 
