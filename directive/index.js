@@ -3,10 +3,10 @@
 var yeoman = require('yeoman-generator');
 
 var BangularGenerator = yeoman.generators.NamedBase.extend({
+
   initializing: function () {
     this.camelName = this._.camelize(this.name);
-    this.slugName = this._.slugify(this.name);
-    this.dashedName = this._.dasherize(this.name);
+    this.dashName = this._.dasherize(this.name);
   },
 
   prompting: function () {
@@ -17,7 +17,7 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
     self.prompt([{
       type: 'confirm',
       name: 'template',
-      message: 'Do this directive needs an html template ?',
+      message: 'Do this directive needs an html template?',
       default: true
     }], function (props) {
       self.needTemplate = props.template;
@@ -31,18 +31,18 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
     this.template(
       'directive.js',
       'client/directives/'
-      + this.slugName
+      + this.dashName
       + '/'
-      + this.slugName
+      + this.dashName
       + '.directive.js'
     );
 
     this.template(
       'directive.spec.js',
       'client/directives/'
-      + this.slugName
+      + this.dashName
       + '/'
-      + this.slugName
+      + this.dashName
       + '.spec.js'
     );
 
@@ -50,9 +50,9 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
       this.template(
         'directive.html',
         'client/directives/'
-        + this.slugName
+        + this.dashName
         + '/'
-        + this.slugName
+        + this.dashName
         + '.html'
       );
     }

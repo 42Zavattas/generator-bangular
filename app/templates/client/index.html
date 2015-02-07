@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html ng-app="<%= _.slugify(appname) %>">
+<html ng-app="<%= appname %>">
   <head>
 
     <base href="/">
 
-    <title><%= _.slugify(appname) %></title>
+    <title><%= appname %></title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
@@ -26,7 +26,8 @@
 
     <div ng-view></div>
 
-    <!-- build:js app.js -->
+    <!-- build:js app.js --><% if (filters.sockets) { %>
+    <script src="socket.io/socket.io.js"></script><% } %>
       <!-- bower:js -->
       <!-- endinject -->
 

@@ -7,20 +7,20 @@ function handleError(res, err) {
 }
 
 /**
- * Get list of <%= _.camelize(name) %>s
+ * Get list of <%= objectsName %>s
  *
  * @param req
  * @param res
  */
 exports.index = function (req, res) {
-  fs.readFile('server/api/<%= name %>/<%= name %>.data.json', 'utf-8', function (err, <%= pluralName %>) {
+  fs.readFile('server/api/<%= fileName %>/<%= fileName %>.data.json', 'utf-8', function (err, <%= instancesName %>) {
     if (err) { return handleError(res, err); }
-    res.status(200).json(JSON.parse(<%= pluralName %>));
+    res.status(200).json(JSON.parse(<%= instancesName %>));
   });
 };
 
 /**
- * Get a single <%= _.camelize(name) %>
+ * Get a single <%= objectName %>
  *
  * @param req
  * @param res
@@ -30,7 +30,7 @@ exports.show = function (req, res) {
 };
 
 /**
- * Creates a new <%= _.camelize(name) %>
+ * Creates a new <%= objectName %>
  *
  * @param req
  * @param res
@@ -40,7 +40,7 @@ exports.create = function (req, res) {
 };
 
 /**
- * Updates an existing <%= _.camelize(name) %>
+ * Updates an existing <%= objectName %>
  *
  * @param req
  * @param res
@@ -50,7 +50,7 @@ exports.update = function (req, res) {
 };
 
 /**
- * Deletes a <%= _.camelize(name) %>
+ * Deletes a <%= objectName %>
  *
  * @param req
  * @param res

@@ -1,7 +1,6 @@
-# generator-bangular
+# generator-bangular <br> [![Build Status](https://travis-ci.org/42Zavattas/generator-bangular.svg?branch=develop)](https://travis-ci.org/42Zavattas/generator-bangular) [![Coverage Status](https://coveralls.io/repos/42Zavattas/generator-bangular/badge.svg?branch=develop)](https://coveralls.io/r/42Zavattas/generator-bangular?branch=develop) [![Code Climate](https://codeclimate.com/github/42Zavattas/generator-bangular/badges/gpa.svg)](https://codeclimate.com/github/42Zavattas/generator-bangular) [![Dependency Status](https://david-dm.org/42Zavattas/generator-bangular.svg)](https://david-dm.org/42Zavattas/generator-bangular)
 
-*Want a clean, fast and more purposed way to scaffold your project while keep at hand some build tools?*
-*Don't obstruct your code with slow things. Future is here.*
+![logos](logos/logos-sprite.png "logos")
 
 ***Philosophy***
 
@@ -13,16 +12,25 @@
 * **JSHint** integration — *Write clean code, for purpose.*
 * **Fast build** — *You do faster? Let's see that.*
 
-[Demo of generated project](http://bangular.forpurpose.io/)
+[Demo of generated project](https://github.com/42Zavattas/bangular-demo)
 
 # Install
 
-    npm install -g generator-bangular
+    npm install -g yo generator-bangular
     yo bangular
 
-    // profit !
+### Sockets
 
-# Manage generated project
+To use the sockets, you have to confirm the option on project generation.
+Yet, it's only when you've selected the mongo backend that you can be prompted by this config.
+
+This will initialize all the server part and create a `Socket` factory in the client.
+On each new `api` you create, you can choose to load the sockets for this model.
+It will then emit socket events on update and remove of documents of this model.
+
+The sockets can be quickly usable in your controllers, [here is an example](https://gist.github.com/Apercu/9cd8b4b332948dc833f0) with a simple user.
+
+# Manage project
 
     gulp
 
@@ -45,7 +53,7 @@ Launch client and server tests, using Karma and Mocha, both by default.
 Validate the app through JSHint.
 
     gulp bump [--major || --minor || --patch]
-    
+
 Bump versions of `package.json` and `bower.json` files using *Semantic Versioning* and commit them. Default to **patch**.
 
 # Generators
@@ -68,9 +76,9 @@ This is the main generator of Bangular, that will scaffold entierely your projec
 
     yo bangular || yo bangular <appName>
 
-**Backend type**: MongoDB / [Restock](https://github.com/42Zavattas/Restock.io) / Json
-
-**Modules**     :  angular-cookies || angular-resource || angular-sanitize || angular-animate
+**Backend type**: MongoDB / [Restock](https://github.com/42Zavattas/Restock.io) / Json<br>
+**Modules**     : angular-cookies || angular-resource || angular-sanitize || angular-animate<br>
+**Socket.IO**   : Do you want to integrate sockets in your app?
 
 
 ## Directive
@@ -90,6 +98,7 @@ The **name** parameter is required. Filters will be generated at `client/filters
     yo bangular:font <name>
 
 The **name** parameter is required. Fonts will generate a new folder in `client/assets/fonts/` and a `.scss` file importing all of these fonts in your app.
+It will be imported in your `app.scss` file either on top of the file or after the `// imports` mark if specified.
 
 ## Route
 
@@ -116,6 +125,7 @@ The **name** parameter is required. The service and its spec file will be genera
     yo bangular:style <name>
 
 **Inject**: If true, an `@import` will be added to the main *app.scss* file to add the style to your app.
+You can specify the location of your new imports by adding a `// imports` in the file.
 
 The **name** parameter is required. This will create a new `.scss` file in he `client/styles/` folder.
 
@@ -123,7 +133,8 @@ The **name** parameter is required. This will create a new `.scss` file in he `c
 
     yo bangular:api <name>
 
-**Url**: Route that will be exposed on your server to access this ressource.
+**Url**: Route that will be exposed on your server to access this ressource.<br>
+**Socket**: If you want to emit socket event on model changes.
 
 The **name** parameter is required. A **name** folder will be created at `server/api/`.
 

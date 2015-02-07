@@ -1,6 +1,6 @@
 {
   "name": "generator-bangular",
-  "version": "0.3.2",
+  "version": "0.6.0",
   "description": "Generate and serve your project in a blink of an eye",
   "license": "BSD",
   "homepage": "https://github.com/42Zavattas/generator-bangular",
@@ -20,12 +20,13 @@
     }
   ],
   "keywords": [
+    "fullstack",
+    "yeoman-generator",
+    "gulp",
     "bangular-generator",
     "bangular",
     "angular",
-    "gulp",
     "server",
-    "yeoman-generator",
     "generator",
     "lightweight",
     "blazingfast",
@@ -38,6 +39,9 @@
     "yeoman-generator": "^0.18.7"
   },
   "devDependencies": {
+    "coveralls": "^2.11.2",
+    "gulp": "^3.8.10",
+    "gulp.spritesmith": "^2.5.0",
     "mocha": "*"
   },
   "peerDependencies": {
@@ -45,5 +49,9 @@
   },
   "engines": {
     "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha test/*.js",
+    "coveralls": "istanbul cover ./node_modules/mocha/bin/_mocha && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   }
 }

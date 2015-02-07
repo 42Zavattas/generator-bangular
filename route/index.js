@@ -3,9 +3,11 @@
 var yeoman = require('yeoman-generator');
 
 var BangularGenerator = yeoman.generators.NamedBase.extend({
+
   initializing: function () {
     this.appName = this._.camelize(this.appname);
     this.controllerName = this._.capitalize(this._.camelize(this.name)) + 'Ctrl';
+    this.dashName = this._.dasherize(this.name);
   },
 
   prompting: function () {
@@ -15,7 +17,7 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
       type: 'input',
       name: 'route',
       message: 'Choose an url route',
-      default: '/' + self._.slugify(self.name)
+      default: '/' + self.dashName
     }], function (props) {
       self.route = props.route;
       done();
@@ -27,40 +29,41 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
     this.template(
       'index.js',
       'client/views/'
-      + this._.slugify(this.name)
+      + this.dashName
       + '/'
-      + this._.slugify(this.name)
+      + this.dashName
       + '.js'
     );
 
     this.template(
       'controller.js',
       'client/views/'
-      + this._.slugify(this.name)
+      + this.dashName
       + '/'
-      + this._.slugify(this.name)
+      + this.dashName
       + '.controller.js'
     );
 
     this.template(
       'spec.js',
       'client/views/'
-      + this._.slugify(this.name)
+      + this.dashName
       + '/'
-      + this._.slugify(this.name)
+      + this.dashName
       + '.spec.js'
     );
 
     this.template(
       'view.html',
       'client/views/'
-      + this._.slugify(this.name)
+      + this._.dasherize(this.name)
       + '/'
-      + this._.slugify(this.name)
+      + this._.dasherize(this.name)
       + '.html'
     );
 
   }
+
 });
 
 module.exports = BangularGenerator;

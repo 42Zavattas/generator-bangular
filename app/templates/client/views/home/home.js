@@ -1,8 +1,7 @@
 'use strict';
 
-angular.module('<%= _.slugify(appname) %>')
+angular.module('<%= appname %>')
   .config(function ($routeProvider) {
-
     $routeProvider
       .when('/', {
         templateUrl: 'views/home/home.html',

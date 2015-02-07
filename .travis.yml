@@ -1,7 +1,8 @@
 language: node_js
 node_js:
   - '0.10'
+  - '0.11'
 before_install:
-  - currentfolder=${PWD##*/}
-  - if [ "$currentfolder" != 'generator-bangular' ]; then cd .. && eval "mv $currentfolder generator-bangular" && cd generator-bangular; fi
-
+  - npm install -g istanbul
+after_success:
+  - npm run coveralls

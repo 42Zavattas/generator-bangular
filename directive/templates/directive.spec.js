@@ -1,19 +1,19 @@
 'use strict';
 
-describe('Directive: <%= camelName %>', function () {
+describe('Directive: <%= dashName %>', function () {
 
-  beforeEach(module('<%= _.camelize(appname) %>', 'templates'));
+  beforeEach(module('<%= appname %>', 'templates'));
 
   var element, scope;
 
   beforeEach(inject(function($compile, $rootScope){
     scope = $rootScope.$new();
-    element = angular.element('<<%= dashedName %>></<%= dashedName %>>');
+    element = angular.element('<<%= dashName %>></<%= dashName %>>');
     element = $compile(element)(scope);
     scope.$apply();
   }));
 
-  it('should ...', inject(function ($compile) {
+  it('should ...', function () {
     expect(1).toBe(1);
-  }));
+  });
 });

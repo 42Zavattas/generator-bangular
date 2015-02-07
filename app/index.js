@@ -12,17 +12,40 @@ function bangLog (msg, color) {
 
 var BangularGenerator = yeoman.generators.Base.extend({
 
-  initializing: function () {
-    this.appname = this.appname || path.basename(process.cwd());
-    this.appname = this._.camelize(this._.slugify(this._.humanize(this.appname)));
-    this.filters = {};
-    this.pkg = require('../package.json');
+  initializing: {
+    getVars: function () {
+      this.appname = this.appname || path.basename(process.cwd());
+      this.filters = {};
+      this.pkg = require('../package.json');
+    },
+    info: function () {
+      if (this.options.skipLog) { return ; }
+      this.log(bangAscii);
+    },
+    checkConfig: function () {
+      if (this.config.get('filters')) {
+
+        var done = this.async();
+        var self = this;
+
+        this.prompt([{
+          type: 'confirm',
+          name: 'skipConfig',
+          message: 'You have a .yo-rc file in this directory, do you want to skip install steps?',
+          default: true
+        }], function (props) {
+          self.skipConfig = props.skipConfig;
+          done();
+        });
+      }
+    }
   },
 
   prompting: function () {
 
+    if (this.skipConfig) { return ; }
+
     var done = this.async();
-    this.log(bangAscii);
     var self = this;
 
     this.prompt([{
@@ -38,16 +61,16 @@ var BangularGenerator = yeoman.generators.Base.extend({
         value: 'mongo',
         name: 'MongoDb, with Mongoose as ODM'
       }, {
-        value: 'restock',
-        name: 'Restock.io, for mocking purpose'
-      }, {
         value: 'json',
         name: 'Good old JSON'
+      }, {
+        value: 'restock',
+        name: 'Restock.io, for mocking purpose'
       }]
     }, {
       type: 'checkbox',
       name: 'modules',
-      message: 'Which module do you want to load ?',
+      message: 'Which module do you want to load?',
       choices: [{
         value: 'ngCookies',
         name: 'angular-cookies',
@@ -66,7 +89,7 @@ var BangularGenerator = yeoman.generators.Base.extend({
         checked: false
       }]
     }], function (props) {
-      self.appname = props.name;
+      self.appname = self._.camelize(self._.slugify(self._.humanize(props.name)));
       self.filters.backend = props.backend;
 
       if (props.modules.length) {
@@ -75,11 +98,26 @@ var BangularGenerator = yeoman.generators.Base.extend({
         });
       }
 
-      done();
+      if (props.backend === 'mongo') {
+        self.prompt({
+          type: 'confirm',
+          name: 'sockets',
+          message: 'Do you want to add socket support?',
+          default: false
+        }, function (props) {
+          self.filters.sockets = props.sockets;
+          done();
+        });
+      } else {
+        done();
+      }
+
     });
   },
 
   saveSettings: function () {
+    if (this.skipConfig) { return ; }
+
     this.config.set('version', this.pkg.version);
     this.config.set('filters', this.filters);
   },
@@ -93,11 +131,15 @@ var BangularGenerator = yeoman.generators.Base.extend({
   },
 
   end: function () {
-    bangLog('Installing dependencies...', 'yellow');
+    /* istanbul ignore if */
+    if (!this.options.skipInstall) {
+      bangLog('Installing dependencies...', 'yellow');
+    }
     this.installDependencies({
+      skipInstall: this.options.skipInstall,
       skipMessage: true,
       callback: function () {
-        bangLog('Everything is ready !', 'green');
+        bangLog('Everything is ready !\n', 'green');
       }
     });
   }
