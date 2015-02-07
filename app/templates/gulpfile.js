@@ -162,18 +162,18 @@ function testClient (done) {
 
 gulp.task('test', function (done) {
   process.env.NODE_ENV = 'test';
-  var filter = process.argv[3] ? process.argv[3].substr(2) : false;
-  if (filter === 'client') {
+  var arg = process.argv[3] ? process.argv[3].substr(2) : false;
+  if (arg === 'client') {
     return testClient(function () {
       process.exit();
       done();
     });
-  } else if (filter === 'server') {
+  } else if (arg === 'server') {
     return testServer(function () {
       process.exit();
       done();
     });
-  } else if (filter === false) {
+  } else if (arg === false) {
     return testClient(function () {
       testServer(function () {
         process.exit();
@@ -181,7 +181,7 @@ gulp.task('test', function (done) {
       });
     });
   } else {
-    console.log('Wrong parameter [%s], availables : --client, --server', filter);
+    console.log('Wrong parameter [%s], availables : --client, --server', arg);
   }
 });
 
@@ -189,7 +189,11 @@ gulp.task('test', function (done) {
  * Launch server
  */
 gulp.task('serve', ['watch'], function () {
-  return $.nodemon({ script: 'server/server.js', ext: 'js', ignore: ['client', 'dist', 'node_modules'] })
+  return $.nodemon({
+      script: 'server/server.js',
+      ext: 'js',
+      ignore: ['client', 'dist', 'node_modules']
+    })
     .on('start', function () {
       if (!openOpts.already) {
         openOpts.already = true;
@@ -298,16 +302,18 @@ gulp.task('build', function (cb) {
 
 gulp.task('version', function () {
   return gulp.src(['./package.json', './bower.json'])
-    .pipe($.bump({ type: process.argv[3] ? process.argv[3].substr(2) : 'patch' }))
+    .pipe($.bump({
+      type: process.argv[3] ? process.argv[3].substr(2) : 'patch'
+    }))
     .pipe(gulp.dest('./'));
 });
 
 gulp.task('bump', ['version'], function () {
   fs.readFile('./package.json', function (err, data) {
-    if (err) { return; }
+    if (err) { return ; }
     return gulp.src(['./package.json', './bower.json'])
       .pipe($.git.add())
-      .pipe($.git.commit('chore(core): bump to ' + JSON.parse(data.toString()).version));
+      .pipe($.git.commit('chore(core): bump to ' + JSON.parse(data).version));
   });
 });
 
