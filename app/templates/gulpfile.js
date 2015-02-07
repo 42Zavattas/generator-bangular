@@ -11,7 +11,7 @@ var fs = require('fs');
 var karma = require('karma').server;
 var $ = require('gulp-load-plugins')();
 
-process.env.NODE_ENV = process.env.NODE_ENV || 'development'
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 var config = require('./server/config/environment');
 
@@ -279,7 +279,7 @@ gulp.task('rev', function () {
         return path.basename(file.path, ext) + '.' + hash.substr(0, 8) + ext;
       }
     }))
-    .pipe(gulp.dest('dist/client/'))
+    .pipe(gulp.dest('dist/client/'));
 });
 
 gulp.task('build', function (cb) {
