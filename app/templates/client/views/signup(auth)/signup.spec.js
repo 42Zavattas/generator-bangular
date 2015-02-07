@@ -4,14 +4,10 @@ describe('Controller: SignupCtrl', function () {
 
   beforeEach(module('<%= appname %>'));
 
-  var MainCtrl,
-    scope;
+  var SignupCtrl;
 
-  beforeEach(inject(function ($controller, $rootScope) {
-    scope = $rootScope.$new();
-    MainCtrl = $controller('SignupCtrl', {
-      $scope: scope
-    });
+  beforeEach(inject(function ($controller) {
+    SignupCtrl = $controller('SignupCtrl', {});
   }));
 
   it('should ...', function () {

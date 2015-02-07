@@ -4,14 +4,10 @@ describe('Controller: <%= controllerName %>', function () {
 
   beforeEach(module('<%= appname %>'));
 
-  var <%= controllerName %>,
-    scope;
+  var <%= controllerName %>;
 
-  beforeEach(inject(function ($controller, $rootScope) {
-    scope = $rootScope.$new();
-    <%= controllerName %> = $controller('<%= controllerName %>', {
-      $scope: scope
-    });
+  beforeEach(inject(function ($controller) {
+    <%= controllerName %> = $controller('<%= controllerName %>', {});
   }));
 
   it('should ...', function () {
