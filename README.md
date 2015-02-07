@@ -10,7 +10,15 @@
 * **NO** pre-install for Google Analytics — *Wanna track people? Do it yourself.*
 * **Livereload** on changes in client / server — *You don't have time to waste.*
 * **JSHint** integration — *Write clean code, for purpose.*
+* **Sass** support — *Because CSS is a mess.*
 * **Fast build** — *You do faster? Let's see that.*
+
+Optional:
+
+* **sockets**, with [socket.io](https://github.com/Automattic/socket.io) and [angular-socket-io](https://github.com/btford/angular-socket-io)
+* **authentication system**, with [Passport](https://github.com/jaredhanson/passport)
+* **MongoDB**, with [Mongoose ODM](https://github.com/learnboost/mongoose)
+* **mocked backend**, with [Restock](https://github.com/42Zavattas/Restock.io)
 
 [Demo of generated project](https://github.com/42Zavattas/bangular-demo)
 
