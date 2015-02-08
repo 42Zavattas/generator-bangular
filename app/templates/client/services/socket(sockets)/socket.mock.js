@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('<%= appname %>')
-  .factory('Socket', function (socketFactory) {
+  .factory('Socket', function () {
 
     return {
       socket: {
