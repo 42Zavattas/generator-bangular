@@ -177,18 +177,22 @@ describe('Launching api tests', function () {
       bangApi = helpers.createGenerator('bangular:api', [bangDir + '/api'], 'user');
       helpers.mockPrompt(bangApi, { url: '/api/users' });
       bangApi.run(function () {
-        assert.file('server/api/user/index.js');
-        assert.file('server/api/user/user.controller.js');
 
-        assert.fileContent('server/api/user/index.js', 'var controller = require(\'./user.controller\');');
+        setTimeout(function () {
+          assert.file('server/api/user/index.js');
+          assert.file('server/api/user/user.controller.js');
 
-        assert.fileContent('server/api/user/user.controller.js', 'var request = require(\'request\');');
-        assert.fileContent('server/api/user/user.controller.js', 'request(apiUrl + \'10{name:s}\', function (err, resp, body) {');
-        assert.fileContent('server/api/user/user.controller.js', 'request(apiUrl + \'{name:s}\', function (err, resp, body) {');
+          assert.fileContent('server/api/user/index.js', 'var controller = require(\'./user.controller\');');
 
-        assert.fileContent('server/routes.js', 'app.use(\'/api/users\', require(\'./api/user\'));');
+          assert.fileContent('server/api/user/user.controller.js', 'var request = require(\'request\');');
+          assert.fileContent('server/api/user/user.controller.js', 'request(apiUrl + \'10{name:s}\', function (err, resp, body) {');
+          assert.fileContent('server/api/user/user.controller.js', 'request(apiUrl + \'{name:s}\', function (err, resp, body) {');
 
-        done();
+          assert.fileContent('server/routes.js', 'app.use(\'/api/users\', require(\'./api/user\'));');
+
+          done();
+        }, 30);
+
       });
     });
 
