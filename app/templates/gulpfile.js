@@ -198,13 +198,13 @@ gulp.task('serve', ['watch'], function () {
       if (!openOpts.already) {
         openOpts.already = true;
         gulp.src('client/index.html')
+          .pipe($.wait(500))
           .pipe($.open('', openOpts));
+      } else {
+        setTimeout(function () {
+          $.livereload.changed('/');
+        }, 1000);
       }
-    })
-    .on('restart', function () {
-      gulp.src('client/index.html')
-        .pipe($.wait(250))
-        .pipe($.livereload());
     });
 });
 

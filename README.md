@@ -10,25 +10,29 @@
 * **NO** pre-install for Google Analytics — *Wanna track people? Do it yourself.*
 * **Livereload** on changes in client / server — *You don't have time to waste.*
 * **JSHint** integration — *Write clean code, for purpose.*
+* **Sass** support — *Because CSS is a mess.*
 * **Fast build** — *You do faster? Let's see that.*
+
+Optional:
+
+* **sockets**, with [socket.io](https://github.com/Automattic/socket.io) and [angular-socket-io](https://github.com/btford/angular-socket-io)
+* **authentication system**, with [Passport](https://github.com/jaredhanson/passport)
+* **MongoDB**, with [Mongoose ODM](https://github.com/learnboost/mongoose)
+* **mocked backend**, with [Restock](https://github.com/42Zavattas/Restock.io)
 
 [Demo of generated project](https://github.com/42Zavattas/bangular-demo)
 
 # Install
 
-    npm install -g yo generator-bangular
+    npm install -g generator-bangular
     yo bangular
+    
+### Table of contents
 
-### Sockets
-
-To use the sockets, you have to confirm the option on project generation.
-Yet, it's only when you've selected the mongo backend that you can be prompted by this config.
-
-This will initialize all the server part and create a `Socket` factory in the client.
-On each new `api` you create, you can choose to load the sockets for this model.
-It will then emit socket events on update and remove of documents of this model.
-
-The sockets can be quickly usable in your controllers, [here is an example](https://gist.github.com/Apercu/9cd8b4b332948dc833f0) with a simple user.
+- [Manage project](https://github.com/42Zavattas/generator-bangular#manage-project)
+- [Generators](https://github.com/42Zavattas/generator-bangular#generators)
+- [Features](https://github.com/42Zavattas/generator-bangular#features)
+- [Architecture](https://github.com/42Zavattas/generator-bangular#architecutre)
 
 # Manage project
 
@@ -138,6 +142,23 @@ The **name** parameter is required. This will create a new `.scss` file in he `c
 **Socket**: If you want to emit socket event on model changes.
 
 The **name** parameter is required. A **name** folder will be created at `server/api/`.
+
+# Features
+
+### Sockets
+
+To use the sockets, you have to confirm the option on project generation.
+Yet, it's only when you've selected the mongo backend that you can be prompted by this config.
+
+This will initialize all the server part and create a `Socket` factory in the client.
+On each new `api` you create, you can choose to load the sockets for this model.
+It will then emit socket events on update and remove of documents of this model.
+
+The sockets can be quickly usable in your controllers, [here is an example](https://gist.github.com/Apercu/9cd8b4b332948dc833f0) with a simple item.
+
+### Passport
+
+On project generation, you can integrate passport authentification in your app. It will create default views for the signup and login. You can easily protect your routes for a connected user by adding the `isAuthenticated` middleware on it.
 
 
 # Architecture
