@@ -59,14 +59,16 @@ describe('Launching api tests', function () {
       bangApi = helpers.createGenerator('bangular:api', [bangDir + '/api'], 'restock');
       helpers.mockPrompt(bangApi, { url: '/api/restocks' });
       bangApi.run(function () {
-        assert.file('server/api/restock/index.js');
-        assert.file('server/api/restock/restock.controller.js');
-        assert.file('server/api/restock/restock.spec.js');
-        assert.file('server/api/restock/restock.model.js');
+        setTimeout(function () {
+          assert.file('server/api/restock/index.js');
+          assert.file('server/api/restock/restock.controller.js');
+          assert.file('server/api/restock/restock.spec.js');
+          assert.file('server/api/restock/restock.model.js');
 
-        assert.fileContent('server/routes.js', 'app.use(\'/api/restocks\', require(\'./api/restock\'));');
-        assert.fileContent('server/routes.js', 'app.use(\'/api/users\', require(\'./api/user\'));');
-        done();
+          assert.fileContent('server/routes.js', 'app.use(\'/api/restocks\', require(\'./api/restock\'));');
+          assert.fileContent('server/routes.js', 'app.use(\'/api/users\', require(\'./api/user\'));');
+          done();
+        }, 30);
       });
     });
 
