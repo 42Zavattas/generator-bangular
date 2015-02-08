@@ -24,7 +24,7 @@ Optional:
 
 # Install
 
-    npm install -g yo generator-bangular
+    npm install -g generator-bangular
     yo bangular
     
 ### Table of contents
