@@ -210,4 +210,41 @@ describe('Launching app generator tests', function () {
 
   });
 
+  describe('', function () {
+
+    before(function (done) {
+
+      helpers.run(path.join(__dirname, '../app'))
+        .inDir(path.join(os.tmpdir(), './tmp'))
+        .withOptions({ 'skipInstall': true })
+        .withPrompt({
+          name: 'Test',
+          backend: 'mongo',
+          modules: [],
+          sockets: true,
+          auth: true
+        })
+        .on('end', done);
+    });
+
+    it('should test for auth files', function () {
+      assert.file([
+        'client/views/signup',
+        'client/views/login',
+        'client/services/auth',
+        'server/auth',
+      ]);
+
+      assert.fileContent('server/routes.js', 'app.use(\'/auth\', require(\'./auth\'));');
+      assert.fileContent('server/config/express.js', 'express-session');
+      assert.fileContent('server/config/express.js', 'app.use(session({');
+      assert.fileContent('package.json', 'passport');
+      assert.fileContent('package.json', 'passport-local');
+      assert.fileContent('package.json', 'connect-mongo');
+
+      assert.fileContent('client/index.html', 'signup');
+      assert.fileContent('bower.json', 'angular-cookies');
+    });
+  });
+
 });

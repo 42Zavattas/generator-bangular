@@ -11,7 +11,7 @@ var fs = require('fs');
 var karma = require('karma').server;
 var $ = require('gulp-load-plugins')();
 
-process.env.NODE_ENV = process.env.NODE_ENV || 'development'
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 var config = require('./server/config/environment');
 
@@ -162,18 +162,18 @@ function testClient (done) {
 
 gulp.task('test', function (done) {
   process.env.NODE_ENV = 'test';
-  var filter = process.argv[3] ? process.argv[3].substr(2) : false;
-  if (filter === 'client') {
+  var arg = process.argv[3] ? process.argv[3].substr(2) : false;
+  if (arg === 'client') {
     return testClient(function () {
       process.exit();
       done();
     });
-  } else if (filter === 'server') {
+  } else if (arg === 'server') {
     return testServer(function () {
       process.exit();
       done();
     });
-  } else if (filter === false) {
+  } else if (arg === false) {
     return testClient(function () {
       testServer(function () {
         process.exit();
@@ -181,26 +181,45 @@ gulp.task('test', function (done) {
       });
     });
   } else {
-    console.log('Wrong parameter [%s], availables : --client, --server', filter);
+    console.log('Wrong parameter [%s], availables : --client, --server', arg);
   }
 });
+
+function waitForExpress (cb) {
+  var id;
+
+  id = setInterval(function () {
+    if (fs.readFileSync('.bangular-refresh', 'utf-8') === 'done') {
+      clearTimeout(id);
+      fs.unlinkSync('.bangular-refresh');
+      cb();
+    }
+  }, 100);
+}
 
 /**
  * Launch server
  */
 gulp.task('serve', ['watch'], function () {
-  return $.nodemon({ script: 'server/server.js', ext: 'js', ignore: ['client', 'dist', 'node_modules'] })
+  return $.nodemon({
+      script: 'server/server.js',
+      ext: 'js',
+      ignore: ['client', 'dist', 'node_modules', 'gulpfile.js']
+    })
     .on('start', function () {
+      fs.writeFileSync('.bangular-refresh', 'waiting');
+
       if (!openOpts.already) {
         openOpts.already = true;
-        gulp.src('client/index.html')
-          .pipe($.open('', openOpts));
+        waitForExpress(function () {
+          gulp.src('client/index.html')
+            .pipe($.open('', openOpts));
+        });
+      } else {
+        waitForExpress(function () {
+          $.livereload.changed('/');
+        });
       }
-    })
-    .on('restart', function () {
-      gulp.src('client/index.html')
-        .pipe($.wait(250))
-        .pipe($.livereload());
     });
 });
 
@@ -264,7 +283,7 @@ gulp.task('scripts', function () {
 
 gulp.task('replace', function () {
   return gulp.src('dist/client/index.html')
-    .pipe($.replace(/<script.*livereload.*><\/script>\n*/, ''))
+    .pipe($.replace(/    <script.*livereload.*><\/script>\n*/, ''))
     .pipe(gulp.dest('dist/client'));
 });
 
@@ -279,7 +298,7 @@ gulp.task('rev', function () {
         return path.basename(file.path, ext) + '.' + hash.substr(0, 8) + ext;
       }
     }))
-    .pipe(gulp.dest('dist/client/'))
+    .pipe(gulp.dest('dist/client/'));
 });
 
 gulp.task('build', function (cb) {
@@ -298,16 +317,18 @@ gulp.task('build', function (cb) {
 
 gulp.task('version', function () {
   return gulp.src(['./package.json', './bower.json'])
-    .pipe($.bump({ type: process.argv[3] ? process.argv[3].substr(2) : 'patch' }))
+    .pipe($.bump({
+      type: process.argv[3] ? process.argv[3].substr(2) : 'patch'
+    }))
     .pipe(gulp.dest('./'));
 });
 
 gulp.task('bump', ['version'], function () {
   fs.readFile('./package.json', function (err, data) {
-    if (err) { return; }
+    if (err) { return ; }
     return gulp.src(['./package.json', './bower.json'])
       .pipe($.git.add())
-      .pipe($.git.commit('chore(core): bump to ' + JSON.parse(data.toString()).version));
+      .pipe($.git.commit('chore(core): bump to ' + JSON.parse(data).version));
   });
 });
 

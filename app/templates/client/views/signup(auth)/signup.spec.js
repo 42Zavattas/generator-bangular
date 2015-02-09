@@ -1,13 +1,13 @@
 'use strict';
 
-describe('Controller: <%= controllerName %>', function () {
+describe('Controller: SignupCtrl', function () {
 
   beforeEach(module('<%= appname %>'));
 
-  var <%= controllerName %>;
+  var SignupCtrl;
 
   beforeEach(inject(function ($controller) {
-    <%= controllerName %> = $controller('<%= controllerName %>', {});
+    SignupCtrl = $controller('SignupCtrl', {});
   }));
 
   it('should ...', function () {

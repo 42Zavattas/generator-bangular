@@ -4,3 +4,4 @@ client/styles/css
 .idea/
 dist/
 .sass-cache/
+.bangular-refresh
