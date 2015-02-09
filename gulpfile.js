@@ -24,10 +24,11 @@ gulp.task('logos', function (done) {
    'logos/bower.png'
   ])
     .pipe(spritesmith({
-      imgName   : 'logos-sprite.png',
-      cssName   : 'sprite.css',
-      algorithm : 'left-right',
-      padding   : 10
+      imgName       : 'logos-sprite.png',
+      cssName       : 'sprite.css',
+      algorithm     : 'left-right',
+      algorithmOpts : { sort: false },
+      padding       : 10
     }))
     .pipe(gulp.dest('logos/'))
     .on('end', function () {
