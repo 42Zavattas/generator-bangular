@@ -117,6 +117,7 @@ gulp.task('watch', ['inject'], function () {
     '!client/filters/**/*.spec.js'
   ], function () {
     gulp.src('client/index.html')
+      .pipe($.wait(100))
       .pipe($.inject(gulp.src(toInject), { relative: true }))
       .pipe(gulp.dest('client'));
   });
