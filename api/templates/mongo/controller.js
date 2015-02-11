@@ -8,7 +8,7 @@ function handleError(res, err) {
 }
 
 /**
- * Get list of <%= instancesName %>s
+ * Get list of <%= objectName %>
  *
  * @param req
  * @param res
