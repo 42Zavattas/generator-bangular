@@ -26,6 +26,16 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
     }];
 
     var filters = this.config.get('filters');
+
+    if (filters && filters.ngResource) {
+      prompts.push({
+        type: 'confirm',
+        name: 'resource',
+        message: 'Do you want to generate the associated $resource?',
+        default: false
+      });
+    }
+
     if (filters && filters.sockets && filters.backend === 'mongo') {
       prompts.push({
         type: 'confirm',
@@ -38,6 +48,7 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
     this.prompt(prompts, function (props) {
       this.url = props.url;
       this.sockets = props.sockets;
+      this.resource = props.resource;
       done();
     }.bind(this));
   },
@@ -64,6 +75,10 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
         'app.use(\'' + this.url + '\', require(\'./api/' + this.fileName + '\'));'
       ]
     });
+
+    if (this.resource) {
+      this.template('service.js', 'client/services/' + this.fileName + '/' + this.fileName + '.resource.js');
+    }
 
     if (this.sockets) {
       this.template('mongo/socket.js', 'server/api/' + this.fileName + '/' + this.fileName + '.socket.js');
