@@ -15,10 +15,10 @@ module.exports = {
    */
   isAuthenticated: function () {
     return compose()
-      .use(function(req, res, next) {
+      .use(function (req, res, next) {
         validateJwt(req, res, next);
       })
-      .use(function(req, res, next) {
+      .use(function (req, res, next) {
         User.findById(req.user._id, function (err, user) {
           if (err) { return next(err); }
           if (!user) { return res.send(401); }

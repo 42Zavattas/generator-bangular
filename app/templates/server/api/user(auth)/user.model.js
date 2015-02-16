@@ -31,9 +31,9 @@ UserSchema
 
 UserSchema
   .path('email')
-  .validate(function(value, respond) {
+  .validate(function (value, respond) {
     var self = this;
-    this.constructor.findOne({ email: value }, function(err, user) {
+    this.constructor.findOne({ email: value }, function (err, user) {
       if (err) { throw err; }
       if (user) {
         if (self.id === user.id) { return respond(true); }
@@ -55,7 +55,7 @@ UserSchema.methods = {
    * @param {String} password
    * @return {Boolean}
    */
-  authenticate: function(password) {
+  authenticate: function (password) {
     return this.encryptPassword(password) === this.passwordHash;
   },
 
@@ -64,7 +64,7 @@ UserSchema.methods = {
    *
    * @return {String}
    */
-  makeSalt: function() {
+  makeSalt: function () {
     return crypto.randomBytes(16).toString('base64');
   },
 
@@ -74,7 +74,7 @@ UserSchema.methods = {
    * @param {String} password
    * @return {String}
    */
-  encryptPassword: function(password) {
+  encryptPassword: function (password) {
     if (!password || !this.salt) { return ''; }
     var salt = new Buffer(this.salt, 'base64');
     return crypto.pbkdf2Sync(password, salt, 10000, 64).toString('base64');
