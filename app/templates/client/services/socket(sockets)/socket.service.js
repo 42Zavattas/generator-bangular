@@ -32,7 +32,7 @@ angular.module('<%= appname %>')
           if (index !== -1) {
             items.splice(index, 1);
           }
-        })
+        });
 
       },
       unsyncModel: function (model) {

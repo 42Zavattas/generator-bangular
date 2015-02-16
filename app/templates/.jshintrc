@@ -36,6 +36,7 @@
     "expect": true,
     "afterEach": true,
     "alert": true,
-    "beforeEach": true
+    "beforeEach": true<% if (filters.sockets) { %>,
+    "io" : true<% } %>
   }
 }
