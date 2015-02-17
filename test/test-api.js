@@ -129,20 +129,30 @@ describe('Launching api tests', function () {
             [path.join(bangDir, '/app'),
           ], false, { 'skipInstall': true, 'skipLog': true });
 
-        helpers.mockPrompt(bangular, { name: 'Test', backend: 'mongo', modules: [], sockets: true });
+        helpers.mockPrompt(bangular, { name: 'Test', backend: 'mongo', modules: ['ngResource'], sockets: true });
         bangular.run(done);
       });
 
     });
 
     it('should test api with sockets', function (done) {
-
       bangApi = helpers.createGenerator('bangular:api', [bangDir + '/api'], 'user');
       helpers.mockPrompt(bangApi, { url: '/api/users', sockets: true });
       bangApi.run(function () {
         assert.file('server/api/user/index.js');
         assert.file('server/api/user/user.socket.js');
         assert.fileContent('server/config/sockets.js', 'require(\'../api/user/user.socket.js\').register(socket);');
+        done();
+      });
+    });
+
+    it('should create the associated service', function (done) {
+      bangApi = helpers.createGenerator('bangular:api', [bangDir + '/api'], 'item');
+      helpers.mockPrompt(bangApi, { url: '/api/items', resource: true });
+      bangApi.run(function () {
+        assert.file('client/services/item/item.resource.js');
+        assert.fileContent('client/services/item/item.resource.js', '.factory(\'Item\', ');
+        assert.fileContent('client/services/item/item.resource.js', '/api/items/:id');
         done();
       });
     });

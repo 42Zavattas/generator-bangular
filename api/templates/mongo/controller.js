@@ -3,12 +3,12 @@
 var _ = require('lodash');
 var <%= objectName %> = require('./<%= fileName %>.model');
 
-function handleError(res, err) {
+function handleError (res, err) {
   return res.status(500).send(err);
 }
 
 /**
- * Get list of <%= instancesName %>s
+ * Get list of <%= objectName %>
  *
  * @param req
  * @param res

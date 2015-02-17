@@ -4,7 +4,7 @@ var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
 var User = require('./user.model');
 
-function handleError(res, err) {
+function handleError (res, err) {
   return res.status(500).send(err);
 }
 
@@ -30,7 +30,7 @@ exports.getMe = function (req, res) {
   var userId = req.user._id;
   User.findOne({
     _id: userId
-  }, '-salt -passwordHash', function(err, user) {
+  }, '-salt -passwordHash', function (err, user) {
     if (err) { return handleError(res, err); }
     if (!user) { return res.json(401); }
     res.status(200).json(user);

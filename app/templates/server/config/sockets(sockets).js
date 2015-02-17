@@ -1,7 +1,5 @@
 'use strict';
 
-var config = require('./environment');
-
 module.exports = function (io) {
 
   io.on('connection', function (socket) {
@@ -15,7 +13,7 @@ module.exports = function (io) {
       console.log('[%s] %s disconnected.', new Date().toUTCString(), socket.ip);
     });
 
-    console.log('[%s] %s connected.', socket.connectDate.toUTCString(), socket.ip);
+    console.log('[%s] %s logged.', socket.connectDate.toUTCString(), socket.ip);
 
   });
 

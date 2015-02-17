@@ -5,7 +5,7 @@ angular.module('<%= appname %>')
 
     var _user = {};
 
-    if($cookieStore.get('token')) {
+    if ($cookieStore.get('token')) {
       $http.get('/api/users/me')
         .then(function (res) {
           _user = res.data;
