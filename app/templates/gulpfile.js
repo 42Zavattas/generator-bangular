@@ -270,13 +270,13 @@ gulp.task('scripts', function () {
   var views = gulp.src('client/views/**/*.html')
     .pipe($.angularTemplatecache({
       root: 'views',
-      module: '<%= _.slugify(appname) %>'
+      module: '<%= appname %>'
     }));
 
   var tpls = gulp.src('client/directives/**/*.html')
     .pipe($.angularTemplatecache({
       root: 'directives',
-      module: '<%= _.slugify(appname) %>'
+      module: '<%= appname %>'
     }));
 
   var app = gulp.src('dist/client/app.js');
