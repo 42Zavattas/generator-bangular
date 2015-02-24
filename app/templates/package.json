@@ -1,5 +1,5 @@
 {
-  "name": "<%= _.slugify(appname) %>",
+  "name": "<%= appname %>",
   "version": "0.1.0",
   "devDependencies": {
     "del": "^1.1.1",
