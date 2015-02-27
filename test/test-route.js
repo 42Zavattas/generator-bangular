@@ -50,6 +50,27 @@ describe('Launching route tests', function () {
 
     });
 
+    it('should create a route with style', function (done) {
+
+      bangRoute = helpers.createGenerator('bangular:route', [bangDir + '/route'], 'yolo');
+      helpers.mockPrompt(bangRoute, { route: '/yolo', import: true });
+      bangRoute.run(function () {
+
+        assert.file('client/views/yolo/yolo.js');
+        assert.file('client/views/yolo/yolo.scss');
+        assert.file('client/views/yolo/yolo.controller.js');
+        assert.file('client/views/yolo/yolo.spec.js');
+        assert.file('client/views/yolo/yolo.html');
+
+        assert.fileContent('client/views/yolo/yolo.controller.js', 'YoloCtrl');
+        assert.fileContent('client/views/yolo/yolo.spec.js', '$controller(\'YoloCtrl\'');
+        assert.fileContent('client/views/yolo/yolo.js', '.when(\'/yolo\',');
+
+        done();
+      });
+
+    });
+
   });
 
 });
