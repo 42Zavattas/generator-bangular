@@ -17,7 +17,7 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
     this.prompt([{
       type: 'confirm',
       name: 'import',
-      message: 'Do you want to import the ' + chalk.red(this.name) + ' style in your app.scss?',
+      message: 'Do you want to import the ' + chalk.blue(this.name) + ' style in your app.scss?',
       default: true
     }], function (props) {
       this.import = props.import;
