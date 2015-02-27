@@ -138,6 +138,26 @@ gulp.task('control', function () {
     .pipe($.jshint.reporter('default'));
 });
 
+
+/**
+ * Protractor
+ */
+gulp.task('e2e:update', $.protractor.webdriver_update);
+
+gulp.task('e2e', ['serve'], function () {
+  gulp.src('client/views/**/*.e2e.js')
+    .pipe($.protractor.protractor({
+      configFile: 'client/protractor.conf.js'
+    }))
+    .on('error', function (e) {
+      console.log(e);
+      process.exit(-1);
+    })
+    .on('end', function () {
+      process.exit(0);
+    });
+});
+
 /**
  * Tests
  */

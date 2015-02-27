@@ -21,6 +21,7 @@ gulp.task('logos', function (done) {
    'logos/mongo.png',
    'logos/sass.png',
    'logos/karma.png',
+   'logos/protractor.png',
    'logos/bower.png'
   ])
     .pipe(spritesmith({
