@@ -6,14 +6,14 @@
     "errorhandler": "^1.3.3",
     "gulp": "^3.8.10",
     "gulp-angular-templatecache": "^1.5.0",
-    "gulp-bump": "^0.1.13",
+    "gulp-bump": "^0.2.2",
     "gulp-concat": "^2.4.3",
     "gulp-git": "^1.0.0",
     "gulp-inject": "^1.1.1",
     "gulp-jshint": "^1.9.1",
     "gulp-livereload": "^3.6.0",
     "gulp-load-plugins": "^0.8.0",
-    "gulp-minify-css": "^0.4.3",
+    "gulp-minify-css": "^0.5.1",
     "gulp-mocha": "^2.0.0",
     "gulp-ng-annotate": "^0.5.2",
     "gulp-nodemon": "^1.0.5",
@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "body-parser": "^1.11.0",
-    "chalk": "^0.5.1",<% if (filters.auth) { %>
+    "chalk": "^1.0.0",<% if (filters.auth) { %>
     "composable-middleware": "^0.3.0",<% } %>
     "compression": "^1.4.0",
     "cookie-parser": "^1.3.3",<% if (filters.auth) { %>
