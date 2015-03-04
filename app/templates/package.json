@@ -10,6 +10,8 @@
     "gulp-concat": "^2.4.3",
     "gulp-git": "^1.0.0",
     "gulp-inject": "^1.1.1",
+    "gulp-jscs": "^1.4.0",
+    "gulp-jscs-stylish": "1.0.0",
     "gulp-jshint": "^1.9.1",
     "gulp-livereload": "^3.6.0",
     "gulp-load-plugins": "^0.8.0",
@@ -28,6 +30,7 @@
     "gulp-util": "^3.0.2",
     "gulp-wait": "^0.0.2",
     "gulp-watch": "^4.1.0",
+    "jshint-stylish": "^1.0.1",
     "karma": "^0.12.31",
     "karma-jasmine": "^0.3.5",
     "karma-ng-html2js-preprocessor": "^0.1.2",
@@ -37,6 +40,7 @@
     "streamqueue": "^0.1.2"
   },
   "dependencies": {
+    "async": "^0.9.0",
     "body-parser": "^1.11.0",
     "chalk": "^1.0.0",<% if (filters.auth) { %>
     "composable-middleware": "^0.3.0",<% } %>

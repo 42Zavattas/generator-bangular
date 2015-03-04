@@ -7,6 +7,8 @@ var bowerFiles = require('main-bower-files');
 var runSequence = require('run-sequence');
 var sq = require('streamqueue');
 var path = require('path');
+var async = require('async');
+var _ = require('lodash');
 var fs = require('fs');
 var karma = require('karma').server;
 var $ = require('gulp-load-plugins')();
@@ -128,14 +130,35 @@ gulp.task('watch', ['inject'], function () {
 /**
  * Control things
  */
-gulp.task('control', function () {
-  return gulp.src([
-    'client/**/**/*.js',
-    'server/**/**/*.js',
-    '!client/bower_components/**'
-  ])
-    .pipe($.jshint())
-    .pipe($.jshint.reporter('default'));
+gulp.task('control', function (done) {
+
+  function getConfig (file) {
+    return _.merge(
+      JSON.parse(fs.readFileSync('./.jshintrc', 'utf-8')),
+      JSON.parse(fs.readFileSync(file, 'utf-8'))
+    );
+  }
+
+  function control (name, paths, conf) {
+    return function (done) {
+      gulp.src(paths)
+        .pipe($.jshint(conf))
+        .pipe($.jshint.reporter('jshint-stylish'))
+        .on('finish', function () {
+          gulp.src(paths)
+            .pipe($.jscs())
+            .on('error', function () {})
+            .pipe($.jscsStylish())
+            .on('end', done);
+        });
+    };
+  }
+
+  async.series([
+    control('client', ['client/**/*.js', '!client/bower_components/**'], getConfig('./client/.jshintrc')),
+    control('server', ['server/**/*.js'], getConfig('./server/.jshintrc'))
+  ], done);
+
 });
 
 

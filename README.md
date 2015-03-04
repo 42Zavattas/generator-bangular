@@ -9,7 +9,7 @@
 * **NO** support for outdated browsers — *Working for IE users? Too bad.*
 * **NO** pre-install for Google Analytics — *Wanna track people? Do it yourself.*
 * **Livereload** on changes in client / server — *You don't have time to waste.*
-* **JSHint** integration — *Write clean code, for purpose.*
+* **JSHint** & **JSCS** integration — *Write clean code, for purpose.*
 * **Sass** support — *Because CSS is a mess.*
 * **Fast build** — *You do faster? Let's see that.*
 
@@ -57,7 +57,7 @@ Launch client and server tests, using Karma and Mocha, both by default.
 
     gulp control
 
-Validate the app through JSHint.
+Validate the app through [JSHint](http://jshint.com/) and [JSCS](http://jscs.info/).
 
     gulp bump [--major || --minor || --patch]
 

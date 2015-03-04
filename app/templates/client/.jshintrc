@@ -1,0 +1,19 @@
+{
+  "browser": true,
+  "globals": {
+    "angular": true,
+    "browser": true,
+    "element": true,
+    "by": true,
+    "module": true,
+    "console": true,
+    "it": true,
+    "describe": true,
+    "inject": true,
+    "expect": true,
+    "alert": true,
+    "afterEach": true,
+    "beforeEach": true<% if (filters.sockets) { %>,
+    "io" : true<% } %>
+  }
+}
