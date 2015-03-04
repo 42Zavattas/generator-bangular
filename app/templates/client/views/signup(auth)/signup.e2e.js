@@ -1,3 +1,5 @@
+'use strict';
+
 describe('signup page', function () {
 
   describe('basic', function () {

@@ -1,3 +1,5 @@
+'use strict';
+
 describe('login page', function () {
 
   describe('basic', function () {

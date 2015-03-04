@@ -1,3 +1,5 @@
+'use strict';
+
 describe('home page', function () {
 
   describe('basic', function () {
