@@ -173,7 +173,7 @@ gulp.task('e2e', ['serve'], function () {
       configFile: 'protractor.conf.js'
     }))
     .on('error', function (e) {
-      console.log(e);
+      $.util.log(e.message);
       process.exit(-1);
     })
     .on('end', function () {
