@@ -37,7 +37,7 @@ describe('Launching style tests', function () {
           assert.file('client/styles/bootstrap.scss');
           assert.noFileContent('client/styles/app.scss', 'bootstrap');
           done();
-        }, 30);
+        }, 250);
       });
 
     });
@@ -51,7 +51,7 @@ describe('Launching style tests', function () {
           assert.file('client/styles/flexbox.scss');
           assert.fileContent('client/styles/app.scss', '@import "flexbox";');
           done();
-        }, 30);
+        }, 250);
       });
 
     });
@@ -66,7 +66,7 @@ describe('Launching style tests', function () {
           assert.file('client/styles/gold.scss');
           assert.fileContent('client/styles/app.scss', '// imports\n@import "gold";');
           done();
-        }, 30);
+        }, 250);
       });
 
     });
