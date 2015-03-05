@@ -41,7 +41,7 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
         type: 'confirm',
         name: 'sockets',
         message: 'Do you want to generate sockets integration for this model?',
-        default: true
+        default: false
       });
     }
 

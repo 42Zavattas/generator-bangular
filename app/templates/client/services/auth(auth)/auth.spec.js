@@ -15,7 +15,7 @@ describe('Service: Auth', function () {
     $cookieStore.remove('token');
   }));
 
-  afterEach(function() {
+  afterEach(function () {
     $httpBackend.verifyNoOutstandingExpectation();
     $httpBackend.verifyNoOutstandingRequest();
   });

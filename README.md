@@ -9,7 +9,7 @@
 * **NO** support for outdated browsers — *Working for IE users? Too bad.*
 * **NO** pre-install for Google Analytics — *Wanna track people? Do it yourself.*
 * **Livereload** on changes in client / server — *You don't have time to waste.*
-* **JSHint** integration — *Write clean code, for purpose.*
+* **JSHint** & **JSCS** integration — *Write clean code, for purpose.*
 * **Sass** support — *Because CSS is a mess.*
 * **Fast build** — *You do faster? Let's see that.*
 
@@ -26,12 +26,15 @@ Optional:
 
     npm install -g generator-bangular
     yo bangular
-    
+
 ### Table of contents
 
 - [Manage project](https://github.com/42Zavattas/generator-bangular#manage-project)
 - [Generators](https://github.com/42Zavattas/generator-bangular#generators)
-- [Features](https://github.com/42Zavattas/generator-bangular#features)
+- [HOWTOs](https://github.com/42Zavattas/generator-bangular#howtos)
+  - [Protractor](https://github.com/42Zavattas/generator-bangular#protractor)
+  - [Sockets](https://github.com/42Zavattas/generator-bangular#sockets)
+  - [Passport](https://github.com/42Zavattas/generator-bangular#passport)
 - [Architecture](https://github.com/42Zavattas/generator-bangular#architecutre)
 
 # Manage project
@@ -54,11 +57,15 @@ Launch client and server tests, using Karma and Mocha, both by default.
 
     gulp control
 
-Validate the app through JSHint.
+Validate the app through [JSHint](http://jshint.com/) and [JSCS](http://jscs.info/).
 
     gulp bump [--major || --minor || --patch]
 
 Bump versions of `package.json` and `bower.json` files using *Semantic Versioning* and commit them. Default to **patch**.
+
+    gulp e2e
+
+Launch your server and then run protractor tests. See [protractor howtos](https://github.com/42Zavattas/generator-bangular#protractor).
 
 # Generators
 
@@ -139,11 +146,19 @@ The **name** parameter is required. This will create a new `.scss` file in he `c
     yo bangular:api <name>
 
 **Url**: Route that will be exposed on your server to access this ressource.<br>
-**Socket**: If you want to emit socket event on model changes.
+**Socket**: If you want to emit socket event on model changes (only with mongo & sockets).<br>
+**Resource**: If you want to scaffold a basic `$resource` for this route (only with ngResource).
 
 The **name** parameter is required. A **name** folder will be created at `server/api/`.
 
-# Features
+# HOWTOs
+
+### Protractor
+
+First, you will have to run the `gulp e2e:update` command to update the chromedriver and the selenium jar.
+Since the path to the jar is hardcoded in the `protractor.conf.js` file and the version is susceptible to change, you will potentially have to update the version number.
+For people which have multiple Chrome installed, you can specify the path to the binary in the configuration.
+You can now run `gulp e2e`, remember to stop your server since it will automatically create a new one.
 
 ### Sockets
 
@@ -158,8 +173,8 @@ The sockets can be quickly usable in your controllers, [here is an example](http
 
 ### Passport
 
-On project generation, you can integrate passport authentification in your app. It will create default views for the signup and login. You can easily protect your routes for a connected user by adding the `isAuthenticated` middleware on it.
-
+On project generation, you can integrate passport authentification in your app.
+It will create default views for the signup and login. You can easily protect your routes for a connected user by adding the `isAuthenticated` middleware on it.
 
 # Architecture
 

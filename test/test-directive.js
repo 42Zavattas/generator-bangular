@@ -21,7 +21,7 @@ describe('Launching directive tests', function () {
 
         bangular = helpers.createGenerator('bangular:app',
             [path.join(bangDir, '/app')],
-        false, { 'skipInstall': true, 'skipLog': true });
+        false, { skipInstall: true, skipLog: true });
 
         helpers.mockPrompt(bangular, { name: 'Test', backend: 'mongo', modules: [] });
         bangular.run(done);

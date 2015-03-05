@@ -5,9 +5,9 @@ angular.module('<%= appname %>')
 
     var ioSocket = io('', {
       path: '/socket.io'
-      //, query: 'token=toto'
-      // TODO implement with passport and socket jwt
     });
+
+    var subs = [];
 
     var socket = socketFactory({ ioSocket: ioSocket });
 
@@ -16,6 +16,34 @@ angular.module('<%= appname %>')
     }
 
     return {
+
+      /**
+       * Simply emit a socket
+       */
+      emit: socket.emit,
+
+      /**
+       * Listen for an event in the callback
+       */
+      on: function (pattern, cb) {
+        subs.push(pattern);
+        socket.on(pattern, cb);
+      },
+
+      /**
+       * Remove all subscriptions that occured with the on method,
+       * call it on the $destroy event.
+       */
+      clean: function () {
+        subs.forEach(function (sub) {
+          socket.removeAllListeners(sub);
+        });
+        subs = [];
+      },
+
+      /**
+       * Add a sync for a given model
+       */
       syncModel: function (model, items) {
 
         socket.on(model + ':save', function (doc) {
@@ -35,6 +63,10 @@ angular.module('<%= appname %>')
         });
 
       },
+
+      /**
+       * Remove listeners for a model
+       */
       unsyncModel: function (model) {
         socket.removeAllListeners(model + ':save');
         socket.removeAllListeners(model + ':remove');

@@ -1,6 +1,12 @@
 'use strict';
 
 var yeoman = require('yeoman-generator');
+var chalk = require('chalk');
+var genUtils = require('../util');
+
+function bangLog (msg, color) {
+  console.log('[' + chalk.blue('bangular') + ']: ' + chalk[color](msg));
+}
 
 var BangularGenerator = yeoman.generators.NamedBase.extend({
 
@@ -18,49 +24,46 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
       name: 'route',
       message: 'Choose an url route',
       default: '/' + self.dashName
+    }, {
+      type: 'confirm',
+      name: 'import',
+      message: 'Do you want to create and import the ' + chalk.blue(this.dashName + '.scss') + ' style in your app.scss?',
+      default: false
     }], function (props) {
       self.route = props.route;
+      self.import = props.import;
       done();
     });
   },
 
   writing: function () {
 
-    this.template(
-      'index.js',
-      'client/views/'
-      + this.dashName
-      + '/'
-      + this.dashName
-      + '.js'
-    );
+    var basePath = 'client/views/' + this.dashName + '/' + this.dashName;
 
-    this.template(
-      'controller.js',
-      'client/views/'
-      + this.dashName
-      + '/'
-      + this.dashName
-      + '.controller.js'
-    );
+    this.template('index.js', basePath + '.js');
+    this.template('controller.js', basePath + '.controller.js');
+    this.template('view.html', basePath + '.html');
+    this.template('spec.js', basePath + '.spec.js');
+    this.template('e2e.js', basePath + '.e2e.js');
 
-    this.template(
-      'spec.js',
-      'client/views/'
-      + this.dashName
-      + '/'
-      + this.dashName
-      + '.spec.js'
-    );
+    if (this.import) {
 
-    this.template(
-      'view.html',
-      'client/views/'
-      + this._.dasherize(this.name)
-      + '/'
-      + this._.dasherize(this.name)
-      + '.html'
-    );
+      this.template('style.scss', basePath + '.scss');
+
+      genUtils.appendNeedleOrOnTop({
+        needle: '// imports',
+        file: 'client/styles/app.scss',
+        append: '@import "../views/' + this.dashName + '/' + this.dashName + '";'
+      }, function importCallback (err) {
+        /* istanbul ignore if */
+        if (err) {
+          bangLog('There was an error importing the style.', 'red');
+        } else {
+          bangLog('Your style was successfully injected.', 'green');
+        }
+      });
+
+    }
 
   }
 

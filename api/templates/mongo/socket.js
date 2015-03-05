@@ -12,4 +12,4 @@ exports.register = function (socket) {
     socket.emit('<%= objectName %>:remove', doc);
   });
 
-}
+};

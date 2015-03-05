@@ -1,0 +1,9 @@
+language: node_js
+node_js:
+  - '0.10'
+  - '0.11'
+  - '0.12'
+before_script:
+  - npm install -g bower gulp
+  - bower install<% if (filters.backend === 'mongo') { %>
+services: mongodb<% } %>

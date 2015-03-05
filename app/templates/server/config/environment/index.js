@@ -7,7 +7,7 @@ var all = {
 
   env: process.env.NODE_ENV || 'development',
   root: path.normalize(__dirname + '/../../..'),
-  port: process.env.PORT || 9000,<% if (filters.backend === 'mongo') { %>
+  port: process.env.PORT || 9000<% if (filters.backend === 'mongo') { %>,
 
   mongo: {
     options: {

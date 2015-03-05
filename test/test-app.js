@@ -10,6 +10,8 @@ function basicFileCheck () {
     'gulpfile.js',
     'bower.json',
     'package.json',
+    'karma.conf.js',
+    'protractor.conf.js',
     'server/routes.js',
     'server/server.js',
     'server/config/express.js',
@@ -19,13 +21,13 @@ function basicFileCheck () {
     'server/config/environment/test.js',
     'client/index.html',
     'client/app.js',
-    'client/karma.conf.js',
     'client/assets/favicon.ico',
     'client/styles/app.scss',
     'client/views/home/home.controller.js',
     'client/views/home/home.html',
     'client/views/home/home.js',
     'client/views/home/home.spec.js',
+    'client/views/home/home.e2e.js',
     'README.md',
     '.editorconfig',
     '.jshintrc',
@@ -41,7 +43,7 @@ describe('Launching app generator tests', function () {
 
       helpers.run(path.join(__dirname, '../app'))
         .inDir(path.join(os.tmpdir(), './tmp'))
-        .withOptions({ 'skipInstall': true })
+        .withOptions({ skipInstall: true })
         .withPrompt({
           name: 'Test',
           backend: 'mongo',
@@ -79,7 +81,7 @@ describe('Launching app generator tests', function () {
 
       helpers.run(path.join(__dirname, '../app'))
         .inDir(path.join(os.tmpdir(), './tmp'))
-        .withOptions({ 'skipInstall': true })
+        .withOptions({ skipInstall: true })
         .withPrompt({
           name: 'Test',
           backend: 'restock',
@@ -117,7 +119,7 @@ describe('Launching app generator tests', function () {
 
       helpers.run(path.join(__dirname, '../app'))
         .inDir(path.join(os.tmpdir(), './tmp'))
-        .withOptions({ 'skipInstall': true })
+        .withOptions({ skipInstall: true })
         .withPrompt({
           name: 'Test',
           backend: 'mongo',
@@ -146,7 +148,7 @@ describe('Launching app generator tests', function () {
 
       helpers.run(path.join(__dirname, '../app'))
         .inDir(path.join(os.tmpdir(), './tmp'))
-        .withOptions({ 'skipInstall': true })
+        .withOptions({ skipInstall: true })
         .withPrompt({
           name: 'Test',
           backend: 'json',
@@ -189,9 +191,9 @@ describe('Launching app generator tests', function () {
         if (err) { done(err); }
         bangular = helpers.createGenerator('bangular:app',
           [bangDir + '/app'],
-        false, { 'skipInstall': true, 'skipConfig': true });
+        false, { skipInstall: true, skipConfig: true });
 
-        helpers.mockPrompt(bangular, { name: 'Test', backend:'json', modules: [] });
+        helpers.mockPrompt(bangular, { name: 'Test', backend: 'json', modules: [] });
         bangular.run(done);
       });
     });
@@ -199,7 +201,7 @@ describe('Launching app generator tests', function () {
     it('should test a generation in an already generated directory', function (done) {
       tmpBang = helpers.createGenerator('bangular:app',
         [bangDir + '/app'],
-      false, { 'skipInstall': true });
+      false, { skipInstall: true });
 
       helpers.mockPrompt(tmpBang, { skipConfig: true });
       tmpBang.conflicter.force = true;
@@ -216,7 +218,7 @@ describe('Launching app generator tests', function () {
 
       helpers.run(path.join(__dirname, '../app'))
         .inDir(path.join(os.tmpdir(), './tmp'))
-        .withOptions({ 'skipInstall': true })
+        .withOptions({ skipInstall: true })
         .withPrompt({
           name: 'Test',
           backend: 'mongo',
@@ -228,11 +230,20 @@ describe('Launching app generator tests', function () {
     });
 
     it('should test for auth files', function () {
+
       assert.file([
-        'client/views/signup',
-        'client/views/login',
+        'client/views/signup/signup.controller.js',
+        'client/views/signup/signup.html',
+        'client/views/signup/signup.js',
+        'client/views/signup/signup.spec.js',
+        'client/views/signup/signup.e2e.js',
+        'client/views/login/login.controller.js',
+        'client/views/login/login.html',
+        'client/views/login/login.js',
+        'client/views/login/login.spec.js',
+        'client/views/login/login.e2e.js',
         'client/services/auth',
-        'server/auth',
+        'server/auth'
       ]);
 
       assert.fileContent('server/routes.js', 'app.use(\'/auth\', require(\'./auth\'));');

@@ -1,6 +1,9 @@
 var gulp        = require('gulp'),
     chalk       = require('chalk'),
     spritesmith = require('gulp.spritesmith'),
+    jshint      = require('gulp-jshint'),
+    jscs        = require('gulp-jscs'),
+    jscsStylish = require('gulp-jscs-stylish'),
     fs          = require('fs');
 
 gulp.task('default', ['logos']);
@@ -21,6 +24,8 @@ gulp.task('logos', function (done) {
    'logos/mongo.png',
    'logos/sass.png',
    'logos/karma.png',
+   'logos/protractor.png',
+   'logos/jscs.png',
    'logos/bower.png'
   ])
     .pipe(spritesmith({
@@ -34,6 +39,28 @@ gulp.task('logos', function (done) {
     .on('end', function () {
       fs.unlinkSync('logos/sprite.css');
       done();
+    });
+
+});
+
+gulp.task('control', function (done) {
+
+  var paths = [
+    '!./node_modules/**',
+    '!./**/templates/**/index.js',
+    './**/index.js',
+    './test/*.js'
+  ];
+
+  gulp.src(paths)
+    .pipe(jshint())
+    .pipe(jshint.reporter('jshint-stylish'))
+    .on('finish', function () {
+      gulp.src(paths)
+        .pipe(jscs())
+        .on('error', function () {})
+        .pipe(jscsStylish())
+        .on('end', done);
     });
 
 });

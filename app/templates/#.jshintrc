@@ -1,5 +1,4 @@
 {
-  "node": true,
   "bitwise": true,
   "eqeqeq": true,
   "forin": true,
@@ -12,10 +11,5 @@
   "nonew": false,
   "strict": true,
   "undef": true,
-  "unused": true,
-  "globals": {
-    "describe": true,
-    "before": true,
-    "it": true
-  }
+  "unused": true
 }

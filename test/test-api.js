@@ -21,7 +21,7 @@ describe('Launching api tests', function () {
 
         bangular = helpers.createGenerator('bangular:app',
             [path.join(bangDir, '/app')],
-        false, { 'skipInstall': true, 'skipLog': true });
+        false, { skipInstall: true, skipLog: true });
 
         helpers.mockPrompt(bangular, { name: 'Test', backend: 'mongo', modules: [] });
         bangular.run(done);
@@ -84,8 +84,8 @@ describe('Launching api tests', function () {
         if (err) { done(err); }
 
         bangular = helpers.createGenerator('bangular:app',
-            [path.join(bangDir, '/app'),
-          ], false, { 'skipInstall': true, 'skipLog': true });
+            [path.join(bangDir, '/app')],
+        false, { skipInstall: true, skipLog: true });
 
         helpers.mockPrompt(bangular, { name: 'Test', backend: 'json', modules: [] });
 
@@ -126,8 +126,8 @@ describe('Launching api tests', function () {
         if (err) { done(err); }
 
         bangular = helpers.createGenerator('bangular:app',
-            [path.join(bangDir, '/app'),
-          ], false, { 'skipInstall': true, 'skipLog': true });
+            [path.join(bangDir, '/app')],
+        false, { skipInstall: true, skipLog: true });
 
         helpers.mockPrompt(bangular, { name: 'Test', backend: 'mongo', modules: ['ngResource'], sockets: true });
         bangular.run(done);
@@ -169,8 +169,8 @@ describe('Launching api tests', function () {
         if (err) { done(err); }
 
         bangular = helpers.createGenerator('bangular:app',
-            [path.join(bangDir, '/app'),
-          ], false, { 'skipInstall': true, 'skipLog': true });
+            [path.join(bangDir, '/app')],
+        false, { skipInstall: true, skipLog: true });
 
         helpers.mockPrompt(bangular, { name: 'Test', backend: 'restock', modules: [] });
         bangular.run(done);

@@ -7,6 +7,8 @@ var bowerFiles = require('main-bower-files');
 var runSequence = require('run-sequence');
 var sq = require('streamqueue');
 var path = require('path');
+var async = require('async');
+var _ = require('lodash');
 var fs = require('fs');
 var karma = require('karma').server;
 var $ = require('gulp-load-plugins')();
@@ -92,7 +94,7 @@ gulp.task('watch', ['inject'], function () {
   gulp.watch(['client/index.html', 'client/app.js'])
     .on('change', $.livereload.changed);
 
-  $.watch('client/styles/**/*.scss', function () {
+  $.watch(['client/styles/**/*.scss', 'client/views/**/*.scss'], function () {
     gulp.src('client/styles/app.scss')
       .pipe($.plumber())
       .pipe($.sass())
@@ -104,6 +106,7 @@ gulp.task('watch', ['inject'], function () {
     'client/views',
     'client/views/**/*.html',
     'client/views/**/*.js',
+    '!client/views/**/*.scss',
     '!client/views/**/*.spec.js',
     'client/directives',
     'client/directives/**/*.html',
@@ -127,14 +130,54 @@ gulp.task('watch', ['inject'], function () {
 /**
  * Control things
  */
-gulp.task('control', function () {
-  return gulp.src([
-    'client/**/**/*.js',
-    'server/**/**/*.js',
-    '!client/bower_components/**'
-  ])
-    .pipe($.jshint())
-    .pipe($.jshint.reporter('default'));
+gulp.task('control', function (done) {
+
+  function getConfig (file) {
+    return _.merge(
+      JSON.parse(fs.readFileSync('./.jshintrc', 'utf-8')),
+      JSON.parse(fs.readFileSync(file, 'utf-8'))
+    );
+  }
+
+  function control (name, paths, conf) {
+    return function (done) {
+      gulp.src(paths)
+        .pipe($.jshint(conf))
+        .pipe($.jshint.reporter('jshint-stylish'))
+        .on('finish', function () {
+          gulp.src(paths)
+            .pipe($.jscs())
+            .on('error', function () {})
+            .pipe($.jscsStylish())
+            .on('end', done);
+        });
+    };
+  }
+
+  async.series([
+    control('client', ['client/**/*.js', '!client/bower_components/**'], getConfig('./client/.jshintrc')),
+    control('server', ['server/**/*.js'], getConfig('./server/.jshintrc'))
+  ], done);
+
+});
+
+/**
+ * Protractor
+ */
+gulp.task('e2e:update', $.protractor.webdriver_update);
+
+gulp.task('e2e', ['serve'], function () {
+  gulp.src('client/views/**/*.e2e.js')
+    .pipe($.protractor.protractor({
+      configFile: 'protractor.conf.js'
+    }))
+    .on('error', function (e) {
+      $.util.log(e.message);
+      process.exit(-1);
+    })
+    .on('end', function () {
+      process.exit(0);
+    });
 });
 
 /**
@@ -157,7 +200,7 @@ function testClient (done) {
   log('Running client test...', { padding: true });
 
   karma.start({
-    configFile: __dirname + '/client/karma.conf.js'
+    configFile: __dirname + '/karma.conf.js'
   }, done);
 }
 
@@ -290,7 +333,7 @@ gulp.task('scripts', function () {
 
 gulp.task('replace', function () {
   return gulp.src('dist/client/index.html')
-    .pipe($.replace(/    <script.*livereload.*><\/script>\n*/, ''))
+    .pipe($.replace(/\s*<script.*livereload.*><\/script>\n*/, ''))
     .pipe(gulp.dest('dist/client'));
 });
 

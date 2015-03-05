@@ -2,7 +2,7 @@
 
 var fs = require('fs');
 
-function handleError(res, err) {
+function handleError (res, err) {
   return res.status(500).send(err);
 }
 

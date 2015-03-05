@@ -16,10 +16,10 @@ describe('Launching fonts tests', function () {
 
       tmpDir = path.join(os.tmpdir(), '/tmp');
 
-      helpers.testDirectory(tmpDir, function (err) {
+      helpers.testDirectory(tmpDir, function () {
         bangular = helpers.createGenerator('bangular:app',
           [path.join(bangDir, '/app')],
-        false, { 'skipInstall': true, 'skipLog': true });
+        false, { skipInstall: true, skipLog: true });
 
         helpers.mockPrompt(bangular, { name: 'Test', backend: 'json', modules: [] });
         bangular.run(done);
@@ -33,7 +33,7 @@ describe('Launching fonts tests', function () {
 
     it('should run the font subgenerator with otf', function (done) {
       bangFont = helpers.createGenerator('bangular:font', [bangDir + '/font'], 'comicsansms');
-      helpers.mockPrompt(bangFont, { 'types': ['otf'] });
+      helpers.mockPrompt(bangFont, { types: ['otf'] });
       bangFont.run(function () {
         assert.file('client/assets/fonts/comicsansms');
         assert.file('client/styles/fonts.scss');
@@ -45,7 +45,7 @@ describe('Launching fonts tests', function () {
 
     it('should run the font subgenerator with ttf and eot', function (done) {
       bangFont = helpers.createGenerator('bangular:font', [bangDir + '/font'], 'fugitive');
-      helpers.mockPrompt(bangFont, { 'types': ['ttf', 'eot'] });
+      helpers.mockPrompt(bangFont, { types: ['ttf', 'eot'] });
       bangFont.run(function () {
         assert.file('client/assets/fonts/fugitive');
         assert.file('client/styles/fonts.scss');
@@ -61,7 +61,7 @@ describe('Launching fonts tests', function () {
 
     it('should run the font subgenerator with all formats', function (done) {
       bangFont = helpers.createGenerator('bangular:font', [bangDir + '/font'], 'sushi');
-      helpers.mockPrompt(bangFont, { 'types': ['woff', 'otf', 'svg', 'ttf', 'eot'] });
+      helpers.mockPrompt(bangFont, { types: ['woff', 'otf', 'svg', 'ttf', 'eot'] });
       bangFont.run(function () {
         assert.file('client/assets/fonts/sushi');
         assert.file('client/styles/fonts.scss');
@@ -82,4 +82,3 @@ describe('Launching fonts tests', function () {
   });
 
 });
-

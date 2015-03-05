@@ -14,7 +14,7 @@ describe('Controller: LoginCtrl', function () {
     $location = _$location_;
   }));
 
-  afterEach(function() {
+  afterEach(function () {
     $httpBackend.verifyNoOutstandingExpectation();
     $httpBackend.verifyNoOutstandingRequest();
   });

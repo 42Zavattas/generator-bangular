@@ -18,7 +18,7 @@ exports.create = function (req, res) {
   User.create(req.body, function (err, user) {
     if (err) { return handleError(res, err); }
     var token = jwt.sign(
-      {_id: user._id },
+      { _id: user._id },
       config.secrets.session,
       { expiresInMinutes: 60 * 5 }
     );
