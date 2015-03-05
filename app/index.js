@@ -113,7 +113,7 @@ var BangularGenerator = yeoman.generators.Base.extend({
           self.filters.sockets = props.sockets;
           self.filters.auth = props.auth;
           if (props.auth) {
-            self.filters['ngCookies'] = true;
+            self.filters.ngCookies = true;
           }
           done();
         });

@@ -55,12 +55,12 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
         file: 'client/styles/app.scss',
         append: '@import "../views/' + this.dashName + '/' + this.dashName + '";'
       }, function importCallback (err) {
-          /* istanbul ignore if */
-          if (err) {
-            bangLog('There was an error importing the style.', 'red');
-          } else {
-            bangLog('Your style was successfully injected.', 'green');
-          }
+        /* istanbul ignore if */
+        if (err) {
+          bangLog('There was an error importing the style.', 'red');
+        } else {
+          bangLog('Your style was successfully injected.', 'green');
+        }
       });
 
     }
