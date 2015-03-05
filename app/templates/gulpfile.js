@@ -161,7 +161,6 @@ gulp.task('control', function (done) {
 
 });
 
-
 /**
  * Protractor
  */
