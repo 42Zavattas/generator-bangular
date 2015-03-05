@@ -1,15 +1,15 @@
 'use strict';
 
-describe('login page', function () {
+describe('login route', function () {
 
-  describe('basic', function () {
+  beforeEach(function () {
     browser.get('/login');
+  });
 
-    it('should have two login inputs', function (done) {
-      element.all(by.css('input')).then(function (inputs) {
-        expect(inputs.length).toBe(2);
-        done();
-      });
+  it('should have two login inputs', function (done) {
+    element.all(by.css('input')).then(function (inputs) {
+      expect(inputs.length).toBe(2);
+      done();
     });
   });
 
