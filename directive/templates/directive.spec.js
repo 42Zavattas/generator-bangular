@@ -6,7 +6,7 @@ describe('Directive: <%= dashName %>', function () {
 
   var element, scope;
 
-  beforeEach(inject(function($compile, $rootScope){
+  beforeEach(inject(function ($compile, $rootScope) {
     scope = $rootScope.$new();
     element = angular.element('<<%= dashName %>></<%= dashName %>>');
     element = $compile(element)(scope);
