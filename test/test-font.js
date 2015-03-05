@@ -16,7 +16,7 @@ describe('Launching fonts tests', function () {
 
       tmpDir = path.join(os.tmpdir(), '/tmp');
 
-      helpers.testDirectory(tmpDir, function (err) {
+      helpers.testDirectory(tmpDir, function () {
         bangular = helpers.createGenerator('bangular:app',
           [path.join(bangDir, '/app')],
         false, { 'skipInstall': true, 'skipLog': true });
