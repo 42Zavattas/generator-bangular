@@ -22,6 +22,7 @@ gulp.task('logos', function (done) {
    'logos/sass.png',
    'logos/karma.png',
    'logos/protractor.png',
+   'logos/jscs.png',
    'logos/bower.png'
   ])
     .pipe(spritesmith({
