@@ -43,7 +43,7 @@ describe('Launching app generator tests', function () {
 
       helpers.run(path.join(__dirname, '../app'))
         .inDir(path.join(os.tmpdir(), './tmp'))
-        .withOptions({ 'skipInstall': true })
+        .withOptions({ skipInstall: true })
         .withPrompt({
           name: 'Test',
           backend: 'mongo',
@@ -81,7 +81,7 @@ describe('Launching app generator tests', function () {
 
       helpers.run(path.join(__dirname, '../app'))
         .inDir(path.join(os.tmpdir(), './tmp'))
-        .withOptions({ 'skipInstall': true })
+        .withOptions({ skipInstall: true })
         .withPrompt({
           name: 'Test',
           backend: 'restock',
@@ -119,7 +119,7 @@ describe('Launching app generator tests', function () {
 
       helpers.run(path.join(__dirname, '../app'))
         .inDir(path.join(os.tmpdir(), './tmp'))
-        .withOptions({ 'skipInstall': true })
+        .withOptions({ skipInstall: true })
         .withPrompt({
           name: 'Test',
           backend: 'mongo',
@@ -148,7 +148,7 @@ describe('Launching app generator tests', function () {
 
       helpers.run(path.join(__dirname, '../app'))
         .inDir(path.join(os.tmpdir(), './tmp'))
-        .withOptions({ 'skipInstall': true })
+        .withOptions({ skipInstall: true })
         .withPrompt({
           name: 'Test',
           backend: 'json',
@@ -191,9 +191,9 @@ describe('Launching app generator tests', function () {
         if (err) { done(err); }
         bangular = helpers.createGenerator('bangular:app',
           [bangDir + '/app'],
-        false, { 'skipInstall': true, 'skipConfig': true });
+        false, { skipInstall: true, skipConfig: true });
 
-        helpers.mockPrompt(bangular, { name: 'Test', backend:'json', modules: [] });
+        helpers.mockPrompt(bangular, { name: 'Test', backend: 'json', modules: [] });
         bangular.run(done);
       });
     });
@@ -201,7 +201,7 @@ describe('Launching app generator tests', function () {
     it('should test a generation in an already generated directory', function (done) {
       tmpBang = helpers.createGenerator('bangular:app',
         [bangDir + '/app'],
-      false, { 'skipInstall': true });
+      false, { skipInstall: true });
 
       helpers.mockPrompt(tmpBang, { skipConfig: true });
       tmpBang.conflicter.force = true;
@@ -218,7 +218,7 @@ describe('Launching app generator tests', function () {
 
       helpers.run(path.join(__dirname, '../app'))
         .inDir(path.join(os.tmpdir(), './tmp'))
-        .withOptions({ 'skipInstall': true })
+        .withOptions({ skipInstall: true })
         .withPrompt({
           name: 'Test',
           backend: 'mongo',
@@ -243,7 +243,7 @@ describe('Launching app generator tests', function () {
         'client/views/login/login.spec.js',
         'client/views/login/login.e2e.js',
         'client/services/auth',
-        'server/auth',
+        'server/auth'
       ]);
 
       assert.fileContent('server/routes.js', 'app.use(\'/auth\', require(\'./auth\'));');

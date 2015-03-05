@@ -19,7 +19,7 @@ describe('Launching factory tests', function () {
       helpers.testDirectory(tmpDir, function () {
         bangular = helpers.createGenerator('bangular:app',
           [path.join(bangDir, '/app')],
-        false, { 'skipInstall': true, 'skipLog': true });
+        false, { skipInstall: true, skipLog: true });
 
         helpers.mockPrompt(bangular, { name: 'Test', backend: 'json', modules: [] });
         bangular.run(done);

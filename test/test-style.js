@@ -20,7 +20,7 @@ describe('Launching style tests', function () {
       helpers.testDirectory(tmpDir, function () {
         bangular = helpers.createGenerator('bangular:app',
           [path.join(bangDir, '/app')],
-        false, { 'skipInstall': true, 'skipLog': true });
+        false, { skipInstall: true, skipLog: true });
 
         helpers.mockPrompt(bangular, { name: 'Test', backend: 'json', modules: [] });
         bangular.run(done);
@@ -31,7 +31,7 @@ describe('Launching style tests', function () {
     it('should create a style file and not import it in the app scss', function (done) {
 
       bangStyle = helpers.createGenerator('bangular:style', [bangDir + '/style'], 'bootstrap');
-      helpers.mockPrompt(bangStyle, { 'import': false });
+      helpers.mockPrompt(bangStyle, { import: false });
       bangStyle.run(function () {
         setTimeout(function () {
           assert.file('client/styles/bootstrap.scss');
@@ -45,7 +45,7 @@ describe('Launching style tests', function () {
     it('should create a style file and import it in the app scss', function (done) {
 
       bangStyle = helpers.createGenerator('bangular:style', [bangDir + '/style'], 'flexbox');
-      helpers.mockPrompt(bangStyle, { 'import': true });
+      helpers.mockPrompt(bangStyle, { import: true });
       bangStyle.run(function () {
         setTimeout(function () {
           assert.file('client/styles/flexbox.scss');
@@ -56,11 +56,10 @@ describe('Launching style tests', function () {
 
     });
 
-
     it('should insert the import on needle', function (done) {
 
       bangStyle = helpers.createGenerator('bangular:style', [bangDir + '/style'], 'gold');
-      helpers.mockPrompt(bangStyle, { 'import': true });
+      helpers.mockPrompt(bangStyle, { import: true });
       fs.appendFileSync('client/styles/app.scss', '// imports');
       bangStyle.run(function () {
         setTimeout(function () {
@@ -83,7 +82,7 @@ describe('Launching style tests', function () {
       helpers.testDirectory(tmpDir, function () {
         bangular = helpers.createGenerator('bangular:app',
           [path.join(bangDir, '/app')],
-        false, { 'skipInstall': true, 'skipLog': true });
+        false, { skipInstall: true, skipLog: true });
 
         helpers.mockPrompt(bangular, { name: 'Test', backend: 'json', modules: [] });
         bangular.run(done);
@@ -94,7 +93,7 @@ describe('Launching style tests', function () {
     it('should not add another import if it already exists', function (done) {
 
       bangStyle = helpers.createGenerator('bangular:style', [bangDir + '/style'], 'comic');
-      helpers.mockPrompt(bangStyle, { 'import': true });
+      helpers.mockPrompt(bangStyle, { import: true });
       fs.appendFileSync('client/styles/app.scss', '// imports\n@import "comic";');
       bangStyle.run(function () {
         setTimeout(function () {
