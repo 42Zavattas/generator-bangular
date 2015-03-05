@@ -5,8 +5,6 @@ angular.module('<%= appname %>')
 
     var ioSocket = io('', {
       path: '/socket.io'
-      //, query: 'token=toto'
-      // TODO implement with passport and socket jwt
     });
 
     var subs = [];

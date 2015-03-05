@@ -34,7 +34,7 @@ module.exports = function (app) {
     store: new mongoStore({ mongooseConnection: mongoose.connection })
   }));<% } %>
 
-  if ('development' === env || 'test' === env) {
+  if (env === 'development' || env === 'test') {
     app.use(require('errorhandler')());
   }
 
