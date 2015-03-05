@@ -40,6 +40,7 @@ describe('Launching route tests', function () {
         assert.file('client/views/contact/contact.controller.js');
         assert.file('client/views/contact/contact.spec.js');
         assert.file('client/views/contact/contact.html');
+        assert.file('client/views/contact/contact.e2e.js');
 
         assert.fileContent('client/views/contact/contact.controller.js', 'ContactCtrl');
         assert.fileContent('client/views/contact/contact.spec.js', '$controller(\'ContactCtrl\'');
@@ -60,6 +61,7 @@ describe('Launching route tests', function () {
         assert.file('client/views/yolo/yolo.scss');
         assert.file('client/views/yolo/yolo.controller.js');
         assert.file('client/views/yolo/yolo.spec.js');
+        assert.file('client/views/yolo/yolo.e2e.js');
         assert.file('client/views/yolo/yolo.html');
 
         assert.fileContent('client/views/yolo/yolo.controller.js', 'YoloCtrl');

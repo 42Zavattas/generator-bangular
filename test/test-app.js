@@ -27,6 +27,7 @@ function basicFileCheck () {
     'client/views/home/home.html',
     'client/views/home/home.js',
     'client/views/home/home.spec.js',
+    'client/views/home/home.e2e.js',
     'README.md',
     '.editorconfig',
     '.jshintrc',
@@ -229,9 +230,18 @@ describe('Launching app generator tests', function () {
     });
 
     it('should test for auth files', function () {
+
       assert.file([
-        'client/views/signup',
-        'client/views/login',
+        'client/views/signup/signup.controller.js',
+        'client/views/signup/signup.html',
+        'client/views/signup/signup.js',
+        'client/views/signup/signup.spec.js',
+        'client/views/signup/signup.e2e.js',
+        'client/views/login/login.controller.js',
+        'client/views/login/login.html',
+        'client/views/login/login.js',
+        'client/views/login/login.spec.js',
+        'client/views/login/login.e2e.js',
         'client/services/auth',
         'server/auth',
       ]);
