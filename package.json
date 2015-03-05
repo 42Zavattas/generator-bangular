@@ -37,12 +37,16 @@
   "dependencies": {
     "async": "^0.9.0",
     "chalk": "^1.0.0",
+    "gulp-jshint": "^1.9.2",
+    "jshint-stylish": "^1.0.1",
     "yeoman-generator": "^0.18.7"
   },
   "devDependencies": {
     "coveralls": "^2.11.2",
     "gulp": "^3.8.10",
     "gulp.spritesmith": "^3.2.0",
+    "gulp-jscs": "^1.4.0",
+    "gulp-jscs-stylish": "1.0.0",
     "mocha": "*"
   },
   "peerDependencies": {
