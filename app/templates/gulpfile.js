@@ -147,7 +147,7 @@ gulp.task('e2e:update', $.protractor.webdriver_update);
 gulp.task('e2e', ['serve'], function () {
   gulp.src('client/views/**/*.e2e.js')
     .pipe($.protractor.protractor({
-      configFile: 'client/protractor.conf.js'
+      configFile: 'protractor.conf.js'
     }))
     .on('error', function (e) {
       console.log(e);
@@ -178,7 +178,7 @@ function testClient (done) {
   log('Running client test...', { padding: true });
 
   karma.start({
-    configFile: __dirname + '/client/karma.conf.js'
+    configFile: __dirname + '/karma.conf.js'
   }, done);
 }
 
