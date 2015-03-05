@@ -42,7 +42,7 @@
   "devDependencies": {
     "coveralls": "^2.11.2",
     "gulp": "^3.8.10",
-    "gulp.spritesmith": "^2.5.0",
+    "gulp.spritesmith": "^3.2.0",
     "mocha": "*"
   },
   "peerDependencies": {
