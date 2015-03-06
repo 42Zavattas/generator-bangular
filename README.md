@@ -22,7 +22,7 @@ Optional:
 * **MongoDB**, with [Mongoose ODM](https://github.com/learnboost/mongoose)
 * **mocked backend**, with [Restock](https://github.com/42Zavattas/Restock.io)
 
-[Demo of generated project](https://github.com/42Zavattas/bangular-demo)
+[Source code of generated project](https://github.com/42Zavattas/bangular-demo) or [live demo](http://demo.bangular.io/)
 
 # Install
 
