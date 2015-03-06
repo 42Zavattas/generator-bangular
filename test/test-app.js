@@ -253,7 +253,7 @@ describe('Launching app generator tests', function () {
       assert.fileContent('package.json', 'passport-local');
       assert.fileContent('package.json', 'connect-mongo');
 
-      assert.fileContent('client/index.html', 'signup');
+      assert.fileContent('client/index.html', 'nav-bar');
       assert.fileContent('bower.json', 'angular-cookies');
     });
   });
