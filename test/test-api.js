@@ -68,7 +68,7 @@ describe('Launching api tests', function () {
           assert.fileContent('server/routes.js', 'app.use(\'/api/restocks\', require(\'./api/restock\'));');
           assert.fileContent('server/routes.js', 'app.use(\'/api/users\', require(\'./api/user\'));');
           done();
-        }, 30);
+        }, 250);
       });
     });
 
@@ -201,7 +201,7 @@ describe('Launching api tests', function () {
           assert.fileContent('server/routes.js', 'app.use(\'/api/users\', require(\'./api/user\'));');
 
           done();
-        }, 30);
+        }, 250);
 
       });
     });
