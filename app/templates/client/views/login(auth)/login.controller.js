@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('<%= appname %>')
-  .controller('LoginCtrl', function (Auth, $location) {
+  .controller('LoginCtrl', function ($location, Auth) {
 
     var vm = this;
 
