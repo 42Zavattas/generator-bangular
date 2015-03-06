@@ -334,7 +334,7 @@ gulp.task('scripts', function () {
 
 gulp.task('replace', function () {
   return gulp.src('dist/client/index.html')
-    .pipe($.replace(/\s*<script.*livereload.*><\/script>\n*/, ''))
+    .pipe($.replace(/\s*<script.*livereload.*><\/script>\n/, ''))
     .pipe(gulp.dest('dist/client'));
 });
 
