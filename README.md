@@ -2,16 +2,18 @@
 
 ![logos](logos/logos-sprite.png "logos")
 
-***Philosophy***
-
 > *« Perfection is achieved not when there is nothing more to add, but when there is nothing left to take away. »* — ***Antoine De Saint-Exupéry***
 
-* **NO** support for outdated browsers — *Working for IE users? Too bad.*
-* **NO** pre-install for Google Analytics — *Wanna track people? Do it yourself.*
-* **Livereload** on changes in client / server — *You don't have time to waste.*
-* **JSHint** & **JSCS** integration — *Write clean code, for purpose.*
-* **Sass** support — *Because CSS is a mess.*
-* **Fast build** — *You do faster? Let's see that.*
+Features:
+
+* **Sub-generators** for `route`, `api`, `directive`, `service`, and plenty others...
+* **Express server** with nested routing architecture.
+* **Livereload** on changes in client / server.
+* **Automatic bower dependencies injection** on package install.
+* **Test suite** — Unit tests with [Karma](https://karma-runner.github.io) & [Mocha](http://mochajs.org), e2e tests with [Protractor](https://github.com/angular/protractor).
+* **JSHint** & **JSCS** integration.
+* **Sass** support.
+* **Fast build**, like, real fast.
 
 Optional:
 
