@@ -6,7 +6,4 @@ node_js:
 before_install:
   - npm install -g istanbul
 after_success:
-  - npm run coveralls
-matrix:
-  allow_failures:
-    - node_js: 0.12
+  - npm run cover

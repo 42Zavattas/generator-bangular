@@ -56,7 +56,7 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "mocha test/*.js",
-    "coveralls": "istanbul cover ./node_modules/mocha/bin/_mocha && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+    "test": "istanbul cover ./node_modules/mocha/bin/_mocha",
+    "cover": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   }
 }
