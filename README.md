@@ -80,6 +80,7 @@ Launch your server and then run protractor tests. See [protractor howtos](https:
   - [route](https://github.com/42Zavattas/generator-bangular#route)
   - [service / factory](https://github.com/42Zavattas/generator-bangular#service)
   - [style](https://github.com/42Zavattas/generator-bangular#style)
+  - [animation](https://github.com/42Zavattas/generator-bangular#animation)
  - Server
   - [api](https://github.com/42Zavattas/generator-bangular#api)
 
@@ -144,6 +145,15 @@ You can specify the location of your new imports by adding a `// imports` in the
 
 The **name** parameter is required. This will create a new `.scss` file in he `client/styles/` folder.
 
+## Animation
+
+    yo bangular:anim <name>
+
+Creates an angular animation file in `client/animations/`.
+You can choose which event(s) you want to capture, including `enter`, `leave`, `move`, `addClass`, `removeClass`.
+
+You need to have `ngAnimate` as dependency.
+
 ## Api
 
     yo bangular:api <name>
@@ -182,6 +192,7 @@ It will create default views for the signup and login. You can easily protect yo
 # Architecture
 
     client
+     ├ animations/
      ├ assets
      │   ├ images/
      │   └ fonts/
