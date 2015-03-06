@@ -190,17 +190,24 @@ It will create default views for the signup and login. You can easily protect yo
      ├ bower_components/
      ├ index.html
      ├ app.js
-     └ karma.conf.js
+     └ .jshintrc
     server
      ├ api/
      ├ config/
      ├ routes.js
-     └ server.js
-    gulpfile.js
+     ├ server.js
+     └ .jshintrc
     bower.json
+    gulpfile.js
+    karma.conf.js
     package.json
-    .yo-rc.json
+    protractor.conf.js
+    .editorconfig
+    .gitignore
+    .jscsrc
     .jshintrc
+    .travis.yml
+    .yo-rc.json
 
 
 ## License
