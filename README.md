@@ -192,25 +192,25 @@ It will create default views for the signup and login. You can easily protect yo
 # Architecture
 
     client
-     ├ animations/
-     ├ assets
-     │   ├ images/
-     │   └ fonts/
-     ├ styles/
-     ├ views/
-     ├ directives/
-     ├ filters/
-     ├ services/
-     ├ bower_components/
-     ├ index.html
-     ├ app.js
-     └ .jshintrc
+    ├ animations/
+    ├ assets
+    │  ├ images/
+    │  └ fonts/
+    ├ bower_components/
+    ├ directives/
+    ├ filters/
+    ├ services/
+    ├ styles/
+    ├ views/
+    ├ app.js
+    ├ index.html
+    └ .jshintrc
     server
-     ├ api/
-     ├ config/
-     ├ routes.js
-     ├ server.js
-     └ .jshintrc
+    ├ api/
+    ├ config/
+    ├ routes.js
+    ├ server.js
+    └ .jshintrc
     bower.json
     gulpfile.js
     karma.conf.js
