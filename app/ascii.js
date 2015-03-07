@@ -8,7 +8,7 @@ var title =
   '\n    ' + chalk.red('_  /_/ // /_/ /_  / / /  /_/ /') + chalk.yellow('/ /_/ /_  / / /_/ /_  /     ') +
   '\n    ' + chalk.red('/_____/ \\__,_/ /_/ /_/_\\__, /') + chalk.yellow(' \\__,_/ /_/  \\__,_/ /_/      ') +
   '\n    ' + chalk.yellow('----------------------') + chalk.red('/____/-----------------------') +
-  '\n                                 ' + chalk.bgBlack('Light & Fast purposed') +
+  '\n                                  ' + chalk.bgBlack('Light & Fast purposed') +
   '\n\n';
 
 module.exports = title;
