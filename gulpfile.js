@@ -6,7 +6,7 @@ var gulp        = require('gulp'),
     jscsStylish = require('gulp-jscs-stylish'),
     fs          = require('fs');
 
-gulp.task('default', ['logos']);
+gulp.task('default', ['control']);
 
 gulp.task('logos', function (done) {
 
