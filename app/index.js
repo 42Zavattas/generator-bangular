@@ -35,6 +35,7 @@ var BangularGenerator = yeoman.generators.Base.extend({
           default: true
         }], function (props) {
           self.skipConfig = props.skipConfig;
+          self.filters = self.config.get('filters');
           done();
         });
       }
