@@ -26,6 +26,12 @@ exports.create = function (req, res) {
   });
 };
 
+/**
+ * Return the current logged user.
+ *
+ * @param req
+ * @param res
+ */
 exports.getMe = function (req, res) {
   var userId = req.user._id;
   User.findOne({
