@@ -18,7 +18,7 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 var config = require('./server/config/environment');
 
 var openOpts = {
-  url    : 'http://localhost:' + config.port,
+  url: 'http://localhost:' + config.port,
   already: false
 };
 
@@ -42,9 +42,9 @@ var toDelete = [];
 function log (msg, options) {
   options = options || {};
   console.log(
-    (options.padding ? '\n' : '') +
-    chalk.yellow(' > ' + msg) +
     (options.padding ? '\n' : '')
+    + chalk.yellow(' > ' + msg)
+    + (options.padding ? '\n' : '')
   );
 }
 
@@ -140,7 +140,7 @@ gulp.task('control', function (done) {
     );
   }
 
-  function control (name, paths, conf) {
+  function control (paths, conf) {
     return function (done) {
       gulp.src(paths)
         .pipe($.jshint(conf))
@@ -156,8 +156,9 @@ gulp.task('control', function (done) {
   }
 
   async.series([
-    control('client', ['client/**/*.js', '!client/bower_components/**'], getConfig('./client/.jshintrc')),
-    control('server', ['server/**/*.js'], getConfig('./server/.jshintrc'))
+    control(['client/**/*.js', '!client/bower_components/**'], getConfig('./client/.jshintrc')),
+    control(['server/**/*.js'], getConfig('./server/.jshintrc')),
+    control(['gulpfile.js'], getConfig('./server/.jshintrc'))
   ], done);
 
 });
