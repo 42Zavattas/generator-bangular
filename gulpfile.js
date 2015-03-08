@@ -65,6 +65,18 @@ gulp.task('control', function (done) {
 
 });
 
+gulp.task('changelog', function (done) {
+  require('conventional-changelog')({
+    repository: 'https://github.com/42Zavattas/generator-bangular',
+    version: require('./package.json').version,
+    from: '0.9.0',
+    to: ''
+  }, function (err, log) {
+    console.log(log);
+    done();
+  });
+});
+
 // utils
 // =====
 
