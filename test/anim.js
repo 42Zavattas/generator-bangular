@@ -7,7 +7,7 @@ var assert = require('yeoman-generator').assert;
 
 describe('Launching anim tests', function () {
 
-  var bangular, bangAnim, tmpDir;
+  var bangAnim;
   var bangDir = process.cwd();
 
   describe('', function () {
