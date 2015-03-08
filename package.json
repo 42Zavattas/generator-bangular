@@ -44,9 +44,9 @@
   "devDependencies": {
     "coveralls": "^2.11.2",
     "gulp": "^3.8.11",
-    "gulp.spritesmith": "^3.2.0",
     "gulp-jscs": "^1.4.0",
     "gulp-jscs-stylish": "1.0.0",
+    "gulp.spritesmith": "^3.2.0",
     "mocha": "*"
   },
   "peerDependencies": {
