@@ -298,7 +298,7 @@ gulp.task('copy:dist', function () {
 gulp.task('usemin', ['inject'], function () {
   return gulp.src('client/index.html')
     .pipe($.plumber())
-    .pipe($.usemin())
+    .pipe($.usemin({ css: [$.cssRebaseUrls({ root: 'client' }), 'concat'] }))
     .pipe(gulp.dest('dist/client/'));
 });
 
