@@ -16,7 +16,7 @@
 * **app:** prevent flickr effect for navbar, including it into directive ([23d5c76f](https://github.com/42Zavattas/generator-bangular/commit/23d5c76fe10368ee132538a6850d2e20354c9cdf))
 
 
-## 0.8.0 (2015-03-08)
+## 0.8.0 (2015-03-06)
 
 
 #### Bug Fixes
@@ -51,7 +51,7 @@
 * **sockets:** improve service with on, emit and clean methods ([6a8f1f6b](https://github.com/42Zavattas/generator-bangular/commit/6a8f1f6be37bb121b0c55d826cf7d575ae225b83))
 
 
-## 0.7.0 (2015-03-08)
+## 0.7.0 (2015-02-07)
 
 
 #### Bug Fixes
@@ -71,7 +71,7 @@
 * **core:** add factory gen ([3246c9c6](https://github.com/42Zavattas/generator-bangular/commit/3246c9c612f0f7a8a4c0821bbf89cadb8512ae45))
 
 
-## 0.6.0 (2015-03-08)
+## 0.6.0 (2015-02-07)
 
 
 #### Bug Fixes
@@ -101,7 +101,7 @@
   * add templates ([479bc323](https://github.com/42Zavattas/generator-bangular/commit/479bc3235ee0d89ec228507839b844b70aeec5fc))
 
 
-## 0.3.0 (2015-03-08)
+## 0.3.0 (2014-10-16)
 
 
 #### Bug Fixes
