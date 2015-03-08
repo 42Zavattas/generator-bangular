@@ -187,7 +187,7 @@ gulp.task('e2e', ['serve'], function () {
  */
 function testServer (done) {
 
-  log('Running server test...', { padding: true });
+  log('Running server tests...', { padding: true });
 
   gulp.src('server/**/*.spec.js', { read: false })
     .pipe($.plumber())
@@ -199,7 +199,7 @@ function testServer (done) {
 
 function testClient (done) {
 
-  log('Running client test...', { padding: true });
+  log('Running client tests...', { padding: true });
 
   karma.start({
     configFile: __dirname + '/karma.conf.js'
@@ -210,20 +210,17 @@ gulp.task('test', function (done) {
   process.env.NODE_ENV = 'test';
   var arg = process.argv[3] ? process.argv[3].substr(2) : false;
   if (arg === 'client') {
-    return testClient(function () {
-      process.exit();
-      done();
-    });
+    return testClient(done);
   } else if (arg === 'server') {
     return testServer(function () {
-      process.exit();
       done();
+      process.exit();
     });
   } else if (arg === false) {
     return testClient(function () {
       testServer(function () {
-        process.exit();
         done();
+        process.exit();
       });
     });
   } else {
