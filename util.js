@@ -43,12 +43,12 @@ var out = {
   bangLog: function (msg, color) {
     console.log('[' + chalk.blue('bangular') + ']: ' + chalk[color](msg));
   },
-  scaffold: function (opts, cb) {
-    if (!opts) { return cb('No option given.'); }
+  scaffold: function (prompts, cb, opts) {
+    if (!prompts) { return cb('No option given.'); }
     helpers.run(path.join(__dirname, './app'))
       .inDir(path.join(os.tmpdir(), './tmp'))
-      .withOptions({ skipInstall: true })
-      .withPrompt(opts)
+      .withOptions(opts || { skipInstall: true })
+      .withPrompt(prompts)
       .on('end', cb);
   },
   fileExists: function (path) {

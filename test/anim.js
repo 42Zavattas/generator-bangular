@@ -1,9 +1,8 @@
 'use strict';
 
-var path = require('path');
-var os = require('os');
 var helpers = require('yeoman-generator').test;
 var assert = require('yeoman-generator').assert;
+var utils = require('../util');
 
 describe('Launching anim tests', function () {
 
@@ -14,17 +13,13 @@ describe('Launching anim tests', function () {
 
     before(function (done) {
 
-      helpers.run(path.join(__dirname, '../app'))
-        .inDir(path.join(os.tmpdir(), './tmp'))
-        .withOptions({ skipInstall: true })
-        .withPrompt({
-          name: 'Test',
-          backend: 'restock',
-          modules: [],
-          sockets: false,
-          auth: false
-        })
-        .on('end', done);
+      utils.scaffold({
+        name: 'Test',
+        backend: 'restock',
+        modules: [],
+        sockets: false,
+        auth: false
+      }, done);
 
     });
 

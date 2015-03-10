@@ -1,6 +1,5 @@
 'use strict';
 
-var path = require('path');
 var assert = require('yeoman-generator').assert;
 var helpers = require('yeoman-generator').test;
 var utils = require('../util');
@@ -165,8 +164,8 @@ describe('Launching app generator tests', function () {
 
   describe('', function () {
 
-    var bangular, tmpDir, tmpBang;
-    var bangDir = process.cwd();
+    var tmpBang,
+        bangDir = process.cwd();
 
     before(function (done) {
 

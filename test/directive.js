@@ -1,32 +1,23 @@
 'use strict';
 
-var path = require('path');
-var os = require('os');
 var helpers = require('yeoman-generator').test;
 var assert = require('yeoman-generator').assert;
+var utils = require('../util');
 
 describe('Launching directive tests', function () {
 
-  var bangular, bangDirective, tmpDir;
-  var bangDir = process.cwd();
+  var bangDirective,
+      bangDir = process.cwd();
 
   describe('', function () {
 
     before(function (done) {
 
-      tmpDir = path.join(os.tmpdir(), '/tmp');
-
-      helpers.testDirectory(tmpDir, function (err) {
-        if (err) { done(err); }
-
-        bangular = helpers.createGenerator('bangular:app',
-            [path.join(bangDir, '/app')],
-        false, { skipInstall: true, skipLog: true });
-
-        helpers.mockPrompt(bangular, { name: 'Test', backend: 'mongo', modules: [] });
-        bangular.run(done);
-
-      });
+      utils.scaffold({
+        name: 'Test',
+        backend: 'mongo',
+        modules: []
+      }, done, { skipInstall: true, skipLog: true });
 
     });
 

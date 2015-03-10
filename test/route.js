@@ -1,32 +1,23 @@
 'use strict';
 
-var path = require('path');
-var os = require('os');
 var helpers = require('yeoman-generator').test;
 var assert = require('yeoman-generator').assert;
+var utils = require('../util');
 
 describe('Launching route tests', function () {
 
-  var bangular, bangRoute, tmpDir;
-  var bangDir = process.cwd();
+  var bangRoute,
+      bangDir = process.cwd();
 
   describe('', function () {
 
     before(function (done) {
 
-      tmpDir = path.join(os.tmpdir(), '/tmp');
-
-      helpers.testDirectory(tmpDir, function (err) {
-        if (err) { done(err); }
-
-        bangular = helpers.createGenerator('bangular:app',
-            [path.join(bangDir, '/app')],
-        false, { skipInstall: true, skipLog: true });
-
-        helpers.mockPrompt(bangular, { name: 'Test', backend: 'restock', modules: [] });
-        bangular.run(done);
-
-      });
+      utils.scaffold({
+        name: 'Test',
+        backend: 'restock',
+        modules: []
+      }, done, { skipInstall: true, skipLog: true });
 
     });
 
