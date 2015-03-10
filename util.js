@@ -1,7 +1,10 @@
 'use strict';
+
 var path = require('path');
+var os = require('os');
 var fs = require('fs');
 var chalk = require('chalk');
+var helpers = require('yeoman-generator').test;
 
 function escapeRegExp (str) {
   return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
@@ -39,6 +42,14 @@ function templateIsUsable (self, filteredFile) {
 var out = {
   bangLog: function (msg, color) {
     console.log('[' + chalk.blue('bangular') + ']: ' + chalk[color](msg));
+  },
+  scaffold: function (opts, cb) {
+    if (!opts) { return cb('No option given.'); }
+    helpers.run(path.join(__dirname, './app'))
+      .inDir(path.join(os.tmpdir(), './tmp'))
+      .withOptions({ skipInstall: true })
+      .withPrompt(opts)
+      .on('end', cb);
   },
   fileExists: function (path) {
     if (fs.existsSync(path)) { return true; }

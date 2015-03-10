@@ -1,9 +1,9 @@
 'use strict';
 
 var path = require('path');
-var os = require('os');
 var assert = require('yeoman-generator').assert;
 var helpers = require('yeoman-generator').test;
+var utils = require('../util');
 
 function basicFileCheck () {
   assert.file([
@@ -35,22 +35,13 @@ function basicFileCheck () {
   ]);
 }
 
-function scaffoldProject (opts, done) {
-  if (!opts) { return done('No option given.'); }
-  helpers.run(path.join(__dirname, '../app'))
-    .inDir(path.join(os.tmpdir(), './tmp'))
-    .withOptions({ skipInstall: true })
-    .withPrompt(opts)
-    .on('end', done);
-}
-
 describe('Launching app generator tests', function () {
 
   describe('', function () {
 
     before(function (done) {
 
-      scaffoldProject({
+      utils.scaffold({
         name: 'Test',
         backend: 'mongo',
         modules: [],
@@ -84,7 +75,7 @@ describe('Launching app generator tests', function () {
 
     before(function (done) {
 
-      scaffoldProject({
+      utils.scaffold({
         name: 'Test',
         backend: 'restock',
         modules: ['ngCookies', 'ngSanitize']
@@ -118,7 +109,7 @@ describe('Launching app generator tests', function () {
 
     before(function (done) {
 
-      scaffoldProject({
+      utils.scaffold({
         name: 'Test',
         backend: 'mongo',
         modules: [],
@@ -143,7 +134,7 @@ describe('Launching app generator tests', function () {
 
     before(function (done) {
 
-      scaffoldProject({
+      utils.scaffold({
         name: 'Test',
         backend: 'json',
         modules: ['ngResource', 'ngAnimate']
@@ -179,7 +170,7 @@ describe('Launching app generator tests', function () {
 
     before(function (done) {
 
-      scaffoldProject({
+      utils.scaffold({
         name: 'Test',
         backend: 'json',
         modules: []
@@ -205,7 +196,7 @@ describe('Launching app generator tests', function () {
 
     before(function (done) {
 
-      scaffoldProject({
+      utils.scaffold({
         name: 'Test',
         backend: 'mongo',
         modules: [],
