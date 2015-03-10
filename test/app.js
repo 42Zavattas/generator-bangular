@@ -35,22 +35,27 @@ function basicFileCheck () {
   ]);
 }
 
+function scaffoldProject (opts, done) {
+  if (!opts) { return done('No option given.'); }
+  helpers.run(path.join(__dirname, '../app'))
+    .inDir(path.join(os.tmpdir(), './tmp'))
+    .withOptions({ skipInstall: true })
+    .withPrompt(opts)
+    .on('end', done);
+}
+
 describe('Launching app generator tests', function () {
 
   describe('', function () {
 
     before(function (done) {
 
-      helpers.run(path.join(__dirname, '../app'))
-        .inDir(path.join(os.tmpdir(), './tmp'))
-        .withOptions({ skipInstall: true })
-        .withPrompt({
-          name: 'Test',
-          backend: 'mongo',
-          modules: [],
-          sockets: false
-        })
-        .on('end', done);
+      scaffoldProject({
+        name: 'Test',
+        backend: 'mongo',
+        modules: [],
+        sockets: false
+      }, done);
 
     });
 
@@ -79,15 +84,11 @@ describe('Launching app generator tests', function () {
 
     before(function (done) {
 
-      helpers.run(path.join(__dirname, '../app'))
-        .inDir(path.join(os.tmpdir(), './tmp'))
-        .withOptions({ skipInstall: true })
-        .withPrompt({
-          name: 'Test',
-          backend: 'restock',
-          modules: ['ngCookies', 'ngSanitize']
-        })
-        .on('end', done);
+      scaffoldProject({
+        name: 'Test',
+        backend: 'restock',
+        modules: ['ngCookies', 'ngSanitize']
+      }, done);
 
     });
 
@@ -117,16 +118,12 @@ describe('Launching app generator tests', function () {
 
     before(function (done) {
 
-      helpers.run(path.join(__dirname, '../app'))
-        .inDir(path.join(os.tmpdir(), './tmp'))
-        .withOptions({ skipInstall: true })
-        .withPrompt({
-          name: 'Test',
-          backend: 'mongo',
-          modules: [],
-          sockets: true
-        })
-        .on('end', done);
+      scaffoldProject({
+        name: 'Test',
+        backend: 'mongo',
+        modules: [],
+        sockets: true
+      }, done);
 
     });
 
@@ -146,15 +143,11 @@ describe('Launching app generator tests', function () {
 
     before(function (done) {
 
-      helpers.run(path.join(__dirname, '../app'))
-        .inDir(path.join(os.tmpdir(), './tmp'))
-        .withOptions({ skipInstall: true })
-        .withPrompt({
-          name: 'Test',
-          backend: 'json',
-          modules: ['ngResource', 'ngAnimate']
-        })
-        .on('end', done);
+      scaffoldProject({
+        name: 'Test',
+        backend: 'json',
+        modules: ['ngResource', 'ngAnimate']
+      }, done);
 
     });
 
@@ -185,29 +178,25 @@ describe('Launching app generator tests', function () {
     var bangDir = process.cwd();
 
     before(function (done) {
-      tmpDir = path.join(os.tmpdir(), '/tmp');
 
-      helpers.testDirectory(tmpDir, function (err) {
-        if (err) { done(err); }
-        bangular = helpers.createGenerator('bangular:app',
-          [bangDir + '/app'],
-        false, { skipInstall: true, skipConfig: true });
+      scaffoldProject({
+        name: 'Test',
+        backend: 'json',
+        modules: []
+      }, done);
 
-        helpers.mockPrompt(bangular, { name: 'Test', backend: 'json', modules: [] });
-        bangular.run(done);
-      });
     });
 
     it('should test a generation in an already generated directory', function (done) {
-      tmpBang = helpers.createGenerator('bangular:app',
-        [bangDir + '/app'],
-      false, { skipInstall: true });
+
+      tmpBang = helpers.createGenerator('bangular:app', [bangDir + '/app'], false, { skipInstall: true });
 
       helpers.mockPrompt(tmpBang, { skipConfig: true });
       tmpBang.conflicter.force = true;
       tmpBang.run(function () {
         done();
       });
+
     });
 
   });
@@ -216,17 +205,14 @@ describe('Launching app generator tests', function () {
 
     before(function (done) {
 
-      helpers.run(path.join(__dirname, '../app'))
-        .inDir(path.join(os.tmpdir(), './tmp'))
-        .withOptions({ skipInstall: true })
-        .withPrompt({
-          name: 'Test',
-          backend: 'mongo',
-          modules: [],
-          sockets: true,
-          auth: true
-        })
-        .on('end', done);
+      scaffoldProject({
+        name: 'Test',
+        backend: 'mongo',
+        modules: [],
+        sockets: true,
+        auth: true
+      }, done);
+
     });
 
     it('should test for auth files', function () {
