@@ -2,11 +2,7 @@
 
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
-var genUtils = require('../util');
-
-function bangLog (msg, color) {
-  console.log('[' + chalk.blue('bangular') + ']: ' + chalk[color](msg));
-}
+var utils = require('../util');
 
 var BangularGenerator = yeoman.generators.NamedBase.extend({
 
@@ -50,16 +46,16 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
 
       this.template('style.scss', basePath + '.scss');
 
-      genUtils.appendNeedleOrOnTop({
+      utils.appendNeedleOrOnTop({
         needle: '// imports',
         file: 'client/styles/app.scss',
         append: '@import "../views/' + this.dashName + '/' + this.dashName + '";'
       }, function importCallback (err) {
         /* istanbul ignore if */
         if (err) {
-          bangLog('There was an error importing the style.', 'red');
+          utils.bangLog('There was an error importing the style.', 'red');
         } else {
-          bangLog('Your style was successfully injected.', 'green');
+          utils.bangLog('Your style was successfully injected.', 'green');
         }
       });
 

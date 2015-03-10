@@ -1,6 +1,7 @@
 'use strict';
 var path = require('path');
 var fs = require('fs');
+var chalk = require('chalk');
 
 function escapeRegExp (str) {
   return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
@@ -36,6 +37,9 @@ function templateIsUsable (self, filteredFile) {
 }
 
 var out = {
+  bangLog: function (msg, color) {
+    console.log('[' + chalk.blue('bangular') + ']: ' + chalk[color](msg));
+  },
   fileExists: function (path) {
     if (fs.existsSync(path)) { return true; }
     return false;

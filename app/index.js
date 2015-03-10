@@ -1,14 +1,9 @@
 'use strict';
 
-var genUtils = require('../util');
+var utils = require('../util');
 var path = require('path');
 var yeoman = require('yeoman-generator');
 var bangAscii = require('./ascii');
-var chalk = require('chalk');
-
-function bangLog (msg, color) {
-  console.log('[' + chalk.blue('bangular') + ']: ' + chalk[color](msg));
-}
 
 var BangularGenerator = yeoman.generators.Base.extend({
 
@@ -134,7 +129,7 @@ var BangularGenerator = yeoman.generators.Base.extend({
 
   generate: function () {
     this.sourceRoot(path.join(__dirname, './templates'));
-    genUtils.processDirectory(this, '.', '.');
+    utils.processDirectory(this, '.', '.');
 
     this.mkdir('client/assets/fonts');
     this.mkdir('client/assets/images');
@@ -143,13 +138,13 @@ var BangularGenerator = yeoman.generators.Base.extend({
   end: function () {
     /* istanbul ignore if */
     if (!this.options.skipInstall) {
-      bangLog('Installing dependencies...', 'yellow');
+      utils.bangLog('Installing dependencies...', 'yellow');
     }
     this.installDependencies({
       skipInstall: this.options.skipInstall,
       skipMessage: true,
       callback: function () {
-        bangLog('Everything is ready !\n', 'green');
+        utils.bangLog('Everything is ready !\n', 'green');
       }
     });
   }

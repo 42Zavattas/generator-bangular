@@ -2,7 +2,7 @@
 
 var chalk = require('chalk');
 var yeoman = require('yeoman-generator');
-var genUtils = require('../util');
+var utils = require('../util');
 
 var BangularGenerator = yeoman.generators.NamedBase.extend({
 
@@ -68,7 +68,7 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
       this.template(filters.backend + '/' + file, 'server/api/' + this.fileName + '/' + this.fileName + '.' + file);
     }.bind(this));
 
-    genUtils.rewriteFile({
+    utils.rewriteFile({
       file: 'server/routes.js',
       needle: '// API',
       splicable: [
@@ -83,7 +83,7 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
     if (this.sockets) {
       this.template('mongo/socket.js', 'server/api/' + this.fileName + '/' + this.fileName + '.socket.js');
 
-      genUtils.rewriteFile({
+      utils.rewriteFile({
         file: 'server/config/sockets.js',
         needle: '// sockets insert',
         splicable: [
