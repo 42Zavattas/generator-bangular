@@ -18,7 +18,7 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
       type: 'confirm',
       name: 'template',
       message: 'Do this directive needs an html template?',
-      default: true
+      default: false
     }], function (props) {
       self.needTemplate = props.template;
       done();
@@ -28,33 +28,13 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
 
   writing: function () {
 
-    this.template(
-      'directive.js',
-      'client/directives/'
-      + this.dashName
-      + '/'
-      + this.dashName
-      + '.directive.js'
-    );
+    var basePath = 'client/directives/' + this.dashName + '/' + this.dashName;
 
-    this.template(
-      'directive.spec.js',
-      'client/directives/'
-      + this.dashName
-      + '/'
-      + this.dashName
-      + '.spec.js'
-    );
+    this.template('directive.js', basePath + '.directive.js');
+    this.template('directive.spec.js', basePath + '.spec.js');
 
     if (this.needTemplate) {
-      this.template(
-        'directive.html',
-        'client/directives/'
-        + this.dashName
-        + '/'
-        + this.dashName
-        + '.html'
-      );
+      this.template('directive.html', basePath + '.html');
     }
 
   }
