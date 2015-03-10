@@ -12,23 +12,10 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
 
   writing: function () {
 
-    this.template(
-      'service.js',
-      'client/services/'
-      + this.dashName
-      + '/'
-      + this.dashName
-      + '.js'
-    );
+    var basePath = 'client/services/' + this.dashName + '/' + this.dashName;
 
-    this.template(
-      'spec.js',
-      'client/services/'
-      + this.dashName
-      + '/'
-      + this.dashName
-      + '.spec.js'
-    );
+    this.template('service.js', basePath + '.js');
+    this.template('spec.js', basePath + '.spec.js');
 
   }
 

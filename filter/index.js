@@ -10,8 +10,12 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
   },
 
   writing: function () {
-    this.template('filter.js', 'client/filters/' + this.dashName + '/' + this.dashName + '.js');
-    this.template('filter.spec.js', 'client/filters/' + this.dashName + '/' + this.dashName + '.spec.js');
+
+    var basePath = 'client/filters/' + this.dashName + '/' + this.dashName;
+
+    this.template('filter.js', basePath + '.js');
+    this.template('filter.spec.js', basePath + '.spec.js');
+
   }
 
 });
