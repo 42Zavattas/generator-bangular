@@ -1,6 +1,12 @@
 'use strict';
 
 var yeoman = require('yeoman-generator');
+var chalk = require('chalk');
+var genUtils = require('../util');
+
+function bangLog (msg, color) {
+  console.log('[' + chalk.blue('bangular') + ']: ' + chalk[color](msg));
+}
 
 var BangularGenerator = yeoman.generators.NamedBase.extend({
 
@@ -19,8 +25,14 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
       name: 'template',
       message: 'Do this directive needs an html template?',
       default: false
+    }, {
+      type: 'confirm',
+      name: 'import',
+      message: 'Do you want to create and import the ' + chalk.blue(this.dashName + '.scss') + ' style in your app.scss?',
+      default: false
     }], function (props) {
       self.needTemplate = props.template;
+      self.import = props.import;
       done();
     });
 
@@ -35,6 +47,25 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
 
     if (this.needTemplate) {
       this.template('directive.html', basePath + '.html');
+    }
+
+    if (this.import) {
+
+      this.template('style.scss', basePath + '.scss');
+
+      genUtils.appendNeedleOrOnTop({
+        needle: '// imports',
+        file: 'client/styles/app.scss',
+        append: '@import "../directives/' + this.dashName + '/' + this.dashName + '";'
+      }, function importCallback (err) {
+        /* istanbul ignore if */
+        if (err) {
+          bangLog('There was an error importing the style.', 'red');
+        } else {
+          bangLog('Your style was successfully injected.', 'green');
+        }
+      });
+
     }
 
   }

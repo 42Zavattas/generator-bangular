@@ -61,6 +61,25 @@ describe('Launching directive tests', function () {
       });
     });
 
+    it('should create a file with a style', function (done) {
+      bangDirective = helpers.createGenerator('bangular:directive', [bangDir + '/directive'], 'flammenkuche');
+      helpers.mockPrompt(bangDirective, { import: true });
+      bangDirective.run(function () {
+        assert.file('client/directives/flammenkuche/flammenkuche.directive.js');
+        assert.file('client/directives/flammenkuche/flammenkuche.spec.js');
+        assert.file('client/directives/flammenkuche/flammenkuche.scss');
+
+        assert.fileContent('client/directives/flammenkuche/flammenkuche.directive.js', '.directive(\'flammenkuche\', function () {');
+        assert.fileContent('client/directives/flammenkuche/flammenkuche.spec.js', 'angular.element(\'<flammenkuche></flammenkuche>\');');
+
+        setTimeout(function () {
+          assert.fileContent('client/styles/app.scss', '@import "../directives/flammenkuche/flammenkuche";');
+          done();
+        }, 250);
+
+      });
+    });
+
   });
 
 });
