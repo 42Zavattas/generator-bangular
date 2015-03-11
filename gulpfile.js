@@ -70,7 +70,7 @@ gulp.task('changelog', function (done) {
     repository: 'https://github.com/42Zavattas/generator-bangular',
     version: require('./package.json').version,
     from: '0.9.0',
-    to: ''
+    to: '0.9.1'
   }, function (err, log) {
     console.log(log);
     done();

@@ -1,3 +1,16 @@
+### 0.9.1 (2015-03-11)
+
+
+#### Bug Fixes
+
+* **build:** rewrite urls in dist css file ([7b4e1552](https://github.com/42Zavattas/generator-bangular/commit/7b4e1552d2b3869c5fc8aca638e16941da89ccb3))
+
+
+#### Features
+
+* **directive:** prompt for style file creation ([a24ea967](https://github.com/42Zavattas/generator-bangular/commit/a24ea9671ef059195e2b512e5a94acb2f27249c4))
+
+
 ## 0.9.0 (2015-03-08)
 
 
