@@ -164,8 +164,7 @@ describe('Launching app generator tests', function () {
 
   describe('', function () {
 
-    var tmpBang,
-        bangDir = process.cwd();
+    var bangDir = process.cwd();
 
     before(function (done) {
 
@@ -179,13 +178,11 @@ describe('Launching app generator tests', function () {
 
     it('should test a generation in an already generated directory', function (done) {
 
-      tmpBang = helpers.createGenerator('bangular:app', [bangDir + '/app'], false, { skipInstall: true });
+      var tmpBang = helpers.createGenerator('bangular', [bangDir + '/app'], false, { skipInstall: true });
 
       helpers.mockPrompt(tmpBang, { skipConfig: true });
       tmpBang.conflicter.force = true;
-      tmpBang.run(function () {
-        done();
-      });
+      tmpBang.run(done);
 
     });
 
