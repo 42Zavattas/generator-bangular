@@ -46,18 +46,22 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
 
       this.template('style.scss', basePath + '.scss');
 
-      utils.appendNeedleOrOnTop({
-        needle: '// imports',
-        file: 'client/styles/app.scss',
-        append: '@import "../views/' + this.dashName + '/' + this.dashName + '";'
-      }, function importCallback (err) {
-        /* istanbul ignore if */
-        if (err) {
-          utils.bangLog('There was an error importing the style.', 'red');
-        } else {
-          utils.bangLog('Your style was successfully injected.', 'green');
-        }
-      });
+      setTimeout(function () {
+
+        utils.appendNeedleOrOnTop({
+          needle: '// imports',
+          file: 'client/styles/app.scss',
+          append: '@import "../views/' + this.dashName + '/' + this.dashName + '";'
+        }, function importCallback (err) {
+          /* istanbul ignore if */
+          if (err) {
+            utils.bangLog('There was an error importing the style.', 'red');
+          } else {
+            utils.bangLog('Your style was successfully injected.', 'green');
+          }
+        });
+
+      }, 250);
 
     }
 
