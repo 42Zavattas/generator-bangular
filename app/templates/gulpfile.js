@@ -94,7 +94,11 @@ gulp.task('watch', ['inject'], function () {
   gulp.watch(['client/index.html', 'client/app.js'])
     .on('change', $.livereload.changed);
 
-  $.watch(['client/styles/**/*.scss', 'client/views/**/*.scss'], function () {
+  $.watch([
+    'client/styles/**/*.scss',
+    'client/views/**/*.scss',
+    'client/directives/**/*.scss'
+  ], function () {
     gulp.src('client/styles/app.scss')
       .pipe($.plumber())
       .pipe($.sass())
