@@ -120,6 +120,8 @@ gulp.task('watch', ['inject'], function () {
     'client/services',
     'client/services/**/*.js',
     '!client/services/**/*.spec.js',
+    'client/animations',
+    'client/animations/*.js',
     'client/filters',
     'client/filters/**/*.js',
     '!client/filters/**/*.spec.js'
