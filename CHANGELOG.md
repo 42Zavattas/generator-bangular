@@ -1,3 +1,14 @@
+### 0.9.2 (2015-03-24)
+
+
+#### Bug Fixes
+
+* **gulpfile:** recompile scss on directive style changes ([83b95055](https://github.com/42Zavattas/generator-bangular/commit/83b95055be714a0ca806930d931d63c8220eaf71))
+* **route:**
+  * correct route name injected into app.scss ([30bef46c](https://github.com/42Zavattas/generator-bangular/commit/30bef46cce0186fc3027909d6f6e9f5ae9d46aa6))
+  * wait for app style to be generated. ([903d7487](https://github.com/42Zavattas/generator-bangular/commit/903d7487063012e9f89f49c2000af14bda7e0839))
+
+
 ### 0.9.1 (2015-03-11)
 
 
