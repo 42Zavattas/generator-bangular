@@ -61,7 +61,7 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
           }
         });
 
-      }, 250);
+      }.bind(this), 250);
 
     }
 
