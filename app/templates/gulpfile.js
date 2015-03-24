@@ -107,7 +107,7 @@ gulp.task('watch', ['inject'], function () {
       .pipe($.livereload());
   });
 
-  $.watch([
+  var coreFiles = [
     'client/views',
     'client/views/**/*.html',
     'client/views/**/*.js',
@@ -126,12 +126,20 @@ gulp.task('watch', ['inject'], function () {
     'client/filters',
     'client/filters/**/*.js',
     '!client/filters/**/*.spec.js'
-  ], function () {
+  ];
+
+  var lastInjection = Date.now();
+
+  $.watch(coreFiles, { events: ['add', 'unlink'] }, function () {
+    if (Date.now() - lastInjection < 100) { return; }
+    lastInjection = Date.now();
     gulp.src('client/index.html')
-      .pipe($.wait(100))
       .pipe($.inject(gulp.src(toInject), { relative: true }))
       .pipe(gulp.dest('client'));
   });
+
+  gulp.watch(coreFiles)
+    .on('change', $.livereload.changed);
 
 });
 
