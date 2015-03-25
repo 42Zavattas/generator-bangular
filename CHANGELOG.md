@@ -1,3 +1,16 @@
+### 0.9.3 (2015-03-25)
+
+
+#### Bug Fixes
+
+* **server:** update mongo & mongoose dependencies ([52a0d88d](https://github.com/42Zavattas/generator-bangular/commit/52a0d88d516feeed6f4afda73b04f6324ab023a9))
+
+
+#### Features
+
+* **gulp:** major watch & inject improvements ([26a86cdf](https://github.com/42Zavattas/generator-bangular/commit/26a86cdf990fa0ee9c5cef5d1ea83e91064a5b86))
+
+
 ### 0.9.2 (2015-03-24)
 
 
