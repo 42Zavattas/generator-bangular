@@ -287,7 +287,7 @@ describe('Launching app generator tests', function () {
 
     it('should build the app and check some files', function (done) {
       this.timeout(60000);
-      exec('gulp build', function (err, stdout) {
+      exec('gulp build', function (err) {
 
         assert.file([
           'dist/package.json',
@@ -297,20 +297,20 @@ describe('Launching app generator tests', function () {
         ]);
 
         assert.noFileContent('dist/client/index.html', 'livereload');
-        done();
+        done(err);
       });
     });
 
     it('should update the webdriver and pass e2e tests', function (done) {
       this.timeout(60000);
       exec('gulp e2e:update', function () {
-        exec('gulp e2e', function (err, stdout) {
-          chaiAssert.include(stdout, '3 tests, 3 assertions, 0 failures')
+        exec('gulp e2e', { timeout: 30000 }, function (err, stdout) {
+          chaiAssert.include(stdout, '3 tests, 3 assertions, 0 failures');
           chaiAssert.notMatch(stdout, /\(((?=.*[1-9])\d+(\.\d+)?) failures\)/, 'Output should not contain failed tests.');
           done(err);
         });
       });
-    })
+    });
 
     after(function (done) {
       exec('cd .. && rm -rf ./mock', function () {
