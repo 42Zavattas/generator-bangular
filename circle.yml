@@ -1,0 +1,14 @@
+dependencies:
+  pre:
+    - npm install -g istanbul gulp
+    - wget https://saucelabs.com/downloads/sc-latest-linux.tar.gz
+    - tar -xzf sc-latest-linux.tar.gz
+test:
+  pre:
+    - ./bin/sc -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY:
+        background: true
+        pwd: sc-*-linux
+  override:
+    - npm test
+  post:
+    - npm run cover
