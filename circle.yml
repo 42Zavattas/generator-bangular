@@ -12,3 +12,4 @@ test:
     - npm test
   post:
     - npm run cover
+    - gulp control
