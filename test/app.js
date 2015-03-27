@@ -307,7 +307,7 @@ describe('Launching app generator tests', function () {
         exec('gulp e2e', { timeout: 30000 }, function (err, stdout) {
           chaiAssert.include(stdout, '3 tests, 3 assertions, 0 failures');
           chaiAssert.notMatch(stdout, /\(((?=.*[1-9])\d+(\.\d+)?) failures\)/, 'Output should not contain failed tests.');
-          done(err);
+          done();
         });
       });
     });
