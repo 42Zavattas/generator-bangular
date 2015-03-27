@@ -1,5 +1,6 @@
 'use strict';
 
+var path = require('path');
 var assert = require('yeoman-generator').assert;
 var helpers = require('yeoman-generator').test;
 var exec = require('child_process').exec;
