@@ -32,6 +32,8 @@ var toInject = [
   'client/styles/css/app.css'
 ];
 
+var bowerInjectExclude = [];
+
 var toDelete = [];
 
 /**
@@ -68,7 +70,8 @@ gulp.task('inject', ['sass'], function () {
   return gulp.src('client/index.html')
     .pipe($.inject(gulp.src(bowerFiles(), { read: false }), {
       name: 'bower',
-      relative: 'true'
+      relative: 'true',
+      ignorePath: bowerInjectExclude
     }))
     .pipe($.inject(sources, { relative: true }))
     .pipe(gulp.dest('client'));
@@ -87,7 +90,8 @@ gulp.task('watch', ['inject'], function () {
     gulp.src('client/index.html')
       .pipe($.inject(gulp.src(bowerFiles(), { read: false }), {
         name: 'bower',
-        relative: 'true'
+        relative: 'true',
+        ignorePath: bowerInjectExclude
       }))
       .pipe(gulp.dest('client'));
   });
