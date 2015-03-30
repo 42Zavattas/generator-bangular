@@ -15,7 +15,12 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
     var basePath = 'client/services/' + this.dashName + '/' + this.dashName;
 
     this.template('service.js', basePath + '.js');
-    this.template('spec.js', basePath + '.spec.js');
+
+    var filters = this.config.get('filters');
+
+    if (filters && filters.karma) {
+      this.template('spec.js', basePath + '.spec.js');
+    }
 
   }
 

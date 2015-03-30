@@ -39,8 +39,15 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
     this.template('index.js', basePath + '.js');
     this.template('controller.js', basePath + '.controller.js');
     this.template('view.html', basePath + '.html');
-    this.template('spec.js', basePath + '.spec.js');
-    this.template('e2e.js', basePath + '.e2e.js');
+
+    var filters = this.config.get('filters');
+
+    if (filters && filters.karma) {
+      this.template('spec.js', basePath + '.spec.js');
+    }
+    if (filters && filters.e2e) {
+      this.template('e2e.js', basePath + '.e2e.js');
+    }
 
     if (this.import) {
 

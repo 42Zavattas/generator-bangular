@@ -12,8 +12,6 @@ function basicFileCheck () {
     'gulpfile.js',
     'bower.json',
     'package.json',
-    'karma.conf.js',
-    'protractor.conf.js',
     'server/routes.js',
     'server/server.js',
     'server/config/express.js',
@@ -28,11 +26,8 @@ function basicFileCheck () {
     'client/views/home/home.controller.js',
     'client/views/home/home.html',
     'client/views/home/home.js',
-    'client/views/home/home.spec.js',
-    'client/views/home/home.e2e.js',
     'README.md',
     '.editorconfig',
-    '.jshintrc',
     '.gitignore'
   ]);
 }
@@ -71,6 +66,97 @@ describe('Launching app generator tests', function () {
     it('should not have request dependency', function () {
       assert.noFileContent('package.json', 'request');
     });
+
+    it('should not have tests files', function () {
+      assert.noFile([
+        '.jscsrc',
+        '.jshintrc',
+        'server/.jshintrc',
+        'client/.jshintrc',
+        'client/views/login/login.spec.js',
+        'client/views/login/login.e2e.js',
+        'client/views/signup/signup.spec.js',
+        'client/views/signup/signup.e2e.js',
+        'client/views/home/home.spec.js',
+        'client/views/home/home.e2e.js',
+        'karma.conf.js',
+        'protractor.conf.js'
+      ]);
+    });
+
+    it('should not have the tests dependencies', function () {
+      assert.noFileContent('package.json', 'mocha');
+      assert.noFileContent('package.json', 'karma');
+      assert.noFileContent('package.json', 'phantomjs');
+      assert.noFileContent('package.json', 'jasmine');
+      assert.noFileContent('package.json', 'protractor');
+      assert.noFileContent('package.json', 'should');
+      assert.noFileContent('package.json', 'supertest');
+      assert.noFileContent('package.json', 'jscs');
+      assert.noFileContent('package.json', 'jshint');
+    });
+
+    it('should not have the tests gulp tasks', function () {
+      assert.noFileContent('gulpfile.js', 'gulp.task(\'test\'');
+      assert.noFileContent('gulpfile.js', 'gulp.task(\'control\'');
+      assert.noFileContent('gulpfile.js', 'gulp.task(\'e2e\'');
+      assert.noFileContent('gulpfile.js', 'gulp.task(\'e2e:update\'');
+    });
+  });
+
+  describe('', function () {
+
+    before(function (done) {
+
+      utils.scaffold({
+        name: 'Test',
+        backend: 'mongo',
+        modules: [],
+        sockets: false,
+        auth: true,
+        tests: ['e2e', 'control', 'karma', 'mocha']
+      }, done);
+
+    });
+
+    it('should creates all the files', basicFileCheck);
+
+    it('should create the tests files', function () {
+      assert.file([
+        '.jscsrc',
+        '.jshintrc',
+        'server/.jshintrc',
+        'client/.jshintrc',
+        'client/views/login/login.spec.js',
+        'client/views/login/login.e2e.js',
+        'client/views/signup/signup.spec.js',
+        'client/views/signup/signup.e2e.js',
+        'client/views/home/home.spec.js',
+        'client/views/home/home.e2e.js',
+        'karma.conf.js',
+        'protractor.conf.js'
+      ]);
+    });
+
+    it('should check the package tests dependencies', function () {
+      assert.fileContent('package.json', 'mocha');
+      assert.fileContent('package.json', 'karma');
+      assert.fileContent('package.json', 'phantomjs');
+      assert.fileContent('package.json', 'jasmine');
+      assert.fileContent('package.json', 'protractor');
+      assert.fileContent('package.json', 'should');
+      assert.fileContent('package.json', 'supertest');
+      assert.fileContent('package.json', 'jscs');
+      assert.fileContent('package.json', 'jshint');
+    });
+
+    it('should check the gulp tasks', function () {
+      assert.fileContent('gulpfile.js', 'gulp.task(\'test\'');
+      assert.fileContent('gulpfile.js', 'gulp.task(\'control\'');
+      assert.fileContent('gulpfile.js', 'gulp.task(\'e2e\'');
+      assert.fileContent('gulpfile.js', 'gulp.task(\'e2e:update\'');
+    });
+
   });
 
   describe('', function () {
@@ -211,13 +297,9 @@ describe('Launching app generator tests', function () {
         'client/views/signup/signup.controller.js',
         'client/views/signup/signup.html',
         'client/views/signup/signup.js',
-        'client/views/signup/signup.spec.js',
-        'client/views/signup/signup.e2e.js',
         'client/views/login/login.controller.js',
         'client/views/login/login.html',
         'client/views/login/login.js',
-        'client/views/login/login.spec.js',
-        'client/views/login/login.e2e.js',
         'client/services/auth',
         'server/auth'
       ]);
@@ -254,7 +336,8 @@ describe('Launching app generator tests', function () {
           backend: 'mongo',
           modules: [],
           sockets: true,
-          auth: true
+          auth: true,
+          tests: ['e2e', 'karma', 'mocha', 'control']
         })
         .on('end', function () {
           exec('cp ' + path.join(__dirname, '/files/protractor.conf.js') + ' ' + dir, done);
@@ -265,6 +348,7 @@ describe('Launching app generator tests', function () {
       this.timeout(20000);
       exec('gulp control', function (err, stdout) {
         chaiAssert.include(stdout, ' Starting \'control\'...\n[', 'Start should not be followed by newlines.');
+        chaiAssert.notInclude(stdout, 'Task \'control\' is not in your gulpfile');
         done();
       });
     });
@@ -273,6 +357,7 @@ describe('Launching app generator tests', function () {
       this.timeout(20000);
       exec('gulp test --server', function (err, stdout) {
         chaiAssert.notMatch(stdout, /((?=.*[1-9])\d+(\.\d+)?) failing\n/, 'Output should not have failing tests.');
+        chaiAssert.notInclude(stdout, 'Task \'test\' is not in your gulpfile');
         done();
       });
     });
@@ -281,6 +366,7 @@ describe('Launching app generator tests', function () {
       this.timeout(20000);
       exec('gulp test --client', function (err, stdout) {
         chaiAssert.notMatch(stdout, /\(((?=.*[1-9])\d+(\.\d+)?) FAILED\)/, 'Output should not contain failed tests.');
+        chaiAssert.notInclude(stdout, 'Task \'test\' is not in your gulpfile');
         done();
       });
     });
@@ -303,7 +389,8 @@ describe('Launching app generator tests', function () {
 
     it('should update the webdriver and pass e2e tests', function (done) {
       this.timeout(60000);
-      exec('gulp e2e:update', function () {
+      exec('gulp e2e:update', function (err, stdout) {
+        chaiAssert.notInclude(stdout, 'Task \'e2e:update\' is not in your gulpfile');
         exec('gulp e2e', { timeout: 30000 }, function (err, stdout) {
           chaiAssert.include(stdout, '3 tests, 3 assertions, 0 failures');
           chaiAssert.notMatch(stdout, /\(((?=.*[1-9])\d+(\.\d+)?) failures\)/, 'Output should not contain failed tests.');

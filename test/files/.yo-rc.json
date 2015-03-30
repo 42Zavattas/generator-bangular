@@ -7,6 +7,10 @@
       "ngResource": true,
       "ngSanitize": true,
       "ngAnimate": true,
+      "control": true,
+      "karma": true,
+      "mocha": true,
+      "e2e": true,
       "sockets": true,
       "auth": true
     }

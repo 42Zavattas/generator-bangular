@@ -65,6 +65,27 @@ var BangularGenerator = yeoman.generators.Base.extend({
       }]
     }, {
       type: 'checkbox',
+      name: 'tests',
+      message: 'Customize your test suite.',
+      choices: [{
+        value: 'control',
+        name: 'JSHint & JSCS',
+        checked: false
+      }, {
+        value: 'karma',
+        name: 'Client tests using Karma',
+        checked: false
+      }, {
+        value: 'mocha',
+        name: 'Server tests using Mocha',
+        checked: false
+      }, {
+        value: 'e2e',
+        name: 'End to end tests using Protractor',
+        checked: false
+      }]
+    }, {
+      type: 'checkbox',
       name: 'modules',
       message: 'Which module do you want to load?',
       choices: [{
@@ -91,6 +112,12 @@ var BangularGenerator = yeoman.generators.Base.extend({
       if (props.modules.length) {
         props.modules.forEach(function (module) {
           self.filters[module] = true;
+        });
+      }
+
+      if (props.tests && props.tests.length) {
+        props.tests.forEach(function (test) {
+          self.filters[test] = true;
         });
       }
 

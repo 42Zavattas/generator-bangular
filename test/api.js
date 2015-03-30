@@ -16,7 +16,8 @@ describe('Launching api tests', function () {
       utils.scaffold({
         name: 'Test',
         backend: 'mongo',
-        modules: []
+        modules: [],
+        tests: ['mocha']
       }, done, { skipInstall: true, skipLog: true });
 
     });
@@ -58,6 +59,34 @@ describe('Launching api tests', function () {
 
           assert.fileContent('server/routes.js', 'app.use(\'/api/restocks\', require(\'./api/restock\'));');
           assert.fileContent('server/routes.js', 'app.use(\'/api/users\', require(\'./api/user\'));');
+          done();
+        }, 250);
+      });
+    });
+
+  });
+
+  describe('', function () {
+
+    before(function (done) {
+
+      utils.scaffold({
+        name: 'Test',
+        backend: 'mongo',
+        modules: []
+      }, done, { skipInstall: true, skipLog: true });
+
+    });
+
+    it('should not create the spec file', function (done) {
+      bangApi = helpers.createGenerator('bangular:api', [bangDir + '/api'], 'restock');
+      helpers.mockPrompt(bangApi, { url: '/api/restocks' });
+      bangApi.run(function () {
+        setTimeout(function () {
+          assert.file('server/api/restock/index.js');
+          assert.file('server/api/restock/restock.controller.js');
+          assert.noFile('server/api/restock/restock.spec.js');
+          assert.file('server/api/restock/restock.model.js');
           done();
         }, 250);
       });

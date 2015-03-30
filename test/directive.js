@@ -16,7 +16,8 @@ describe('Launching directive tests', function () {
       utils.scaffold({
         name: 'Test',
         backend: 'mongo',
-        modules: []
+        modules: [],
+        tests: ['karma']
       }, done, { skipInstall: true, skipLog: true });
 
     });
@@ -68,6 +69,29 @@ describe('Launching directive tests', function () {
           done();
         }, 250);
 
+      });
+    });
+
+  });
+
+  describe('', function () {
+
+    before(function (done) {
+
+      utils.scaffold({
+        name: 'Test',
+        backend: 'mongo',
+        modules: []
+      }, done, { skipInstall: true, skipLog: true });
+
+    });
+
+    it('should not create the spec', function (done) {
+      bangDirective = helpers.createGenerator('bangular:directive', [bangDir + '/directive'], 'map');
+      helpers.mockPrompt(bangDirective, { template: false });
+      bangDirective.run(function () {
+        assert.noFile('client/directives/map/map.spec.js');
+        done();
       });
     });
 

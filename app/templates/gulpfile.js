@@ -9,8 +9,8 @@ var sq = require('streamqueue');
 var path = require('path');
 var async = require('async');
 var _ = require('lodash');
-var fs = require('fs');
-var karma = require('karma').server;
+var fs = require('fs');<% if (filters.karma) { %>
+var karma = require('karma').server;<% } %>
 var $ = require('gulp-load-plugins')();
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
@@ -145,7 +145,7 @@ gulp.task('watch', ['inject'], function () {
   gulp.watch(coreFiles)
     .on('change', $.livereload.changed);
 
-});
+});<% if (filters.control) { %>
 
 /**
  * Control things
@@ -180,7 +180,7 @@ gulp.task('control', function (done) {
     control(['gulpfile.js'], getConfig('./server/.jshintrc'))
   ], done);
 
-});
+});<% } %><% if (filters.e2e) { %>
 
 /**
  * Protractor
@@ -199,12 +199,12 @@ gulp.task('e2e', ['serve'], function () {
     .on('end', function () {
       process.exit(0);
     });
-});
+});<% } %><% if (filters.karma || filters.mocha) { %>
 
 /**
  * Tests
  */
-function testServer (done) {
+<% if (filters.mocha) { %>function testServer (done) {
 
   log('Running server tests...', { padding: true });
 
@@ -214,8 +214,8 @@ function testServer (done) {
     .once('end', function () {
       done();
     });
-}
-
+}<% } %>
+<% if (filters.karma) { %>
 function testClient (done) {
 
   log('Running client tests...', { padding: true });
@@ -223,7 +223,7 @@ function testClient (done) {
   karma.start({
     configFile: __dirname + '/karma.conf.js'
   }, done);
-}
+}<% } %>
 
 gulp.task('test', function (done) {
   process.env.NODE_ENV = 'test';
@@ -245,7 +245,7 @@ gulp.task('test', function (done) {
   } else {
     console.log('Wrong parameter [%s], availables : --client, --server', arg);
   }
-});
+});<% } %>
 
 function waitForExpress (cb) {
   var id;

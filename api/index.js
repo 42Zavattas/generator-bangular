@@ -57,10 +57,14 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
 
     var filters = this.config.get('filters');
     var filesByBackendType = {
-      mongo: ['controller.js', 'model.js', 'spec.js'],
+      mongo: ['controller.js', 'model.js'],
       json: ['controller.js', 'data.json'],
       restock: ['controller.js']
     };
+
+    if (filters && filters.mocha) {
+      filesByBackendType.mongo.push('spec.js');
+    }
 
     this.template('index.js', 'server/api/' + this.fileName + '/index.js');
 

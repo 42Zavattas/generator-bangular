@@ -39,7 +39,12 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
     var basePath = 'client/directives/' + this.dashName + '/' + this.dashName;
 
     this.template('directive.js', basePath + '.directive.js');
-    this.template('directive.spec.js', basePath + '.spec.js');
+
+    var filters = this.config.get('filters');
+
+    if (filters && filters.karma) {
+      this.template('directive.spec.js', basePath + '.spec.js');
+    }
 
     if (this.needTemplate) {
       this.template('directive.html', basePath + '.html');

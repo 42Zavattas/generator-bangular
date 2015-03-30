@@ -16,7 +16,8 @@ describe('Launching route tests', function () {
       utils.scaffold({
         name: 'Test',
         backend: 'restock',
-        modules: []
+        modules: [],
+        tests: ['e2e', 'karma']
       }, done, { skipInstall: true, skipLog: true });
 
     });
@@ -58,6 +59,37 @@ describe('Launching route tests', function () {
         assert.fileContent('client/views/yolo/yolo.controller.js', 'YoloCtrl');
         assert.fileContent('client/views/yolo/yolo.spec.js', '$controller(\'YoloCtrl\'');
         assert.fileContent('client/views/yolo/yolo.js', '.when(\'/yolo\',');
+
+        done();
+      });
+
+    });
+
+  });
+
+  describe('', function () {
+
+    before(function (done) {
+
+      utils.scaffold({
+        name: 'Test',
+        backend: 'restock',
+        modules: []
+      }, done, { skipInstall: true, skipLog: true });
+
+    });
+
+    it('should not create the e2e and specs', function (done) {
+
+      bangRoute = helpers.createGenerator('bangular:route', [bangDir + '/route'], 'contact');
+      helpers.mockPrompt(bangRoute, { route: '/contact' });
+      bangRoute.run(function () {
+
+        assert.file('client/views/contact/contact.js');
+        assert.file('client/views/contact/contact.controller.js');
+        assert.file('client/views/contact/contact.html');
+        assert.noFile('client/views/contact/contact.spec.js');
+        assert.noFile('client/views/contact/contact.e2e.js');
 
         done();
       });

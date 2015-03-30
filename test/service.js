@@ -16,7 +16,8 @@ describe('Launching service tests', function () {
       utils.scaffold({
         name: 'Test',
         backend: 'json',
-        modules: []
+        modules: [],
+        tests: ['karma']
       }, done, { skipInstall: true, skipLog: true });
 
     });
@@ -29,6 +30,31 @@ describe('Launching service tests', function () {
         assert.file('client/services/socket/socket.spec.js');
         assert.fileContent('client/services/socket/socket.js', '.service(\'Socket\', function () {');
         assert.fileContent('client/services/socket/socket.spec.js', 'inject(function (_Socket_) {');
+        done();
+      });
+
+    });
+
+  });
+
+  describe('', function () {
+
+    before(function (done) {
+
+      utils.scaffold({
+        name: 'Test',
+        backend: 'json',
+        modules: []
+      }, done, { skipInstall: true, skipLog: true });
+
+    });
+
+    it('should not create the specs', function (done) {
+
+      bangService = helpers.createGenerator('bangular:service', [bangDir + '/service'], 'socket');
+      bangService.run(function () {
+        assert.file('client/services/socket/socket.js');
+        assert.noFile('client/services/socket/socket.spec.js');
         done();
       });
 
