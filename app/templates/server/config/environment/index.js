@@ -18,7 +18,7 @@ var all = {
   }<% } %><% if (filters.auth) { %>,
 
   secrets: {
-    session: 'zavatta' || process.env.SESSION_SECRET
+    session: process.env.SESSION_SECRET || 'secretKey'
   }<% } %>
 };
 
