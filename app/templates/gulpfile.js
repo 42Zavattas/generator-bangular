@@ -222,7 +222,7 @@ function testClient (done) {
 
   karma.start({
     configFile: __dirname + '/karma.conf.js'
-  }, done);
+  }, function () { done(); });
 }<% } %>
 
 gulp.task('test', function (done) {
