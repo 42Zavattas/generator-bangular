@@ -1,3 +1,21 @@
+### 0.9.4 (2015-04-02)
+
+
+#### Bug Fixes
+
+* **server:** use secret env var by default ([5b0593fe](https://github.com/42Zavattas/generator-bangular/commit/5b0593fec65c4c7ded5063b27e2af852f7fd677d))
+* **tests:**
+  * allow local testing ([f69d0aeb](https://github.com/42Zavattas/generator-bangular/commit/f69d0aeb18feef9645067a5439788961e9b13cae))
+  * control test files, timeout e2e exec ([124dadff](https://github.com/42Zavattas/generator-bangular/commit/124dadff554f6de75224a85cb7e5082479c28622))
+  * add path require ([a600b74c](https://github.com/42Zavattas/generator-bangular/commit/a600b74c23220e5fdb34b6b8f154b475698be4bf))
+
+
+#### Features
+
+* **core:** ability to customize the test suite ([d2e096e7](https://github.com/42Zavattas/generator-bangular/commit/d2e096e74baff9821a6e46ceed4649311de5e2b9))
+* **tests:** assertions on generated project ([cf151271](https://github.com/42Zavattas/generator-bangular/commit/cf1512719bdb2071d9d22b2f386d8e0312c34488), closes [#10](https://github.com/42Zavattas/generator-bangular/issues/10))
+
+
 ### 0.9.3 (2015-03-25)
 
 
