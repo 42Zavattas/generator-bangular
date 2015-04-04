@@ -1,3 +1,11 @@
+### 0.9.6 (2015-04-04)
+
+
+#### Bug Fixes
+
+* **build:** rev-all changes ([42f70dc6](https://github.com/42Zavattas/generator-bangular/commit/42f70dc66c58efa5674aa7d4e56c8b889c8e0891))
+
+
 ### 0.9.4 (2015-04-02)
 
 
