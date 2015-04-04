@@ -356,16 +356,22 @@ gulp.task('replace', function () {
 });
 
 gulp.task('rev', function () {
-  return gulp.src('dist/client/**')
-    .pipe($.revAll({
-      ignore: ['favicon.ico', '.html'],
-      quiet: true,
-      transformFilename: function (file, hash) {
-        toDelete.push(path.resolve(file.path));
-        var ext = path.extname(file.path);
-        return path.basename(file.path, ext) + '.' + hash.substr(0, 8) + ext;
+
+  var revAll = new $.revAll({
+    dontRenameFile: ['index.html', 'favicon.ico'],
+    transformFilename: function (file, hash) {
+      var filename = path.basename(file.path);
+      if (filename === 'index.html' || filename === 'favicon.ico') {
+        return filename;
       }
-    }))
+      toDelete.push(path.resolve(file.path));
+      var ext = path.extname(file.path);
+      return path.basename(file.path, ext) + '.' + hash.substr(0, 8) + ext;
+    }
+  });
+
+  return gulp.src('dist/client/**')
+    .pipe(revAll.revision())
     .pipe(gulp.dest('dist/client/'));
 });
 
