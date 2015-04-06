@@ -1,3 +1,4 @@
+test/mock/
 node_modules/
 .idea/
 coverage/
