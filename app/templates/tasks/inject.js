@@ -6,8 +6,8 @@ var gulp       = require('gulp');
 var bowerFiles = require('main-bower-files');
 var inject     = require('gulp-inject');
 
-var toInject   = require('./_filesToInject');
-var toExclude  = require('./_bowerFilesToExclude');
+var toInject   = require('./config/filesToInject');
+var toExclude  = require('./config/bowerFilesToExclude');
 
 module.exports = function () {
   var sources = gulp.src(toInject, { read: false });
