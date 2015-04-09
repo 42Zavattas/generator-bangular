@@ -1,9 +1,11 @@
+'use strict';
+
 /**
  * Test tasks
  */
-
-var gulp       = require('gulp');
-var util       = require('gulp-util');
+<% if (filters.e2e || filters.mocha) { %>
+var gulp       = require('gulp');<% } if (filters.e2e) { %>
+var util       = require('gulp-util');<% } %>
 var chalk      = require('chalk');<% if (filters.e2e) { %>
 var protractor = require('gulp-protractor');<% } %><% if (filters.karma) { %>
 var karma      = require('karma').server;<% } %><% if (filters.mocha) { %>
@@ -23,8 +25,8 @@ function log (msg, options) {
     + chalk.yellow(' > ' + msg)
     + (options.padding ? '\n' : '')
   );
-}
-<% if (filters.e2e) { %>
+}<% if (filters.e2e) { %>
+
 exports.e2eUpdate = protractor.webdriver_update;
 
 exports.e2eTests = function () {
@@ -32,29 +34,33 @@ exports.e2eTests = function () {
     .pipe(protractor.protractor({ configFile: 'protractor.conf.js' }))
     .on('error', function (e) { util.log(e.message); process.exit(-1); })
     .on('end', function () { process.exit(0); });
-};
-<% } if (filters.karma || filters.mocha) { %>
-<% if (filters.mocha) { %>function testServer (done) {
+};<% } if (filters.karma || filters.mocha) { %>
+
+function testServer (done) {
 
   log('Running server tests...', { padding: true });
-
+<% if (filters.mocha) { %>
   gulp.src('server/**/*.spec.js', { read: false })
     .pipe(plumber())
     .pipe(mocha({ reporter: 'spec' }))
     .once('end', function () {
       done();
-    });
+    });<% } else { %>
+  done();
+<% } %>
 }
-<% } %><% if (filters.karma) { %>
+
 function testClient (done) {
 
   log('Running client tests...', { padding: true });
-
+<% if (filters.karma) { %>
   karma.start({
     configFile: __dirname + '/../karma.conf.js'
-  }, function () { done(); });
-}
+  }, function () { done(); });<% } else { %>
+  done();
 <% } %>
+}
+
 exports.test = function (done) {
   process.env.NODE_ENV = 'test';
   var arg = process.argv[3] ? process.argv[3].substr(2) : false;
@@ -75,5 +81,4 @@ exports.test = function (done) {
   } else {
     console.log('Wrong parameter [%s], availables : --client, --server', arg);
   }
-};
-<% } %>
+};<% } %>

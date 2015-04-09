@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Git versioning and bump
  */

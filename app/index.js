@@ -121,6 +121,8 @@ var BangularGenerator = yeoman.generators.Base.extend({
         });
       }
 
+      self.filters.hasTests = self.filters.karma || self.filters.mocha;
+
       if (props.backend === 'mongo') {
         self.prompt([{
           type: 'confirm',

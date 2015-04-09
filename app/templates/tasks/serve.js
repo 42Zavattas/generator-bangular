@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Serve app. For dev purpose.
  */

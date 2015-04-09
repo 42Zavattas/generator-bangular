@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Watch files, and do things when they changes.
  * Recompile scss if needed.

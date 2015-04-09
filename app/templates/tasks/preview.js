@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Preview the build app
  */

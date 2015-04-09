@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Inject css/js files in index.html
  */
