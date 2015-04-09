@@ -10,6 +10,7 @@ var del                  = require('del');
 var plumber              = require('gulp-plumber');
 var usemin               = require('gulp-usemin');
 var cssRebaseUrls        = require('gulp-css-rebase-urls');
+var autoprefixer         = require('gulp-autoprefixer');
 var minifyCss            = require('gulp-minify-css');
 var angularTemplatecache = require('gulp-angular-templatecache');
 var concat               = require('gulp-concat');
@@ -58,6 +59,7 @@ gulp.task('usemin', ['inject'], function () {
 
 gulp.task('cssmin', function () {
   return gulp.src('dist/client/app.css')
+    .pipe(autoprefixer())
     .pipe(minifyCss())
     .pipe(gulp.dest('dist/client/'));
 });
