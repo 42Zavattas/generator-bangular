@@ -37,7 +37,7 @@ Optional:
   - [Protractor](https://github.com/42Zavattas/generator-bangular#protractor)
   - [Sockets](https://github.com/42Zavattas/generator-bangular#sockets)
   - [Passport](https://github.com/42Zavattas/generator-bangular#passport)
-- [Architecture](https://github.com/42Zavattas/generator-bangular#architecutre)
+- [Architecture](https://github.com/42Zavattas/generator-bangular#architecture)
 
 # Manage project
 
