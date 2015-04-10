@@ -11,6 +11,7 @@
       "karma": true,
       "mocha": true,
       "e2e": true,
+      "hasTests": true,
       "sockets": true,
       "auth": true
     }
