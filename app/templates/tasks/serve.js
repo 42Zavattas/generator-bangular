@@ -21,11 +21,22 @@ function waitForExpress (cb) {
   var id;
 
   id = setInterval(function () {
-    if (fs.readFileSync('.bangular-refresh', 'utf-8') === 'done') {
-      clearTimeout(id);
-      fs.unlinkSync('.bangular-refresh');
-      cb();
-    }
+    fs.readFile('.bangular-refresh', 'utf-8', function (err, status) {
+      if (err) {
+        if (err.code === 'ENOENT') {
+          clearTimeout(id);
+          return fs.writeFileSync('.bangular-refresh', 'waiting');
+        }
+        throw err;
+      }
+      if (status === 'done') {
+        fs.unlink('.bangular-refresh', function (err) {
+          if (err) { throw err; }
+          clearTimeout(id);
+          cb();
+        });
+      }
+    });
   }, 100);
 }
 
