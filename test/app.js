@@ -345,7 +345,7 @@ describe('Launching app generator tests', function () {
     });
 
     it('should successfully pass the gulp control command', function (done) {
-      this.timeout(30000);
+      this.timeout(20000);
       exec('gulp control', function (err, stdout) {
         chaiAssert.include(stdout, ' Starting \'control\'...\n[', 'Start should not be followed by newlines.');
         chaiAssert.notInclude(stdout, 'Task \'control\' is not in your gulpfile');
@@ -354,7 +354,7 @@ describe('Launching app generator tests', function () {
     });
 
     it('should successfully pass the server tests', function (done) {
-      this.timeout(30000);
+      this.timeout(20000);
       exec('gulp test --server', function (err, stdout) {
         chaiAssert.notMatch(stdout, /((?=.*[1-9])\d+(\.\d+)?) failing\n/, 'Output should not have failing tests.');
         chaiAssert.notInclude(stdout, 'Task \'test\' is not in your gulpfile');
@@ -363,7 +363,7 @@ describe('Launching app generator tests', function () {
     });
 
     it('should successfully pass the karma tests', function (done) {
-      this.timeout(30000);
+      this.timeout(20000);
       exec('gulp test --client', function (err, stdout) {
         chaiAssert.notMatch(stdout, /\(((?=.*[1-9])\d+(\.\d+)?) FAILED\)/, 'Output should not contain failed tests.');
         chaiAssert.notInclude(stdout, 'Task \'test\' is not in your gulpfile');
@@ -372,7 +372,7 @@ describe('Launching app generator tests', function () {
     });
 
     it('should build the app and check some files', function (done) {
-      this.timeout(70000);
+      this.timeout(60000);
       exec('gulp build', function (err) {
 
         assert.file([
@@ -388,7 +388,7 @@ describe('Launching app generator tests', function () {
     });
 
     it('should update the webdriver and pass e2e tests', function (done) {
-      this.timeout(70000);
+      this.timeout(60000);
       exec('gulp e2e:update', function (err, stdout) {
         chaiAssert.notInclude(stdout, 'Task \'e2e:update\' is not in your gulpfile');
         exec('gulp e2e', { timeout: 30000 }, function (err, stdout) {
