@@ -49,7 +49,8 @@ gulp.task('control', function (done) {
     '!./node_modules/**',
     '!./**/templates/**/index.js',
     './**/index.js',
-    './test/*.js'
+    './test/*.js',
+    '!./test/mock/**'
   ];
 
   gulp.src(paths)
