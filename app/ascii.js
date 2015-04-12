@@ -9,7 +9,11 @@ var title =
   '\n    ' + chalk.red('_  /_/ // /_/ /_  / / /  /_/ /') + chalk.yellow('/ /_/ /_  / / /_/ /_  /     ') +
   '\n    ' + chalk.red('/_____/ \\__,_/ /_/ /_/_\\__, /') + chalk.yellow(' \\__,_/ /_/  \\__,_/ /_/      ') +
   '\n    ' + chalk.yellow('----------------------') + chalk.red('/____/-----------------------') +
-  '\n    ' + version + '                         ' + chalk.bgBlack('Light & Fast purposed') +
+  '\n    ' + pad(version, 8) + '                      ' + chalk.bgBlack('Light & Fast purposed') +
   '\n\n';
+
+function pad (str, nb) {
+  return str.length >= nb ? str.substr(0, nb) : str + Array(nb - str.length + 1).join(' ');
+}
 
 module.exports = title;
