@@ -8,7 +8,7 @@ Features:
 
 * **Sub-generators** for `route`, `api`, `directive`, `service`, and plenty others...
 * **Express server** with nested routing architecture.
-* **Livereload** on changes in client / server.
+* **Nodemon** with **LiveReload** or **BrowserSync** for the development process.
 * **Automatic bower dependencies injection** on package install.
 * **Test suite** — Unit tests with [Karma](https://karma-runner.github.io) & [Mocha](http://mochajs.org), e2e tests with [Protractor](https://github.com/angular/protractor).
 * **JSHint** & **JSCS** integration.
