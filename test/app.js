@@ -321,15 +321,12 @@ describe('Launching app generator tests', function () {
     before(function (done) {
 
       this.timeout(240000);
+
       var dir;
 
       helpers.run(path.join(__dirname, '../app'))
         .inDir(path.join(__dirname, './mock'), function (d) {
           dir = d;
-          var cb = this.async();
-          exec('cp ' + path.join(__dirname, '/files/.yo-rc.json') + ' ' + dir, function () {
-            cb();
-          });
         })
         .withPrompt({
           name: 'Test',
