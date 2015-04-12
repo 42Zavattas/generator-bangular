@@ -1,3 +1,17 @@
+## 0.10.0 (2015-04-13)
+
+
+#### Bug Fixes
+
+* **gulp-serve:** fix reloading after server crash ([400ea6d0](https://github.com/42Zavattas/generator-bangular/commit/400ea6d0a483111047fc5c55e039702c6655dbd4))
+
+
+#### Features
+
+* **build:** prefix css with gulp-autoprefixer ([25809d89](https://github.com/42Zavattas/generator-bangular/commit/25809d894a6fbb0841c4a9ae2d4bc2125c846817))
+* **core:** add optional browsersync ([921f2344](https://github.com/42Zavattas/generator-bangular/commit/921f234419e1ec451a746a88220470459414bcd2), closes [#8](https://github.com/42Zavattas/generator-bangular/issues/8))
+
+
 ### 0.9.6 (2015-04-04)
 
 
