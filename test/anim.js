@@ -16,6 +16,7 @@ describe('Launching anim tests', function () {
       utils.scaffold({
         name: 'Test',
         backend: 'restock',
+        reload: 'livereload',
         modules: [],
         sockets: false,
         auth: false

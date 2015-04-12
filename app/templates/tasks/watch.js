@@ -6,8 +6,9 @@
  * Reinject files
  */
 
-var gulp       = require('gulp');
-var livereload = require('gulp-livereload');
+var gulp       = require('gulp');<% if (filters.reload === 'livereload') { %>
+var livereload = require('gulp-livereload');<% } else { %>
+var bsync      = require('browser-sync');<% } %>
 var watch      = require('gulp-watch');
 var inject     = require('gulp-inject');
 var plumber    = require('gulp-plumber');
@@ -17,9 +18,9 @@ var bowerFiles = require('main-bower-files');
 var toInject   = require('./config/filesToInject');
 var toExclude  = require('./config/bowerFilesToExclude');
 
-module.exports = function () {
+module.exports = function () {<% if (filters.reload === 'livereload') { %>
 
-  livereload.listen();
+  livereload.listen();<% } %>
 
   gulp.watch('bower.json', function () {
     gulp.src('client/index.html')
@@ -28,11 +29,9 @@ module.exports = function () {
         relative: 'true',
         ignorePath: toExclude
       }))
-      .pipe(gulp.dest('client'));
+      .pipe(gulp.dest('client'))<% if (filters.reload === 'browsersync') { %>
+      .pipe(bsync.reload({ stream: true }))<% } %>;
   });
-
-  gulp.watch(['client/index.html', 'client/app.js'])
-    .on('change', livereload.changed);
 
   watch([
     'client/styles/**/*.scss',
@@ -42,8 +41,9 @@ module.exports = function () {
     gulp.src('client/styles/app.scss')
       .pipe(plumber())
       .pipe(sass())
-      .pipe(gulp.dest('client/styles/css'))
-      .pipe(livereload());
+      .pipe(gulp.dest('client/styles/css'))<% if (filters.reload === 'livereload') { %>
+      .pipe(livereload())<% } else { %>
+      .pipe(bsync.reload({ stream: true }))<% } %>;
   });
 
   var coreFiles = [
@@ -77,7 +77,7 @@ module.exports = function () {
       .pipe(gulp.dest('client'));
   });
 
-  gulp.watch(coreFiles)
-    .on('change', livereload.changed);
+  watch(coreFiles, <% if (filters.reload === 'livereload') { %>livereload.changed<% } else { %>bsync.reload<% } %>);
+  watch(['client/index.html', 'client/app.js'], <% if (filters.reload === 'livereload') { %>livereload.changed<% } else { %>bsync.reload<% } %>);
 
 };

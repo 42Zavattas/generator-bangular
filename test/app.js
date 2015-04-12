@@ -41,6 +41,7 @@ describe('Launching app generator tests', function () {
       utils.scaffold({
         name: 'Test',
         backend: 'mongo',
+        reload: 'livereload',
         modules: [],
         sockets: false
       }, done);
@@ -111,6 +112,7 @@ describe('Launching app generator tests', function () {
       utils.scaffold({
         name: 'Test',
         backend: 'mongo',
+        reload: 'livereload',
         modules: [],
         sockets: false,
         auth: true,
@@ -166,6 +168,7 @@ describe('Launching app generator tests', function () {
       utils.scaffold({
         name: 'Test',
         backend: 'restock',
+        reload: 'livereload',
         modules: ['ngCookies', 'ngSanitize']
       }, done);
 
@@ -200,6 +203,7 @@ describe('Launching app generator tests', function () {
       utils.scaffold({
         name: 'Test',
         backend: 'mongo',
+        reload: 'livereload',
         modules: [],
         sockets: true
       }, done);
@@ -225,6 +229,7 @@ describe('Launching app generator tests', function () {
       utils.scaffold({
         name: 'Test',
         backend: 'json',
+        reload: 'livereload',
         modules: ['ngResource', 'ngAnimate']
       }, done);
 
@@ -260,6 +265,7 @@ describe('Launching app generator tests', function () {
       utils.scaffold({
         name: 'Test',
         backend: 'json',
+        reload: 'livereload',
         modules: []
       }, done);
 
@@ -284,6 +290,7 @@ describe('Launching app generator tests', function () {
       utils.scaffold({
         name: 'Test',
         backend: 'mongo',
+        reload: 'livereload',
         modules: [],
         sockets: true,
         auth: true
@@ -320,6 +327,39 @@ describe('Launching app generator tests', function () {
 
     before(function (done) {
 
+      utils.scaffold({
+        name: 'Test',
+        backend: 'mongo',
+        reload: 'browsersync',
+        modules: [],
+        sockets: true,
+        auth: true
+      }, done);
+
+    });
+
+    it('should create all the files', basicFileCheck);
+
+    it('should check specific dependencies', function () {
+      assert.fileContent('package.json', 'browser-sync');
+      assert.noFileContent('package.json', 'gulp-livereload');
+      assert.noFileContent('package.json', 'gulp-replace');
+    });
+
+    it('should check index', function () {
+      assert.noFileContent('client/index.html', 'livereload');
+    });
+
+    it('should check serve task', function () {
+      assert.fileContent('tasks/serve.js', 'bsync.init');
+    });
+
+  });
+
+  describe('', function () {
+
+    before(function (done) {
+
       this.timeout(240000);
 
       var dir;
@@ -331,6 +371,7 @@ describe('Launching app generator tests', function () {
         .withPrompt({
           name: 'Test',
           backend: 'mongo',
+          reload: 'livereload',
           modules: [],
           sockets: true,
           auth: true,

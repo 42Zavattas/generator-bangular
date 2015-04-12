@@ -7,8 +7,9 @@
 var gulp       = require('gulp');
 var fs         = require('fs');
 var nodemon    = require('gulp-nodemon');
-var open       = require('gulp-open');
-var livereload = require('gulp-livereload');
+var open       = require('gulp-open');<% if (filters.reload === 'livereload') { %>
+var livereload = require('gulp-livereload');<% } else { %>
+var bsync      = require('browser-sync');<% } %>
 
 var config = require('../server/config/environment');
 
@@ -40,25 +41,42 @@ function waitForExpress (cb) {
   }, 100);
 }
 
-module.exports = function () {
-  return nodemon({
-      script: 'server/server.js',
-      ext: 'js',
-      ignore: ['client', 'dist', 'node_modules', 'gulpfile.js']
-    })
-    .on('start', function () {
-      fs.writeFileSync('.bangular-refresh', 'waiting');
+module.exports = {
 
-      if (!openOpts.already) {
-        openOpts.already = true;
-        waitForExpress(function () {
-          gulp.src('client/index.html')
-            .pipe(open('', openOpts));
-        });
-      } else {
-        waitForExpress(function () {
-          livereload.changed('/');
-        });
+  nodemon: function (<% if (filters.reload === 'browsersync') { %>cb<% } %>) {
+    return nodemon({
+        script: 'server/server.js',
+        ext: 'js',
+        ignore: ['client', 'dist', 'node_modules', 'gulpfile.js']
+      })
+      .on('start', function () {
+        fs.writeFileSync('.bangular-refresh', 'waiting');
+
+        if (!openOpts.already) {
+          openOpts.already = true;
+          waitForExpress(<% if (filters.reload === 'livereload') { %>function () {
+            gulp.src('client/index.html')
+              .pipe(open('', openOpts));
+          }<% } else { %>cb<% } %>);
+        } else {
+          waitForExpress(function () {<% if (filters.reload === 'livereload') { %>
+            livereload.changed('/');<% } else { %>
+            bsync.reload({ stream: false });<% } %>
+          });
+        }
+      });
+  }<% if (filters.reload === 'browsersync') { %>,
+
+  bsync: function () {
+    bsync.init({
+      proxy: 'localhost:9000',
+      browser: 'google chrome',
+      online: false,
+      notify: false,
+      watchOptions: {
+        interval: 500
       }
     });
+  }<% } %>
+
 };

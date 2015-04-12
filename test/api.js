@@ -16,6 +16,7 @@ describe('Launching api tests', function () {
       utils.scaffold({
         name: 'Test',
         backend: 'mongo',
+        reload: 'livereload',
         modules: [],
         tests: ['mocha']
       }, done, { skipInstall: true, skipLog: true });
@@ -73,6 +74,7 @@ describe('Launching api tests', function () {
       utils.scaffold({
         name: 'Test',
         backend: 'mongo',
+        reload: 'livereload',
         modules: []
       }, done, { skipInstall: true, skipLog: true });
 
@@ -101,6 +103,7 @@ describe('Launching api tests', function () {
       utils.scaffold({
         name: 'Test',
         backend: 'json',
+        reload: 'livereload',
         modules: []
       }, done, { skipInstall: true, skipLog: true });
 
@@ -135,6 +138,7 @@ describe('Launching api tests', function () {
       utils.scaffold({
         name: 'Test',
         backend: 'mongo',
+        reload: 'livereload',
         modules: ['ngResource'],
         sockets: true
       }, done, { skipInstall: true, skipLog: true });
@@ -172,6 +176,7 @@ describe('Launching api tests', function () {
       utils.scaffold({
         name: 'Test',
         backend: 'restock',
+        reload: 'livereload',
         modules: []
       }, done, { skipInstall: true, skipLog: true });
 

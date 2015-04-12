@@ -4,8 +4,9 @@ var gulp = require('gulp');
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
-gulp.task('default',    ['serve']);
-gulp.task('serve',      ['watch'],    require('./tasks/serve'));
+gulp.task('default',    ['serve']);<% if (filters.reload === 'browsersync') { %>
+gulp.task('nodemon',    ['watch'],    require('./tasks/serve').nodemon);<% } %>
+gulp.task('serve',      [<% if (filters.reload === 'livereload') { %>'watch'],  <% } else { %>'nodemon'],<% } %>  require('./tasks/serve')<% if (filters.reload === 'browsersync') { %>.bsync<% } else { %>.nodemon<% } %>);
 gulp.task('watch',      ['inject'],   require('./tasks/watch'));
 gulp.task('inject',     ['sass'],     require('./tasks/inject'));
 gulp.task('sass',                     require('./tasks/sass'));

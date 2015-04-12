@@ -17,6 +17,7 @@ describe('Launching style tests', function () {
       utils.scaffold({
         name: 'Test',
         backend: 'json',
+        reload: 'livereload',
         modules: []
       }, done, { skipInstall: true, skipLog: true });
 
@@ -74,6 +75,7 @@ describe('Launching style tests', function () {
       utils.scaffold({
         name: 'Test',
         backend: 'json',
+        reload: 'livereload',
         modules: []
       }, done, { skipInstall: true, skipLog: true });
 

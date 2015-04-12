@@ -64,6 +64,17 @@ var BangularGenerator = yeoman.generators.Base.extend({
         name: 'Restock.io, for mocking purpose'
       }]
     }, {
+      type: 'list',
+      name: 'reload',
+      message: 'Which development tool do you want for browser reloading / synchronising?',
+      choices: [{
+        value: 'livereload',
+        name: 'Livereload'
+      }, {
+        value: 'browsersync',
+        name: 'BrowserSync'
+      }]
+    }, {
       type: 'checkbox',
       name: 'tests',
       message: 'Customize your test suite.',
@@ -108,6 +119,7 @@ var BangularGenerator = yeoman.generators.Base.extend({
     }], function (props) {
       self.appname = self._.camelize(self._.slugify(self._.humanize(props.name)));
       self.filters.backend = props.backend;
+      self.filters.reload = props.reload;
 
       if (props.modules.length) {
         props.modules.forEach(function (module) {

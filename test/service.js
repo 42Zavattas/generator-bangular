@@ -16,6 +16,7 @@ describe('Launching service tests', function () {
       utils.scaffold({
         name: 'Test',
         backend: 'json',
+        reload: 'livereload',
         modules: [],
         tests: ['karma']
       }, done, { skipInstall: true, skipLog: true });
@@ -44,6 +45,7 @@ describe('Launching service tests', function () {
       utils.scaffold({
         name: 'Test',
         backend: 'json',
+        reload: 'livereload',
         modules: []
       }, done, { skipInstall: true, skipLog: true });
 

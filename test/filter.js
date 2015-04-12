@@ -16,6 +16,7 @@ describe('Launching filter tests', function () {
       utils.scaffold({
         name: 'Test',
         backend: 'restock',
+        reload: 'livereload',
         modules: [],
         tests: ['karma']
       }, done, { skipInstall: true, skipLog: true });
@@ -42,6 +43,7 @@ describe('Launching filter tests', function () {
       utils.scaffold({
         name: 'Test',
         backend: 'restock',
+        reload: 'livereload',
         modules: []
       }, done, { skipInstall: true, skipLog: true });
 

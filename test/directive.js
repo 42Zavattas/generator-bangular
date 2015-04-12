@@ -16,6 +16,7 @@ describe('Launching directive tests', function () {
       utils.scaffold({
         name: 'Test',
         backend: 'mongo',
+        reload: 'livereload',
         modules: [],
         tests: ['karma']
       }, done, { skipInstall: true, skipLog: true });
@@ -81,6 +82,7 @@ describe('Launching directive tests', function () {
       utils.scaffold({
         name: 'Test',
         backend: 'mongo',
+        reload: 'livereload',
         modules: []
       }, done, { skipInstall: true, skipLog: true });
 

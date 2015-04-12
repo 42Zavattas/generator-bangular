@@ -17,8 +17,8 @@ var minifyCss            = require('gulp-minify-css');
 var angularTemplatecache = require('gulp-angular-templatecache');
 var concat               = require('gulp-concat');
 var ngAnnotate           = require('gulp-ng-annotate');
-var uglify               = require('gulp-uglify');
-var replace              = require('gulp-replace');
+var uglify               = require('gulp-uglify');<% if (filters.reload === 'livereload') { %>
+var replace              = require('gulp-replace');<% } %>
 var revAll               = require('gulp-rev-all');
 
 var toDelete = [];
@@ -27,7 +27,7 @@ module.exports = function (done) {
   runSequence(
     ['clean:dist', 'sass'],
     ['usemin', 'copy:dist'],
-    ['replace', 'scripts', 'cssmin'],
+    [<% if (filters.reload === 'livereload') { %>'replace', <% } %>'scripts', 'cssmin'],
     'rev',
     'clean:finish',
     done);
@@ -86,13 +86,13 @@ gulp.task('scripts', function () {
     .pipe(ngAnnotate())
     .pipe(uglify())
     .pipe(gulp.dest('dist/client/'));
-});
+});<% if (filters.reload === 'livereload') { %>
 
 gulp.task('replace', function () {
   return gulp.src('dist/client/index.html')
     .pipe(replace(/\s*<script.*livereload.*><\/script>/, ''))
     .pipe(gulp.dest('dist/client'));
-});
+});<% } %>
 
 gulp.task('rev', function () {
 
