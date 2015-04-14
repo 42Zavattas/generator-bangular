@@ -1,3 +1,11 @@
+### 0.10.1 (2015-04-14)
+
+
+#### Features
+
+* **build:** add exclude config for rev ([4077cbb](https://github.com/42Zavattas/generator-bangular/commit/4077cbba49f8804d44519bb5344335cb7a876aeb))
+
+
 ## 0.10.0 (2015-04-13)
 
 

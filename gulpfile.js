@@ -70,8 +70,8 @@ gulp.task('changelog', function (done) {
   require('conventional-changelog')({
     repository: 'https://github.com/42Zavattas/generator-bangular',
     version: require('./package.json').version,
-    from: '0.9.6',
-    to: '0.10.0'
+    from: '0.10.0',
+    to: '0.10.1'
   }, function (err, log) {
     fs.writeFile('CHANGELOG.md', log, done);
   });
