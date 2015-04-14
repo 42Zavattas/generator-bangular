@@ -76,6 +76,15 @@ var BangularGenerator = yeoman.generators.Base.extend({
       }]
     }, {
       type: 'checkbox',
+      name: 'docs',
+      message: 'Do you want to add some documentation generators?',
+      choices: [{
+        value: 'sassdoc',
+        name: 'SassDoc',
+        checked: false
+      }]
+    }, {
+      type: 'checkbox',
       name: 'tests',
       message: 'Customize your test suite.',
       choices: [{
@@ -126,6 +135,14 @@ var BangularGenerator = yeoman.generators.Base.extend({
           self.filters[module] = true;
         });
       }
+
+      if (props.docs && props.docs.length) {
+        props.docs.forEach(function (doc) {
+          self.filters[doc] = true;
+        });
+      }
+
+      self.filters.hasDocs = !!self.filters.sassdoc;
 
       if (props.tests && props.tests.length) {
         props.tests.forEach(function (test) {

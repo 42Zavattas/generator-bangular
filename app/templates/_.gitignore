@@ -4,4 +4,5 @@ client/styles/css
 .idea/
 dist/
 .sass-cache/
-.bangular-refresh
+.bangular-refresh<% if (filters.hasDocs) { %>
+docs/<% } %>

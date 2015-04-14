@@ -1,0 +1,15 @@
+'use strict';
+
+/**
+ * Documentation tasks
+ */
+
+var gulp    = require('gulp');<% if (filters.sassdoc) { %>
+var sassdoc = require('sassdoc');<% } %><% if (filters.sassdoc) { %>
+
+exports.sassdoc = function () {
+  gulp.src('client/styles/**/*.scss')
+    .pipe(sassdoc({
+      dest: 'docs/sass'
+    }));
+};<% } %>

@@ -360,6 +360,35 @@ describe('Launching app generator tests', function () {
 
     before(function (done) {
 
+      utils.scaffold({
+        name: 'Test',
+        backend: 'json',
+        reload: 'livereload',
+        modules: [],
+        docs: ['sassdoc']
+      }, done);
+
+    });
+
+    it('should create all the files', basicFileCheck);
+
+    it('should check sassdoc dependency', function () {
+      assert.fileContent('package.json', 'sassdoc');
+    });
+
+    it('should check sassdoc task is present', function () {
+      assert.file('tasks/doc.js');
+      assert.fileContent('tasks/doc.js', 'exports.sassdoc = function () {');
+      assert.fileContent('gulpfile.js', 'gulp.task(\'sassdoc\', ');
+      assert.fileContent('.gitignore', 'docs/');
+    });
+
+  });
+
+  /*describe('', function () {
+
+    before(function (done) {
+
       this.timeout(240000);
 
       var dir;
@@ -443,6 +472,6 @@ describe('Launching app generator tests', function () {
       });
     });
 
-  });
+  });*/
 
 });
