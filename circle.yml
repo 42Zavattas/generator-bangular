@@ -1,3 +1,8 @@
+general:
+  branches:
+    only:
+      - master
+      - develop
 dependencies:
   pre:
     - npm install -g istanbul gulp
