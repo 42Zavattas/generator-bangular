@@ -27,6 +27,7 @@ Optional:
 * **authentication system**, with [Passport](https://github.com/jaredhanson/passport)
 * **MongoDB**, with [Mongoose ODM](https://github.com/learnboost/mongoose)
 * **mocked backend**, with [Restock](https://github.com/42Zavattas/Restock.io)
+* **[SassDoc](https://github.com/SassDoc/sassdoc)** support
 
 [Source code of generated project](https://github.com/42Zavattas/bangular-demo) or [live demo](http://demo.bangular.io/)
 
