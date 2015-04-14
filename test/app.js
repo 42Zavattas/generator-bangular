@@ -385,7 +385,7 @@ describe('Launching app generator tests', function () {
 
   });
 
-  /*describe('', function () {
+  describe('', function () {
 
     before(function (done) {
 
@@ -472,6 +472,6 @@ describe('Launching app generator tests', function () {
       });
     });
 
-  });*/
+  });
 
 });
