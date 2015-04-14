@@ -20,6 +20,7 @@ var ngAnnotate           = require('gulp-ng-annotate');
 var uglify               = require('gulp-uglify');<% if (filters.reload === 'livereload') { %>
 var replace              = require('gulp-replace');<% } %>
 var revAll               = require('gulp-rev-all');
+var revToExclude         = require('./config/revFilesToExclude');
 
 var toDelete = [];
 
@@ -97,10 +98,9 @@ gulp.task('replace', function () {
 gulp.task('rev', function () {
 
   var rev = new revAll({
-    dontRenameFile: ['index.html', 'favicon.ico'],
     transformFilename: function (file, hash) {
       var filename = path.basename(file.path);
-      if (filename === 'index.html' || filename === 'favicon.ico') {
+      if (revToExclude.indexOf(filename) !== -1) {
         return filename;
       }
       toDelete.push(path.resolve(file.path));
