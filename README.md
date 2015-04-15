@@ -10,6 +10,8 @@
 
 > *« Perfection is achieved not when there is nothing more to add, but when there is nothing left to take away. »* — ***Antoine De Saint-Exupéry***
 
+<a href="https://github.com/42Zavattas/bangular-demo" target="_blank">Source code</a> or <a href="http://demo.bangular.io" target="_blank">live demo</a> of generated project.
+
 Features:
 
 * **Sub-generators** for `route`, `api`, `directive`, `service`, and plenty others...
@@ -28,8 +30,6 @@ Optional:
 * **MongoDB**, with [Mongoose ODM](https://github.com/learnboost/mongoose)
 * **mocked backend**, with [Restock](https://github.com/42Zavattas/Restock.io)
 * **[SassDoc](https://github.com/SassDoc/sassdoc)** support
-
-[Source code of generated project](https://github.com/42Zavattas/bangular-demo) or [live demo](http://demo.bangular.io/)
 
 # Install
 
@@ -218,6 +218,9 @@ It will create default views for the signup and login. You can easily protect yo
     ├ routes.js
     ├ server.js
     └ .jshintrc
+    tasks
+    ├ config/
+    └ *.js
     bower.json
     gulpfile.js
     karma.conf.js
