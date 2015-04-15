@@ -15,12 +15,12 @@
 Features:
 
 * **Sub-generators** for `route`, `api`, `directive`, `service`, and plenty others...
-* **Express server** with nested routing architecture.
-* **Nodemon** with **LiveReload** or **BrowserSync** for the development process.
+* **[Express](https://github.com/strongloop/express) server** with nested routing architecture.
+* **[Nodemon](https://github.com/remy/nodemon)** with **[LiveReload](https://github.com/vohof/gulp-livereload)** or **[BrowserSync](https://github.com/BrowserSync/browser-sync)** for the development process.
 * **Automatic bower dependencies injection** on package install.
 * **Test suite** — Unit tests with [Karma](https://karma-runner.github.io) & [Mocha](http://mochajs.org), e2e tests with [Protractor](https://github.com/angular/protractor).
-* **JSHint** & **JSCS** integration.
-* **Sass** support.
+* **[JSHint](https://github.com/jshint/jshint)** & **[JSCS](https://github.com/jscs-dev/node-jscs)** integration.
+* **[Sass](https://github.com/sass/sass)** support.
 * **Fast build**, like, real fast.
 
 Optional:
