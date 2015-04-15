@@ -1,3 +1,6 @@
+<p align="center">
+  <img src="http://media.bangular.io/simple-logo.png">
+</p>
 <h1 align="center">generator-bangular</h1>
 <p align="center">
   <a href="https://circleci.com/gh/42Zavattas/generator-bangular"><img src="https://circleci-badges.herokuapp.com/42Zavattas/generator-bangular/fd88a2cf8197ee2e026ceab5b76683a60596540c"></a>
