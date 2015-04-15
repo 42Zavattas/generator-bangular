@@ -20,14 +20,15 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
     this.objectName = _.capitalize(_.camelize(this.name));
     this.objectsName = this.objectName + 's';
 
+    var filters = this.config.get('filters');
+    this.filters = filters || {};
+
     var prompts = [{
       type: 'input',
       name: 'url',
       message: 'On which url do you want to attach the ' + chalk.red(this.objectName) + ' endpoint? ',
       default: '/api/' + this.routeName
     }];
-
-    var filters = this.config.get('filters');
 
     if (filters && filters.ngResource) {
       prompts.push({

@@ -5,11 +5,16 @@
  */
 
 var gulp    = require('gulp');<% if (filters.sassdoc) { %>
-var sassdoc = require('sassdoc');<% } %><% if (filters.sassdoc) { %>
+var sassdoc = require('sassdoc');<% } %><% if (filters.apidoc) { %>
+var exec    = require('child_process').exec;<% } %><% if (filters.sassdoc) { %>
 
 exports.sassdoc = function () {
   gulp.src('client/styles/**/*.scss')
     .pipe(sassdoc({
       dest: 'docs/sass'
     }));
+};<% } %><% if (filters.apidoc) { %>
+
+exports.apidoc = function (done) {
+  exec('npm run apidoc', done);
 };<% } %>

@@ -18,4 +18,5 @@ gulp.task('control',                  require('./tasks/control'));<% } if (filte
 gulp.task('e2e:update',               require('./tasks/test').e2eUpdate);
 gulp.task('e2e',        ['serve'],    require('./tasks/test').e2eTests);<% } if (filters.karma || filters.mocha) { %>
 gulp.task('test',                     require('./tasks/test').test);<% } if (filters.sassdoc) { %>
-gulp.task('sassdoc',                  require('./tasks/doc').sassdoc);<% } %>
+gulp.task('sassdoc',                  require('./tasks/doc').sassdoc);<% } if (filters.apidoc) { %>
+gulp.task('apidoc',                   require('./tasks/doc').apidoc);<% } %>

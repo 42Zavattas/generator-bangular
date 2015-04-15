@@ -389,6 +389,41 @@ describe('Launching app generator tests', function () {
 
     before(function (done) {
 
+      utils.scaffold({
+        name: 'Test',
+        backend: 'mongo',
+        reload: 'livereload',
+        modules: [],
+        docs: ['apidoc'],
+        auth: true
+      }, done);
+
+    });
+
+    it('should create all the files', basicFileCheck);
+
+    it('should check the apidoc dep and command', function () {
+      assert.fileContent('package.json', 'apidoc');
+      assert.fileContent('package.json', './node_modules/.bin/apidoc');
+    });
+
+    it('should check apidoc task', function () {
+      assert.file('tasks/doc.js');
+      assert.fileContent('tasks/doc.js', 'exports.apidoc = function (done) {');
+      assert.fileContent('gulpfile.js', 'gulp.task(\'apidoc\', ');
+    });
+
+    it('should have apidoc comments for user api', function () {
+      assert.fileContent('server/api/user/user.controller.js', '@apiName CreateUser');
+      assert.fileContent('server/api/user/user.controller.js', '@apiName GetMe');
+    });
+
+  });
+
+  describe('', function () {
+
+    before(function (done) {
+
       this.timeout(240000);
 
       var dir;

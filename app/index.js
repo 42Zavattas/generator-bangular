@@ -87,6 +87,10 @@ var BangularGenerator = yeoman.generators.Base.extend({
         value: 'sassdoc',
         name: 'SassDoc',
         checked: false
+      }, {
+        value: 'apidoc',
+        name: 'ApiDoc',
+        checked: false
       }]
     }, {
       type: 'checkbox',
@@ -143,12 +147,11 @@ var BangularGenerator = yeoman.generators.Base.extend({
       }
 
       if (props.docs && props.docs.length) {
+        self.filters.hasDocs = true;
         props.docs.forEach(function (doc) {
           self.filters[doc] = true;
         });
       }
-
-      self.filters.hasDocs = !!self.filters.sassdoc;
 
       if (props.tests && props.tests.length) {
         props.tests.forEach(function (test) {

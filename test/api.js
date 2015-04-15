@@ -175,6 +175,35 @@ describe('Launching api tests', function () {
 
       utils.scaffold({
         name: 'Test',
+        backend: 'mongo',
+        reload: 'livereload',
+        modules: [],
+        docs: ['apidoc']
+      }, done, { skipInstall: true, skipLog: true });
+
+    });
+
+    it('should have apidoc comments for generated routes', function (done) {
+      bangApi = helpers.createGenerator('bangular:api', [bangDir + '/api'], 'item');
+      helpers.mockPrompt(bangApi, { url: '/api/items', sockets: true });
+      bangApi.run(function () {
+        assert.fileContent('server/api/item/item.controller.js', '@apiName GetItems');
+        assert.fileContent('server/api/item/item.controller.js', '@apiName GetItem');
+        assert.fileContent('server/api/item/item.controller.js', '@apiName CreateItem');
+        assert.fileContent('server/api/item/item.controller.js', '@apiName UpdateItem');
+        assert.fileContent('server/api/item/item.controller.js', '@apiName RemoveItem');
+        done();
+      });
+    });
+
+  });
+
+  describe('', function () {
+
+    before(function (done) {
+
+      utils.scaffold({
+        name: 'Test',
         backend: 'restock',
         reload: 'livereload',
         modules: []
