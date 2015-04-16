@@ -1,3 +1,11 @@
+### 0.10.2 (2015-04-16)
+
+
+#### Features
+
+* **docs:** add SassDoc option ([0aa716b8](https://github.com/42Zavattas/generator-bangular/commit/0aa716b85c69b226e65021190bf8b0b5c41e076f), closes [#13](https://github.com/42Zavattas/generator-bangular/issues/13))
+
+
 ### 0.10.1 (2015-04-14)
 
 
