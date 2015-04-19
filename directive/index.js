@@ -2,13 +2,15 @@
 
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
+var _ = require('underscore.string');
+
 var utils = require('../util');
 
 var BangularGenerator = yeoman.generators.NamedBase.extend({
 
   initializing: function () {
-    this.camelName = this._.camelize(this.name);
-    this.dashName = this._.dasherize(this.name);
+    this.camelName = _.camelize(this.name);
+    this.dashName = _.dasherize(this.name);
   },
 
   prompting: function () {

@@ -2,6 +2,7 @@
 
 var chalk = require('chalk');
 var yeoman = require('yeoman-generator');
+
 var utils = require('../util');
 
 var BangularGenerator = yeoman.generators.NamedBase.extend({

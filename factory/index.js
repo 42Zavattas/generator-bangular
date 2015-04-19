@@ -1,13 +1,13 @@
 'use strict';
 
 var yeoman = require('yeoman-generator');
+var _ = require('underscore.string');
 
 var BangularGenerator = yeoman.generators.NamedBase.extend({
 
   initializing: function () {
-    this.camelName = this._.capitalize(this._.camelize(this.name, true));
-    // TODO use _.decapitalize instead of this trick when yeoman-generator will update its undercore.string dependency...
-    this.dashName = this._.dasherize(this.name.substr(0, 1).toLowerCase() + this.name.substr(1));
+    this.camelName = _.capitalize(_.camelize(this.name, true));
+    this.dashName = _.dasherize(_.decapitalize(this.name));
   },
 
   writing: function () {

@@ -2,6 +2,8 @@
 
 var chalk = require('chalk');
 var yeoman = require('yeoman-generator');
+var _ = require('underscore.string');
+
 var utils = require('../util');
 
 var BangularGenerator = yeoman.generators.NamedBase.extend({
@@ -9,13 +11,13 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
   prompting: function () {
     var done = this.async();
 
-    this.instanceName = this._.camelize(this.name);
-    this.instancesName = this._.camelize(this.name) + 's';
+    this.instanceName = _.camelize(this.name);
+    this.instancesName = _.camelize(this.name) + 's';
 
-    this.fileName = this._.dasherize(this.name.substr(0, 1).toLowerCase() + this.name.substr(1));
+    this.fileName = _.decapitalize(_.dasherize(this.name));
     this.routeName = this.fileName + 's';
 
-    this.objectName = this.name.substr(0, 1).toUpperCase() + this._.camelize(this.name).substr(1);
+    this.objectName = _.capitalize(_.camelize(this.name));
     this.objectsName = this.objectName + 's';
 
     var prompts = [{

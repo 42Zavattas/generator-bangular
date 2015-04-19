@@ -2,15 +2,21 @@
 
 var async = require('async');
 var yeoman = require('yeoman-generator');
+var mkdir = require('mkdirp');
+var _ = require('underscore.string');
+
 var utils = require('../util');
 
 var BangularGenerator = yeoman.generators.NamedBase.extend({
+
+  initializing: function () {
+    this.name = _.slugify(this.name);
+  },
 
   prompting: function () {
 
     var done = this.async();
 
-    this.name = this._.slugify(this.name);
     this.types = {};
 
     this.prompt([{
@@ -50,7 +56,7 @@ var BangularGenerator = yeoman.generators.NamedBase.extend({
 
   writing: function () {
 
-    this.mkdir('client/assets/fonts/' + this.name);
+    mkdir.sync('client/assets/fonts/' + this.name);
 
     if (!utils.fileExists('client/styles/fonts.scss')) {
       this.template('fonts.scss', 'client/styles/fonts.scss');

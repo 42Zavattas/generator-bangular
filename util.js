@@ -1,13 +1,20 @@
 'use strict';
 
-var path = require('path');
 var os = require('os');
 var fs = require('fs');
+var path = require('path');
+var glob = require('glob');
 var chalk = require('chalk');
+var _ = require('lodash');
 var helpers = require('yeoman-generator').test;
 
 function escapeRegExp (str) {
   return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
+}
+
+function isPathAbsolute () {
+  var filepath = path.join.apply(path, arguments);
+  return path.resolve(filepath) === filepath;
 }
 
 function filterFile (template) {
@@ -31,7 +38,7 @@ function templateIsUsable (self, filteredFile) {
       enabledFilters.push(key);
     }
   }
-  var matchedFilters = self._.intersection(filteredFile.filters, enabledFilters);
+  var matchedFilters = _.intersection(filteredFile.filters, enabledFilters);
   // check that all filters on file are matched
   if (filteredFile.filters.length && matchedFilters.length !== filteredFile.filters.length) {
     return false;
@@ -48,7 +55,7 @@ var out = {
     helpers.run(path.join(__dirname, './app'))
       .inDir(path.join(os.tmpdir(), './tmp'))
       .withOptions(opts || { skipInstall: true })
-      .withPrompt(prompts)
+      .withPrompts(prompts)
       .on('end', cb);
   },
   fileExists: function (path) {
@@ -147,8 +154,8 @@ var out = {
     });
   },
   processDirectory: function (self, source, destination) {
-    var root = self.isPathAbsolute(source) ? source : path.join(self.sourceRoot(), source);
-    var files = self.expandFiles('**', { dot: true, cwd: root });
+    var root = isPathAbsolute(source) ? source : path.join(self.sourceRoot(), source);
+    var files = glob.sync('**', { dot: true, nodir: true, cwd: root });
     var dest, src;
 
     files.forEach(function (f) {

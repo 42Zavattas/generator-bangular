@@ -397,7 +397,8 @@ describe('Launching app generator tests', function () {
         .inDir(path.join(__dirname, './mock'), function (d) {
           dir = d;
         })
-        .withPrompt({
+        .withOptions({ skipInstall: false })
+        .withPrompts({
           name: 'Test',
           backend: 'mongo',
           reload: 'livereload',

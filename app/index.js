@@ -1,8 +1,11 @@
 'use strict';
 
-var utils = require('../util');
 var path = require('path');
+var mkdir = require('mkdirp');
 var yeoman = require('yeoman-generator');
+var _ = require('underscore.string');
+
+var utils = require('../util');
 var bangAscii = require('./ascii');
 
 var BangularGenerator = yeoman.generators.Base.extend({
@@ -10,6 +13,7 @@ var BangularGenerator = yeoman.generators.Base.extend({
   initializing: {
     getVars: function () {
       this.appname = this.appname || path.basename(process.cwd());
+      this.slugName = _.slugify(this.appname);
       this.filters = {};
       this.pkg = require('../package.json');
     },
@@ -126,7 +130,7 @@ var BangularGenerator = yeoman.generators.Base.extend({
         checked: false
       }]
     }], function (props) {
-      self.appname = self._.camelize(self._.slugify(self._.humanize(props.name)));
+      self.appname = _.camelize(_.slugify(_.humanize(props.name)));
       self.filters.backend = props.backend;
       self.filters.reload = props.reload;
 
@@ -189,8 +193,8 @@ var BangularGenerator = yeoman.generators.Base.extend({
     this.sourceRoot(path.join(__dirname, './templates'));
     utils.processDirectory(this, '.', '.');
 
-    this.mkdir('client/assets/fonts');
-    this.mkdir('client/assets/images');
+    mkdir.sync('client/assets/fonts');
+    mkdir.sync('client/assets/images');
   },
 
   end: function () {

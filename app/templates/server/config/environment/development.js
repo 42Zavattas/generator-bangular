@@ -2,6 +2,6 @@
 
 module.exports = {<% if (filters.backend === 'mongo') { %>
   mongo: {
-    uri: 'mongodb://localhost/<%= _.slugify(appname) %>-dev'
+    uri: 'mongodb://localhost/<%= slugName %>-dev'
   }<% } %>
 };

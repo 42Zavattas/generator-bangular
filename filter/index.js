@@ -1,12 +1,13 @@
 'use strict';
 
 var yeoman = require('yeoman-generator');
+var _ = require('underscore.string');
 
 var BangularGenerator = yeoman.generators.NamedBase.extend({
 
   initializing: function () {
-    this.dashName = this._.dasherize(this.name);
-    this.camelName = this._.camelize(this.name);
+    this.dashName = _.dasherize(this.name);
+    this.camelName = _.camelize(this.name);
   },
 
   writing: function () {

@@ -2,14 +2,16 @@
 
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
+var _ = require('underscore.string');
+
 var utils = require('../util');
 
 var BangularGenerator = yeoman.generators.NamedBase.extend({
 
   initializing: function () {
-    this.appName = this._.camelize(this.appname);
-    this.controllerName = this._.capitalize(this._.camelize(this.name)) + 'Ctrl';
-    this.dashName = this._.dasherize(this.name);
+    this.appName = _.camelize(this.appname);
+    this.controllerName = _.capitalize(_.camelize(this.name)) + 'Ctrl';
+    this.dashName = _.dasherize(this.name);
   },
 
   prompting: function () {
