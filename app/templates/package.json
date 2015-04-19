@@ -39,7 +39,7 @@
     "main-bower-files": "^2.5.0",
     "run-sequence": "^1.0.2",<% if (filters.sassdoc) { %>
     "sassdoc": "^2.1.8",<% } if (filters.mocha) { %>
-    "should": "^5.1.0",<% } %>
+    "should": "^6.0.1",<% } %>
     "streamqueue": "^0.1.2"<% if (filters.karma) { %>,
     "supertest": "^0.15.0"<% } %>
   },
