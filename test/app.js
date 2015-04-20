@@ -51,7 +51,7 @@ describe('Launching app generator tests', function () {
     it('should creates all the files', basicFileCheck);
 
     it('should check name in some files', function () {
-      assert.fileContent('README.md', '# test');
+      assert.fileContent('README.md', '# Test');
       assert.fileContent('client/index.html', 'ng-app="test"');
       assert.fileContent('client/app.js', 'angular.module(\'test\'');
     });
