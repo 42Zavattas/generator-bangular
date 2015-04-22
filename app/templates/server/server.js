@@ -28,7 +28,7 @@ server.listen(config.port, config.ip, function () {
   );
 
   if (config.env === 'development') {
-    require('fs').writeFileSync('.bangular-refresh', 'done');
+    require('ripe').ready();
   }
 
 });

@@ -3,6 +3,5 @@ client/bower_components/
 client/styles/css
 .idea/
 dist/
-.sass-cache/
-.bangular-refresh<% if (filters.hasDocs) { %>
+.sass-cache/<% if (filters.hasDocs) { %>
 docs/<% } %>
