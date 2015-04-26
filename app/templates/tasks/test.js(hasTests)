@@ -46,9 +46,8 @@ function testServer (done) {
   gulp.src('server/**/*.spec.js', { read: false })
     .pipe(plumber())
     .pipe(mocha({ reporter: 'spec' }))
-    .once('end', function () {
-      done();
-    });<% } else { %>
+    .once('error', function () { done(1); })
+    .once('end', function () { done(0); });<% } else { %>
   done();
 <% } %>
 }
@@ -59,7 +58,7 @@ function testClient (done) {
 <% if (filters.karma) { %>
   karma.start({
     configFile: __dirname + '/../karma.conf.js'
-  }, function () { done(); });<% } else { %>
+  }, done);<% } else { %>
   done();
 <% } %>
 }
@@ -70,15 +69,16 @@ exports.test = function (done) {
   if (arg === 'client') {
     return testClient(done);
   } else if (arg === 'server') {
-    return testServer(function () {
-      done();
-      process.exit();
+    return testServer(function (code) {
+      done(code);
+      process.exit(code);
     });
   } else if (arg === false) {
-    return testClient(function () {
-      testServer(function () {
-        done();
-        process.exit();
+    return testClient(function (code) {
+      if (code) { return done(code); }
+      testServer(function (code) {
+        done(code);
+        process.exit(code);
       });
     });
   } else {
