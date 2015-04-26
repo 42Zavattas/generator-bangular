@@ -46,7 +46,7 @@ function testServer (done) {
   gulp.src('server/**/*.spec.js', { read: false })
     .pipe(plumber())
     .pipe(mocha({ reporter: 'spec' }))
-    .once('error', function () { done(1); })
+    .once('error', function (err) { done(err); })
     .once('end', function () { done(0); });<% } else { %>
   done();
 <% } %>
