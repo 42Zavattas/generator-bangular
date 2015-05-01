@@ -4,15 +4,18 @@ angular.module('<%= appname %>')
   .service('Auth', function ($rootScope, $cookieStore, $q, $http) {
 
     var _user = {};
+    var _ready = $q.defer();
 
     if ($cookieStore.get('token')) {
       $http.get('/api/users/me')
         .then(function (res) {
           _user = res.data;
         })
-        .catch(function (err) {
-          console.log(err);
+        .finally(function (err) {
+          _ready.resolve();
         });
+    } else {
+      _ready.resolve();
     }
 
     /**
@@ -64,12 +67,29 @@ angular.module('<%= appname %>')
     };
 
     /**
-     * Check if user is logged
+     * Check if the user is logged
      *
      * @returns {boolean}
      */
     this.isLogged = function () {
-      return _user.hasOwnProperty('email');
+      return _user.hasOwnProperty('_id');
+    };
+
+    /**
+     * Check if the user is logged after the ready state
+     *
+     * @returns {Promise}
+     */
+    this.isReadyLogged = function () {
+      var def = $q.defer();
+      _ready.promise.then(function () {
+        if (_user.hasOwnProperty('_id')) {
+          def.resolve();
+        } else {
+          def.reject();
+        }
+      });
+      return def.promise;
     };
 
     /**
