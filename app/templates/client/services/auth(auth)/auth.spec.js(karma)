@@ -22,12 +22,13 @@ describe('Service: Auth', function () {
 
   it('should log user', function () {
     expect(Auth.isLogged()).toBe(false);
-    Auth.login({ email: 'test@test.com', password: 'test' });
+    Auth.login({ _id: '123', email: 'test@test.com', password: 'test' });
     $httpBackend.expectPOST('/auth/local')
-      .respond({ token: 'abcde', user: { email: 'test@test.com' } });
+      .respond({ token: 'abcde', user: { _id: '123', email: 'test@test.com' } });
     $httpBackend.flush();
     expect($cookieStore.get('token')).toBe('abcde');
     expect(Auth.getUser().email).toBe('test@test.com');
+    expect(Auth.getUser()._id).toBe('123');
     expect(Auth.isLogged()).toBe(true);
   });
 

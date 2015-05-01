@@ -11,7 +11,7 @@ angular.module('<%= appname %>')
         .then(function (res) {
           _user = res.data;
         })
-        .finally(function (err) {
+        .finally(function () {
           _ready.resolve();
         });
     } else {
