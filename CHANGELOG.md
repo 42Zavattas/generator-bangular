@@ -1,3 +1,19 @@
+<a name"0.11.0"></a>
+## 0.11.0 (2015-05-02)
+
+
+#### Bug Fixes
+
+* **tests:** return error codes if we have ([230dd87c](https://github.com/42Zavattas/generator-bangular/commit/230dd87c))
+
+
+#### Features
+
+* **auth:** improve auth service and route protection ([8dfb37cc](https://github.com/42Zavattas/generator-bangular/commit/8dfb37cc))
+* **docs:** add apidoc support ([bc36b9b7](https://github.com/42Zavattas/generator-bangular/commit/bc36b9b7), closes [#14](https://github.com/42Zavattas/generator-bangular/issues/14))
+* **serve:** server reload handled by dedicated dependency ([f985e923](https://github.com/42Zavattas/generator-bangular/commit/f985e923))
+
+
 ### 0.10.2 (2015-04-16)
 
 
