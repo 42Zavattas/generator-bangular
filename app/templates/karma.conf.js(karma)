@@ -1,5 +1,7 @@
 'use strict';
 
+var bowerFilesToExclude = require('./tasks/config/bowerFilesToExclude.js');
+
 module.exports = function (config) {
   config.set({
 
@@ -22,22 +24,22 @@ module.exports = function (config) {
       'karma-ng-html2js-preprocessor'
     ],
 
-    files: [
-      'bower_components/angular/angular.js',
+    files: require('main-bower-files')({
+      filter: function (path) {
+        for (var i = 0; i < bowerFilesToExclude.length; i++) {
+          if (!/\.js$/.test(path) || new RegExp(bowerFilesToExclude[i]).test(path)) { return false; }
+        }
+        return true;
+      }
+    }).concat([
       'bower_components/angular-mocks/angular-mocks.js',
-      'bower_components/angular-route/angular-route.js',<% if (filters.ngAnimate) { %>
-      'bower_components/angular-animate/angular-animate.js',<% } if (filters.ngSanitize) { %>
-      'bower_components/angular-sanitize/angular-sanitize.js',<% } if (filters.ngCookies) { %>
-      'bower_components/angular-cookies/angular-cookies.js',<% } if (filters.ngResource) { %>
-      'bower_components/angular-resource/angular-resource.js',<% } if (filters.sockets) { %>
-      'bower_components/angular-socket-io/socket.min.js',<% } %>
       'app.js',
       'views/**/*.js',
       'services/**/*.js',
       'directives/**/*.js',
       'directives/**/*.html',
       'filters/**/*.js'
-    ],
+    ]),
 
     exclude: [
       'views/**/*.e2e.js'<% if (filters.sockets) { %>,
