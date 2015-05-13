@@ -1,8 +1,7 @@
 general:
   branches:
-    only:
-      - master
-      - develop
+    ignore:
+      - canary
 dependencies:
   pre:
     - npm install -g istanbul gulp
