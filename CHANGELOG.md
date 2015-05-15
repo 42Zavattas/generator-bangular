@@ -1,3 +1,13 @@
+<a name"0.11.1"></a>
+### 0.11.1 (2015-05-15)
+
+
+#### Bug Fixes
+
+* **build:** use new rebase url plugin ([af7420ba](https://github.com/42Zavattas/generator-bangular/commit/af7420ba))
+* **inject:** using angular sort plugin for injected files ([3bf65ccf](https://github.com/42Zavattas/generator-bangular/commit/3bf65ccf), closes [#21](https://github.com/42Zavattas/generator-bangular/issues/21))
+
+
 <a name"0.11.0"></a>
 ## 0.11.0 (2015-05-02)
 
