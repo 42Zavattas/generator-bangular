@@ -1,3 +1,12 @@
+<a name"0.11.2"></a>
+### 0.11.2 (2015-06-03)
+
+
+#### Bug Fixes
+
+* **deps:** lock gulp-rev-all to 0.8.18 ([d50932d5](https://github.com/42Zavattas/generator-bangular/commit/d50932d5))
+
+
 <a name"0.11.1"></a>
 ### 0.11.1 (2015-05-15)
 
