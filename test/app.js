@@ -490,6 +490,8 @@ describe('Launching app generator tests', function () {
       });
     });
 
+    /*
+
     it('should update the webdriver and pass e2e tests', function (done) {
       this.timeout(60000);
       exec('gulp e2e:update', function (err, stdout) {
@@ -501,6 +503,8 @@ describe('Launching app generator tests', function () {
         });
       });
     });
+
+    */
 
     after(function (done) {
       exec('cd .. && rm -rf ./mock', function () {
