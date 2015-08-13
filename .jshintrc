@@ -14,9 +14,9 @@
   "undef": true,
   "unused": true,
   "globals": {
-    "describe": true,
-    "before": true,
-    "it": true,
-    "after": true
+    "describe": false,
+    "before": false,
+    "it": false,
+    "after": false
   }
 }

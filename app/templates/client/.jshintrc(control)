@@ -1,19 +1,19 @@
 {
   "browser": true,
   "globals": {
-    "angular": true,
-    "browser": true,
-    "element": true,
-    "by": true,
-    "module": true,
-    "console": true,
-    "it": true,
-    "describe": true,
-    "inject": true,
-    "expect": true,
-    "alert": true,
-    "afterEach": true,
-    "beforeEach": true<% if (filters.sockets) { %>,
-    "io" : true<% } %>
+    "angular": false,
+    "browser": false,
+    "element": false,
+    "by": false,
+    "module": false,
+    "console": false,
+    "it": false,
+    "describe": false,
+    "inject": false,
+    "expect": false,
+    "alert": false,
+    "afterEach": false,
+    "beforeEach": false<% if (filters.sockets) { %>,
+    "io" : false<% } %>
   }
 }
