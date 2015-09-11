@@ -35,25 +35,24 @@
     "zavattas"
   ],
   "dependencies": {
-    "async": "^1.0.0",
-    "chalk": "^1.0.0",
-    "glob": "^5.0.5",
-    "gulp-jshint": "^1.9.2",
-    "jshint-stylish": "^1.0.1",
-    "lodash": "^3.7.0",
+    "async": "^1.4.2",
+    "chalk": "^1.1.1",
+    "glob": "^5.0.14",
+    "lodash": "^3.10.1",
     "mkdirp": "^0.5.0",
-    "underscore.string": "^3.0.3",
-    "yeoman-generator": "^0.20.1"
+    "underscore.string": "^3.2.2",
+    "yeoman-generator": "^0.20.3"
   },
   "devDependencies": {
-    "conventional-changelog": "0.0.17",
-    "coveralls": "^2.11.2",
     "chai": "*",
-    "gulp": "^3.8.11",
-    "gulp-jscs": "^1.4.0",
-    "gulp-jscs-stylish": "1.1.0",
-    "gulp.spritesmith": "^3.2.0",
-    "mocha": "*"
+    "conventional-changelog": "^0.4.3",
+    "coveralls": "^2.11.2",
+    "jscs": "^2.1.1",
+    "jscs-stylish": "^0.3.1",
+    "jshint": "^2.8.0",
+    "jshint-stylish": "^2.0.1",
+    "mocha": "*",
+    "spritesmith-cli": "^1.1.1"
   },
   "peerDependencies": {
     "yo": ">=1.4.0"
@@ -62,7 +61,12 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "istanbul cover ./node_modules/mocha/bin/_mocha",
-    "cover": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+    "test": "istanbul cover _mocha",
+    "cover": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
+    "jshint": "jshint --reporter=node_modules/jshint-stylish **/index.js test",
+    "jscs": "jscs --reporter=node_modules/jscs-stylish **/index.js test",
+    "control": "npm run jshint && npm run jscs",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -w",
+    "sprites": "spritesmith"
   }
 }
