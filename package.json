@@ -47,6 +47,7 @@
     "chai": "*",
     "conventional-changelog": "^0.4.3",
     "coveralls": "^2.11.2",
+    "istanbul": "^0.3.19",
     "jscs": "^2.1.1",
     "jscs-stylish": "^0.3.1",
     "jshint": "^2.8.0",

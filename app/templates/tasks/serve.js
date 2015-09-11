@@ -14,7 +14,7 @@ var bsync      = require('browser-sync');<% } %>
 var config = require('../server/config/environment');
 
 var openOpts = {
-  url: 'http://localhost:' + config.port,
+  uri: 'http://localhost:' + config.port,
   already: false
 };
 
@@ -31,7 +31,7 @@ module.exports = {
           openOpts.already = true;
           ripe.wait(<% if (filters.reload === 'livereload') { %>function () {
             gulp.src('client/index.html')
-              .pipe(open('', openOpts));
+              .pipe(open(openOpts));
           }<% } else { %>cb<% } %>);
         } else {
           ripe.wait(function () {<% if (filters.reload === 'livereload') { %>

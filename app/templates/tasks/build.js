@@ -35,14 +35,16 @@ module.exports = function (done) {
 };
 
 gulp.task('clean:dist', function (done) {
-  del(['dist/**', '!dist', '!dist/.git{,/**}'], done);
+  del(['dist/**', '!dist', '!dist/.git{,/**}'])
+    .then(function () { done(); }).catch(done);
 });
 
 gulp.task('clean:finish', function (done) {
   del([
     '.tmp/**',
     'dist/client/app.{css,js}'
-  ].concat(toDelete), done);
+  ].concat(toDelete))
+    .then(function () { done(); }).catch(done);
 });
 
 gulp.task('copy:dist', function () {
