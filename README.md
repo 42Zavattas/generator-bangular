@@ -3,7 +3,7 @@
 </p>
 <h1 align="center">generator-bangular</h1>
 <p align="center">
-  <a href="https://circleci.com/gh/42Zavattas/generator-bangular"><img src="https://circleci-badges.herokuapp.com/42Zavattas/generator-bangular/fd88a2cf8197ee2e026ceab5b76683a60596540c"></a>
+  <a href="https://circleci.com/gh/42Zavattas/generator-bangular"><img src="https://circlebadges.herokuapp.com/42Zavattas/generator-bangular/fd88a2cf8197ee2e026ceab5b76683a60596540c"></a>
   <a href="https://coveralls.io/r/42Zavattas/generator-bangular"><img src="https://coveralls.io/repos/42Zavattas/generator-bangular/badge.svg"></a>
   <a href="https://codeclimate.com/github/42Zavattas/generator-bangular"><img src="https://codeclimate.com/github/42Zavattas/generator-bangular/badges/gpa.svg"></a>
   <a href="https://david-dm.org/42Zavattas/generator-bangular"><img src="https://david-dm.org/42Zavattas/generator-bangular.svg"></a>
