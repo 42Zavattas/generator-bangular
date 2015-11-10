@@ -9,8 +9,6 @@
   <a href="https://david-dm.org/42Zavattas/generator-bangular"><img src="https://david-dm.org/42Zavattas/generator-bangular.svg"></a>
 </p>
 
-<p align="center"> :tada: :star: :star: :star: :star: :star: :star: :star: :star: :star: :star: :heavy_multiplication_x: :star: :star: :star: :star: :star: :star: :star: :star: :star: :star: :tada:</p>
-
 ![logos](logos/logos-sprite.png "logos")
 
 > *« Perfection is achieved not when there is nothing more to add, but when there is nothing left to take away. »* — ***Antoine De Saint-Exupéry***
