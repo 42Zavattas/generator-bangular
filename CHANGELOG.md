@@ -1,3 +1,15 @@
+<a name="0.11.4"></a>
+## [0.11.4](https://github.com/42Zavattas/generator-bangular/compare/0.11.3...v0.11.4) (2015-11-11)
+
+
+### Bug Fixes
+
+* **auth:** use new expiresIn for jwt ([2e9997b](https://github.com/42Zavattas/generator-bangular/commit/2e9997b))
+* **karma:** add view templates in karma conf ([1ecf62d](https://github.com/42Zavattas/generator-bangular/commit/1ecf62d))
+* **preview:** correct usage of gulp open ([ad62d5c](https://github.com/42Zavattas/generator-bangular/commit/ad62d5c))
+
+
+
 <a name"0.11.2"></a>
 ### 0.11.2 (2015-06-03)
 
