@@ -4,13 +4,13 @@
  * Test tasks
  */
 <% if (filters.e2e || filters.mocha) { %>
-var gulp       = require('gulp');<% } if (filters.e2e) { %>
-var util       = require('gulp-util');<% } %>
-var chalk      = require('chalk');<% if (filters.e2e) { %>
-var protractor = require('gulp-protractor');<% } %><% if (filters.karma) { %>
-var karma      = require('karma').server;<% } %><% if (filters.mocha) { %>
-var plumber    = require('gulp-plumber');
-var mocha      = require('gulp-mocha');<% } %>
+var gulp        = require('gulp');<% } if (filters.e2e) { %>
+var util        = require('gulp-util');<% } %>
+var chalk       = require('chalk');<% if (filters.e2e) { %>
+var protractor  = require('gulp-protractor');<% } %><% if (filters.karma) { %>
+var KarmaServer = require('karma').Server;<% } %><% if (filters.mocha) { %>
+var plumber     = require('gulp-plumber');
+var mocha       = require('gulp-mocha');<% } %>
 
 /**
  * Log. With options.
@@ -56,9 +56,11 @@ function testClient (done) {
 
   log('Running client tests...', { padding: true });
 <% if (filters.karma) { %>
-  karma.start({
+  var server = new KarmaServer({
     configFile: __dirname + '/../karma.conf.js'
-  }, done);<% } else { %>
+  }, done);
+
+  server.start();<% } else { %>
   done();
 <% } %>
 }
