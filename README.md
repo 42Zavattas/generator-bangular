@@ -32,7 +32,7 @@ Optional:
 * **authentication system**, with [Passport](https://github.com/jaredhanson/passport)
 * **MongoDB**, with [Mongoose ODM](https://github.com/learnboost/mongoose)
 * **mocked backend**, with [Restock](https://github.com/42Zavattas/Restock.io)
-* **[SassDoc](https://github.com/SassDoc/sassdoc)** support
+* **[SassDoc](https://github.com/SassDoc/sassdoc)** and **[apiDoc](http://apidocjs.com/)** support
 
 # Install
 
