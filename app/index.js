@@ -159,7 +159,7 @@ var BangularGenerator = yeoman.generators.Base.extend({
         });
       }
 
-      self.filters.hasTests = self.filters.karma || self.filters.mocha;
+      self.filters.hasTests = self.filters.karma || self.filters.mocha || self.filters.e2e;
 
       if (props.backend === 'mongo') {
         self.prompt([{
