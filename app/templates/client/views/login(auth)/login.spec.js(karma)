@@ -6,17 +6,20 @@ describe('Controller: LoginCtrl', function () {
 
   var LoginCtrl,
     $httpBackend,
-    $location;
+    $location,
+    $cookieStore;
 
-  beforeEach(inject(function ($controller, _$httpBackend_, _$location_) {
+  beforeEach(inject(function ($controller, _$httpBackend_, _$location_, _$cookieStore_) {
     LoginCtrl = $controller('LoginCtrl', {});
     $httpBackend = _$httpBackend_;
+    $cookieStore = _$cookieStore_;
     $location = _$location_;
   }));
 
   afterEach(function () {
     $httpBackend.verifyNoOutstandingExpectation();
     $httpBackend.verifyNoOutstandingRequest();
+    $cookieStore.remove('token');
   });
 
   it('should redirect to / after successful login', function () {

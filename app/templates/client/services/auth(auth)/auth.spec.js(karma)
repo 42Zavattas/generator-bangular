@@ -12,12 +12,12 @@ describe('Service: Auth', function () {
     Auth = _Auth_;
     $httpBackend = _$httpBackend_;
     $cookieStore = _$cookieStore_;
-    $cookieStore.remove('token');
   }));
 
   afterEach(function () {
     $httpBackend.verifyNoOutstandingExpectation();
     $httpBackend.verifyNoOutstandingRequest();
+    $cookieStore.remove('token');
   });
 
   it('should log user', function () {
