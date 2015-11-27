@@ -1,7 +1,8 @@
 'use strict';
 
-var config = require('../../config/environment');
-var jwt = require('jsonwebtoken');
+var _ = require('lodash');
+
+var authService = require('../../auth/auth.service');
 var User = require('./user.model');
 
 function handleError (res, err) {
@@ -27,12 +28,10 @@ function handleError (res, err) {
 exports.create = function (req, res) {
   User.create(req.body, function (err, user) {
     if (err) { return handleError(res, err); }
-    var token = jwt.sign(
-      { _id: user._id },
-      config.secrets.session,
-      { expiresInMinutes: 60 * 5 }
-    );
-    res.status(201).json({ token: token, user: user });
+    res.status(201).json({
+      user: _.omit(user.toObject(), ['passwordHash', 'salt']),
+      token: authService.signToken(user._id)
+    });
   });
 };
 <% if (!filters.apidoc) { %>
@@ -51,10 +50,7 @@ exports.create = function (req, res) {
  *
  */<% } %>
 exports.getMe = function (req, res) {
-  var userId = req.user._id;
-  User.findOne({
-    _id: userId
-  }, '-salt -passwordHash', function (err, user) {
+  User.findById(req.user._id, function (err, user) {
     if (err) { return handleError(res, err); }
     if (!user) { return res.json(401); }
     res.status(200).json(user);

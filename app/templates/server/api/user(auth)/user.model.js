@@ -6,8 +6,8 @@ var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
   email: String,
-  passwordHash: String,
-  salt: String
+  passwordHash: { type: String, select: false },
+  salt: { type: String, select: false }
 });
 
 /**
