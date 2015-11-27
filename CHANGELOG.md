@@ -1,3 +1,15 @@
+<a name="0.12.0"></a>
+# [0.12.0](https://github.com/42Zavattas/generator-bangular/compare/0.11.4...v0.12.0) (2015-11-27)
+
+
+### Bug Fixes
+
+* **chore:** properly create test task if only e2e tests are chosen ([1be2f4b](https://github.com/42Zavattas/generator-bangular/commit/1be2f4b)), closes [#36](https://github.com/42Zavattas/generator-bangular/issues/36)
+* **security:** remove hash and salt from default selection ([5786757](https://github.com/42Zavattas/generator-bangular/commit/5786757)), closes [#24](https://github.com/42Zavattas/generator-bangular/issues/24)
+* **tests:** clean cookie after tests on auth ([52f9707](https://github.com/42Zavattas/generator-bangular/commit/52f9707))
+
+
+
 <a name="0.11.4"></a>
 ## [0.11.4](https://github.com/42Zavattas/generator-bangular/compare/0.11.3...v0.11.4) (2015-11-11)
 
