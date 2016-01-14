@@ -64,8 +64,8 @@
   "scripts": {
     "test": "istanbul cover _mocha",
     "cover": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
-    "jshint": "jshint --reporter=node_modules/jshint-stylish **/index.js test",
-    "jscs": "jscs --reporter=node_modules/jscs-stylish **/index.js test",
+    "jshint": "jshint --reporter=node_modules/jshint-stylish **/index.js test/*.js",
+    "jscs": "jscs --reporter=node_modules/jscs-stylish **/index.js test/*.js",
     "control": "npm run jshint && npm run jscs",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -w",
     "sprites": "spritesmith"
