@@ -466,7 +466,7 @@ describe('Launching app generator tests', function () {
     });
 
     it('should successfully pass the karma tests', function (done) {
-      this.timeout(20000);
+      this.timeout(40000);
       exec('gulp test --client', function (err, stdout) {
         chaiAssert.notMatch(stdout, /\(((?=.*[1-9])\d+(\.\d+)?) FAILED\)/, 'Output should not contain failed tests.');
         chaiAssert.notInclude(stdout, 'Task \'test\' is not in your gulpfile');
