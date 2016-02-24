@@ -1,3 +1,13 @@
+<a name="0.12.2"></a>
+## [0.12.2](https://github.com/42Zavattas/generator-bangular/compare/0.12.1...v0.12.2) (2016-02-24)
+
+
+### Bug Fixes
+
+* **tests:** update all karma deps ([80b10ab](https://github.com/42Zavattas/generator-bangular/commit/80b10ab))
+
+
+
 <a name="0.12.0"></a>
 # [0.12.0](https://github.com/42Zavattas/generator-bangular/compare/0.11.4...v0.12.0) (2015-11-27)
 
