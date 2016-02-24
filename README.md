@@ -7,7 +7,7 @@
   <a href="https://coveralls.io/r/42Zavattas/generator-bangular"><img src="https://coveralls.io/repos/42Zavattas/generator-bangular/badge.svg"></a>
   <a href="https://codeclimate.com/github/42Zavattas/generator-bangular"><img src="https://codeclimate.com/github/42Zavattas/generator-bangular/badges/gpa.svg"></a>
   <a href="https://david-dm.org/42Zavattas/generator-bangular"><img src="https://david-dm.org/42Zavattas/generator-bangular.svg"></a>
-  <a href="http://starveller.bangular.io/42Zavattas/generator-bangular"><img src="http://starveller.bangular.io/api/repos/42Zavattas/generator-bangular/badge"></a>
+  <a href="http://starveller.sigsev.io/42Zavattas/generator-bangular"><img src="http://starveller.sigsev.io/api/repos/42Zavattas/generator-bangular/badge"></a>
 </p>
 
 ![logos](logos/logos-sprite.png "logos")
