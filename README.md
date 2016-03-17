@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="http://media.bangular.io/simple-logo.png">
+  <img src="http://media.sigsev.io/simple-logo.png">
 </p>
 <h1 align="center">generator-bangular</h1>
 <p align="center">
